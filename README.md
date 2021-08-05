@@ -16,7 +16,7 @@
 
 ---
 
-I stared coding at age 15. I like doing CP and am active on CodeChef, CodeForces and Project Euler. I am currently completing my final year of engineering from KJSIEIT. I was in my College's CodeCell for 2 years and am part of college's space program.
+I like Math and CP and am active on CodeChef, CodeForces, and Project Euler. I am currently completing my final year of engineering from KJSIEIT. I was in my College's CodeCell for 2 years and am part of college's space program.
 
 -   💬 Ask me about **CP, ML, Python, Django, and React**.
 -   🔭 I’m currently working on **multiple projects**.
