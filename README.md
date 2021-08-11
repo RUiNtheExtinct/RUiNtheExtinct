@@ -3,10 +3,10 @@
 
 ---
 
-<!-- <div align="center">
-   <img  src="https://projecteuler.net/profile/vedantk07.png"  width="100" height="40" />
+<div align="center">
+   <img  src="https://projecteuler.net/profile/RUiNtheExtinct.png"  width="100" height="40" />
 </div>
-<div align="center"> -->
+<div align="center">
 
 [![Codechef](https://cp-logo.vercel.app/codechef/fallacy69?logo=true)](https://www.codechef.com/users/fallacy69)
 [![Codeforces](https://cp-logo.vercel.app/codeforces/RUiNtheExtinct?logo=true)](https://codeforces.com/profile/RUiNtheExtinct)
