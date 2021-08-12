@@ -4,7 +4,7 @@
 ---
 
 <div align="center">
-   <img  src="https://projecteuler.net/profile/RUiNtheExtinct.png"  width="100" height="40" />
+   <a href="https://projecteuler.net/"><img  src="https://projecteuler.net/profile/RUiNtheExtinct.png"  width="100" height="40" /></a>
 </div>
 <div align="center">
 
