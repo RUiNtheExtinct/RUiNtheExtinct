@@ -1,4 +1,4 @@
-<h1 align="center">Hi <img src="https://raw.githubusercontent.com/ABSphreak/ABSphreak/master/gifs/Hi.gif" width="40px" />, I'm Arghyadeep</h1>
+<h1 align="center">Hi <img src="https://emoji.gg/assets/emoji/CharmanderHi.png" width="64px" height="64px" alt="CharmanderHi">, I'm Arghyadeep</h1>
 <h3 align="center"> Developer | Competitive Programmer | Bibliophile </h3>
 
 ---
@@ -24,6 +24,7 @@ I like Math and CP and am active on CodeChef, CodeForces, and Project Euler. I a
 -   👯 I’m looking to collaborate on **anything free and open source**.
 -   📫 How to reach me - **arghyadeep.k@somaiya.edu**.
 -   ⚡ Fun fact, I love **physics** and **maths**, and anyone who hates **fanfiction** can fight me.
+<!-- -   ⚡ Fun fact, I love **physics** <img src="https://emoji.gg/assets/emoji/6502-redearth.gif" width="16px" height="16px" alt="RedEarth"> and **maths**, and anyone who hates **fanfiction** can fight me. -->
 
 ---
 
