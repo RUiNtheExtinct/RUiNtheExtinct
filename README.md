@@ -1,5 +1,5 @@
 <h1 align="center">Hi <img src="https://raw.githubusercontent.com/ABSphreak/ABSphreak/master/gifs/Hi.gif" width="40px" />, I'm Arghyadeep</h1>
-<h3 align="center">A Problem Solver and a Developer </h3>
+<h3 align="center"> Developer | Competitive Programmer | Bibliophile </h3>
 
 ---
 
@@ -23,7 +23,7 @@ I like Math and CP and am active on CodeChef, CodeForces, and Project Euler. I a
 -   ⚡ I'm currently learning **Deep Reinforcement Learning and Group Theory**.
 -   👯 I’m looking to collaborate on **anything free and open source**.
 -   📫 How to reach me - **arghyadeep.k@somaiya.edu**.
--   ⚡ Fun fact, **I love physics and maths**.
+-   ⚡ Fun fact, I love **physics** and **maths**, and anyone who hates **fanfiction** can fight me.
 
 ---
 
@@ -31,9 +31,10 @@ I like Math and CP and am active on CodeChef, CodeForces, and Project Euler. I a
 <div align="center">
 
 [![Linkedin Badge](https://img.shields.io/badge/-Linkedin-blue?style=flat&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/arghyadeep-k-14b06b15a/)](https://www.linkedin.com/in/arghyadeep-k-14b06b15a/)
-[![Instagram Badge](https://img.shields.io/badge/-Instagram-purple?style=flat&logo=instagram&logoColor=white&link=https://www.instagram.com/ruin_the_extinct/)](https://www.instagram.com/ruin_the_extinct/)
 [![Gmail Badge](https://img.shields.io/badge/-Email_ID-c14438?style=flat&logo=Gmail&logoColor=white&link=mailto:arghyadeep.k@somaiya.edu)](mailto:arghyadeep.k@somaiya.ed)
+[![Instagram Badge](https://img.shields.io/badge/-Instagram-purple?style=flat&logo=instagram&logoColor=white&link=https://www.instagram.com/ruin_the_extinct/)](https://www.instagram.com/ruin_the_extinct/)
 [![Twitter Badge](https://img.shields.io/badge/-Twitter-1ca0f1?style=flat&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/fallacy69)](https://twitter.com/fallacy69)
+<a href="https://www.facebook.com/RUiNtheExtinct" target="_blank"><img src="https://img.shields.io/badge/Facebook-%231877F2.svg?&style=flat-square&logo=facebook&logoColor=white" alt="Facebook"></a>
 
 </div>
 
@@ -97,12 +98,12 @@ I like Math and CP and am active on CodeChef, CodeForces, and Project Euler. I a
 ---
 
   <summary><b>Overall Github Stats</b></summary>
-  <a href="https://github.com/RUiNtheExtinct/"><img align="center" title="Arghyadeep Karmakar's Github Stats" alt="Deep's Github Stats" src="https://github-readme-stats.vercel.app/api?username=RUINtheExtinct&count_private=true&show_icons=true" /></a>
+  <a href="https://github.com/RUiNtheExtinct/"><img align="center" title="Arghyadeep's Github Stats" alt="Deep's Github Stats" src="https://github-readme-stats.vercel.app/api?username=RUiNtheExtinct&include_all_commits=true&count_private=true&show_icons=true&line_height=20&title_color=7A7ADB&icon_color=2234AE&text_color=D3D3D3&bg_color=0,000000,130F40"  /></a>
 
 -----
 
 <details>
-    <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=RUiNtheExtinct" alt="RUiNtheExtinct" /></p>
+    <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=RUiNtheExtinct&title_color=7A7ADB&icon_color=2234AE&text_color=D3D3D3&bg_color=0,000000,130F40" alt="RUiNtheExtinct" /></p>
     <p align="center">
 </details>
 
