@@ -23,7 +23,7 @@ I like Math and CP and am active on CodeChef, CodeForces, and Project Euler. I a
 -   ⚡ I'm currently learning **Deep Reinforcement Learning and Group Theory**.
 -   👯 I’m looking to collaborate on **anything free and open source**.
 -   📫 How to reach me - **arghyadeep.k@somaiya.edu**.
--   ⚡ Fun fact, I love **physics** and **maths**, and anyone who hates **fanfiction** can fight me.
+-   ⚡ Fun fact, I love **physics**, **maths**, and **fanfiction**.
 <!-- -   ⚡ Fun fact, I love **physics** <img src="https://emoji.gg/assets/emoji/6502-redearth.gif" width="16px" height="16px" alt="RedEarth"> and **maths**, and anyone who hates **fanfiction** can fight me. -->
 
 ---

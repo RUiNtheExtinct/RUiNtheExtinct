@@ -1,36 +1,45 @@
-import React, { useEffect } from "react";
-import BtnSubir from "./components/botones/BtnSubir";
-import Contacto from "./components/contacto/Contacto";
-import Habilidades from "./components/habilidades/Habilidades";
-import Header from "./components/header/Header";
-import Paralax from "./components/Paralax";
-import Proyectos from "./components/proyectos/Proyectos";
-import Servicios from "./components/servicios/Servicios";
+import React, { useState, useEffect } from "react";
+import Preloader from "../src/components/Pre";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home/Home";
+import About from "./components/About/About";
+import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import Resume from "./components/Resume/Resume";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./style.css";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
-	useEffect(() => {
-		AOS.init();
-	}, []);
+  const [load, upadateLoad] = useState(true);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      upadateLoad(false);
+    }, 1200);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
-	return (
-		<>
-			<Header />
-			<Servicios />
-			<Proyectos />
-			<Paralax
-				titulo="Puedes visitar mi galeria para encontrar muchisimos proyectos mas..."
-				desc="Es una galeria que cree con Bootstrap, React JS & Firebase, para mostrar todos mis proyectos con diferentes tecnologias."
-				enlace="https://freddy-gallery.netlify.app"
-			/>
-			<Habilidades />
-			<Contacto />
-			<Footer />
-			<BtnSubir />
-		</>
-	);
+  return (
+    <Router>
+      <Preloader load={load} />
+      <div className="App" id={load ? "no-scroll" : "scroll"}>
+        <Navbar />
+        <ScrollToTop />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/project" component={Projects} />
+          <Route path="/about" component={About} />
+          <Route path="/resume" component={Resume} />
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
+  );
 }
 
 export default App;
