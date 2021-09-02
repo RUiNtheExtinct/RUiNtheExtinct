@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---cache-dev-404-page-js",
+    "path": "/dev-404-page/",
+    "result": {"data":{"allSiteFunction":{"nodes":[]},"allSitePage":{"nodes":[{"path":"/App/"},{"path":"/"},{"path":"/reportWebVitals/"},{"path":"/components/Footer/"},{"path":"/components/LikeBtn/"},{"path":"/components/Navbar/"},{"path":"/components/Particle/"},{"path":"/components/Pre/"},{"path":"/components/ScrollToTop/"},{"path":"/components/About/About/"},{"path":"/components/About/AboutCard/"},{"path":"/components/About/Github/"},{"path":"/components/About/Techstack/"},{"path":"/components/About/Toolstack/"},{"path":"/components/Home/Home/"},{"path":"/components/Home/Home2/"},{"path":"/components/Home/Type/"},{"path":"/components/Projects/BlogsCards/"},{"path":"/components/Projects/ProjectCards/"},{"path":"/components/Projects/Projects/"},{"path":"/components/Resume/Resume/"},{"path":"/components/Resume/ResumeContent/"}]}},"pageContext":{}},
+    "staticQueryHashes": []}
