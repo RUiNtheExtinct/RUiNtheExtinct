@@ -1,20 +1,7 @@
 // import React from "react";
 // import ReactDOM from "react-dom";
 import "./index.css";
-// import App from "./App";
 // import reportWebVitals from "./reportWebVitals";
-
-// ReactDOM.render(
-// 	<React.StrictMode>
-// 		<App />
-// 	</React.StrictMode>,
-// 	document.getElementById("root")
-// );
-
-// // If you want to start measuring performance in your app, pass a function
-// // to log results (for example: reportWebVitals(console.log))
-// // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
 
 import React, { useState, useEffect } from "react";
 import Preloader from "./components/Pre";
@@ -22,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
+import CP from "./views/CP/CP";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/Resume";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -30,7 +18,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import ScrollToTop from "./components/ScrollToTop";
-
+// var hist = createBrowserHistory();
 export default function App() {
 	const [load, upadateLoad] = useState(true);
 
@@ -52,8 +40,9 @@ export default function App() {
 					<Switch>
 						<Route path="/" exact component={Home} />
 						<Route path="/project" component={Projects} />
-						<Route path="/about" component={About} />
 						<Route path="/resume" component={Resume} />
+						<Route path="/about" component={About} />
+						<Route path="/cp" component={CP} />
 					</Switch>
 					<Footer />
 				</div>
@@ -61,3 +50,5 @@ export default function App() {
 		</React.StrictMode>
 	);
 }
+
+// reportWebVitals();
