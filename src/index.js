@@ -5,7 +5,7 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 // import {BrowserRouter } from "react-router-dom";
 
-import "./assets/scss/material-kit-react.scss?v=1.10.0";
+import "assets/scss/material-kit-react.scss?v=1.10.0";
 
 // pages for this product
 

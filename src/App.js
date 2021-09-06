@@ -17,11 +17,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { createBrowserHistory } from "history";
+// import { createBrowserHistory } from "history";
 
 import ScrollToTop from "./components/ScrollToTop";
 
-var hist = createBrowserHistory();
+// var hist = createBrowserHistory();
 export default function App() {
 	const [load, upadateLoad] = useState(true);
 

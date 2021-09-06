@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-import logo from "../assets/logo.png";
+import logo from "assets/img/logos/logo1_t1.png";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { CgGitFork } from "react-icons/cg";
-import { ImBlog } from "react-icons/im";
+// import { ImBlog } from "react-icons/im";
 import {
 	AiFillStar,
 	AiOutlineHome,
@@ -39,7 +39,7 @@ function NavBar() {
 		>
 			<Container>
 				<Navbar.Brand href="/">
-					<img src={logo} className="img-fluid logo" alt="brand" />
+					<img src={logo} className="img-fluid" alt="brand" />
 				</Navbar.Brand>
 				<Navbar.Toggle
 					aria-controls="responsive-navbar-nav"
