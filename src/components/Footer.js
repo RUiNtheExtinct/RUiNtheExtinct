@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import {
 	AiFillGithub,
@@ -13,48 +13,52 @@ function Footer() {
 	return (
 		<Container fluid className="footer">
 			<Row>
-				<Col md="4" className="footer-copywright">
-					<h3>Designed and Developed by Soumyajit Behera</h3>
+				<Col md="4" className="footer-copywright mt-2">
+					<h3>
+						<a href="/" style={{ color: "white" }}>
+							<u>Credits</u>
+						</a>
+					</h3>
 				</Col>
-				<Col md="4" className="footer-copywright">
-					<h3>Copyright © {year} SB</h3>
+				<Col md="4" className="footer-copywright mt-2">
+					<h3>Copyright © {year} RTE</h3>
 				</Col>
 				<Col md="4" className="footer-body">
 					<ul className="footer-icons">
-						<li className="social-icons">
+						<li className="home-social-icons mr-2">
 							<a
-								href="https://github.com/soumyajit4419"
-								style={{ color: "white" }}
+								href="https://github.com/RUiNtheExtinct"
+								style={{ color: "black" }}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
 								<AiFillGithub />
 							</a>
 						</li>
-						<li className="social-icons">
+						<li className="home-social-icons mr-2">
 							<a
-								href="https://twitter.com/Soumyajit4419"
-								style={{ color: "white" }}
+								href="https://twitter.com/fallacy69"
+								style={{ color: "light-blue" }}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
 								<AiOutlineTwitter />
 							</a>
 						</li>
-						<li className="social-icons">
+						<li className="home-social-icons mr-2">
 							<a
-								href="https://www.linkedin.com/in/soumyajit4419/"
-								style={{ color: "white" }}
+								href="https://www.linkedin.com/in/arghyadeep-k-14b06b15a/"
+								style={{ color: "blue" }}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
 								<FaLinkedinIn />
 							</a>
 						</li>
-						<li className="social-icons">
+						<li className="home-social-icons mr-2">
 							<a
-								href="https://www.instagram.com/s.o.u.m.y.a_j.i.t/"
-								style={{ color: "white" }}
+								href="https://www.instagram.com/ruin_the_extinct/"
+								style={{ color: "red" }}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
