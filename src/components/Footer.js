@@ -5,6 +5,7 @@ import {
 	AiFillGithub,
 	AiOutlineTwitter,
 	AiFillInstagram,
+	AiFillMail,
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
@@ -62,11 +63,21 @@ function Footer() {
 						<li className="home-social-icons mr-2">
 							<a
 								href="https://www.instagram.com/ruin_the_extinct/"
-								style={{ color: "red" }}
+								style={{ color: "crimson" }}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
 								<AiFillInstagram />
+							</a>
+						</li>
+						<li className="home-social-icons mr-2">
+							<a
+								href="mailto:deepkarma2001@gmail.com"
+								style={{ color: "red" }}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<AiFillMail />
 							</a>
 						</li>
 					</ul>

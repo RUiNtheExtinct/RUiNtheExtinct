@@ -6,6 +6,7 @@ import {
 	AiFillGithub,
 	AiOutlineTwitter,
 	AiFillInstagram,
+	AiFillMail,
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
@@ -78,44 +79,59 @@ function Home2() {
 							<span className="purple">connect </span>with me
 						</p>
 						<ul className="home-about-social-links">
-							<li className="social-icons">
+							<li className="home-social-icons mr-2">
 								<a
-									href="https://github.com/soumyajit4419"
+									href="https://www.linkedin.com/in/arghyadeep-k-14b06b15a/"
+									// style={{ color: "blue" }}
+									className="icon-colour home-social-icons"
 									target="_blank"
-									rel="noreferrer"
-									className="icon-colour  home-social-icons"
-								>
-									<AiFillGithub />
-								</a>
-							</li>
-							<li className="social-icons">
-								<a
-									href="https://twitter.com/Soumyajit4419"
-									target="_blank"
-									rel="noreferrer"
-									className="icon-colour  home-social-icons"
-								>
-									<AiOutlineTwitter />
-								</a>
-							</li>
-							<li className="social-icons">
-								<a
-									href="https://www.linkedin.com/in/soumyajit4419/"
-									target="_blank"
-									rel="noreferrer"
-									className="icon-colour  home-social-icons"
+									rel="noopener noreferrer"
 								>
 									<FaLinkedinIn />
 								</a>
 							</li>
-							<li className="social-icons">
+							<li className="home-social-icons mr-2">
 								<a
-									href="https://www.instagram.com/s.o.u.m.y.a_j.i.t/"
-									target="_blank"
-									rel="noreferrer"
+									href="https://github.com/RUiNtheExtinct"
+									// style={{ color: "black" }}
 									className="icon-colour home-social-icons"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<AiFillGithub />
+								</a>
+							</li>
+							{/* <li className="home-social-icons mr-2">
+								<a
+									href="https://twitter.com/fallacy69"
+									// style={{ color: "light-blue" }}
+									className="icon-colour home-social-icons"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<AiOutlineTwitter />
+								</a>
+							</li>
+							<li className="home-social-icons mr-2">
+								<a
+									href="https://www.instagram.com/ruin_the_extinct/"
+									// style={{ color: "crimson" }}
+									className="icon-colour home-social-icons"
+									target="_blank"
+									rel="noopener noreferrer"
 								>
 									<AiFillInstagram />
+								</a>
+							</li> */}
+							<li className="home-social-icons mr-2">
+								<a
+									href="mailto:deepkarma2001@gmail.com"
+									// style={{ color: "red" }}
+									className="icon-colour home-social-icons"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<AiFillMail />
 								</a>
 							</li>
 						</ul>

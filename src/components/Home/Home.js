@@ -24,6 +24,12 @@ function Home() {
 									aria-labelledby="wave"
 								>
 									👋🏻
+									{/* <img
+										src="https://emoji.gg/assets/emoji/CharmanderHi.png"
+										width="50px"
+										height="50px"
+										alt="CharmanderHi"
+									></img> */}
 								</span>
 							</h1>
 
