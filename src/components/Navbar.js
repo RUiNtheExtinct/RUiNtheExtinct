@@ -13,6 +13,7 @@ import {
 	AiOutlineHome,
 	AiOutlineFundProjectionScreen,
 	AiOutlineUser,
+	AiOutlineProject,
 } from "react-icons/ai";
 
 import { CgFileDocument } from "react-icons/cg";
@@ -92,7 +93,7 @@ function NavBar() {
 								to="/project"
 								onClick={() => updateExpanded(false)}
 							>
-								<AiOutlineFundProjectionScreen
+								<AiOutlineProject
 									style={{ marginBottom: "2px" }}
 								/>{" "}
 								Projects

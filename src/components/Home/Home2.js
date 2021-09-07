@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import myImg from "../../assets/avatar.svg";
+import myImg from "assets/avatar.svg";
+import myImg1 from "assets/img/faces/a1.png";
 import Tilt from "react-parallax-tilt";
 import {
 	AiFillGithub,
-	AiOutlineTwitter,
-	AiFillInstagram,
+	// AiOutlineTwitter,
+	// AiFillInstagram,
 	AiFillMail,
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
 function Home2() {
+	const [img, setImg] = useState(myImg1); // integer state
+	function useForceUpdate() {
+		return () => setImg((img) => (img === myImg ? myImg1 : myImg)); // update the state to force render
+	}
+	const forceUpdate = useForceUpdate();
+
 	return (
 		<Container fluid className="home-about-section" id="about">
 			<Container>
@@ -21,52 +28,62 @@ function Home2() {
 							MYSELF
 						</h1>
 						<p className="home-about-body">
-							I fell in love with programming and I have at least
-							learnt something, I think… 🤷‍♂️
+							I love math and problem solving. Competitive
+							Programming seemed like the obvious next step. I am
+							quite active on most CP based sites like{" "}
+							<b className="purple"> HackerRank</b>,{" "}
+							<b className="purple"> CodeForces</b>,{" "}
+							<b className="purple">Project Euler</b>, etc. Apart
+							from that I am an Executive member of my college's
+							CodeCell, <b className="purple">Infinite Loop</b>
+							{", "}
+							and am a part of the Programming Team of the{" "}
+							<b className="purple">Student Satellite Program </b>
+							of my college.
 							<br />
 							<br />I am fluent in classics like
 							<i>
-								<b className="purple">
-									{" "}
-									C++, Javascript and Python.{" "}
-								</b>
+								<b className="purple"> C, C++, and Python</b>.
 							</i>
 							<br />
 							<br />
-							My field of Interest's are building new &nbsp;
+							My field of Interest's are learning new&nbsp;
 							<i>
-								<b className="purple">
-									Web Technologies and Products{" "}
-								</b>{" "}
+								<b className="purple">ML and AI algorithms </b>{" "}
 								and also in areas related to{" "}
 								<b className="purple">
 									Deep Learning and Natural Launguage
-									Processing.
+									Processing
 								</b>
+								.
 							</i>
 							<br />
 							<br />
-							Whenever possible, I also apply my passion for
-							developing products with{" "}
-							<b className="purple">Node.js</b> and
-							<i>
-								<b className="purple">
-									{" "}
-									Modern Javascript Library and Frameworks
-								</b>
-							</i>
+							Whenever possible, I also like working on Web
+							Development with{" "}
+							<b className="purple">Django and Node.js</b> and
+							<b className="purple">
+								{" "}
+								Modern Libraries and Frameworks
+							</b>
 							&nbsp; like
 							<i>
-								<b className="purple"> React.js ans Next.js</b>
+								<b className="purple"> React.js and Three.js</b>
+								.&nbsp;
 							</i>
+							<br />
+							<br />
+							I'm also quite comfortable with{" "}
+							<b className="purple"> Android Frameworks</b>.
 						</p>
 					</Col>
 					<Col md={4} className="myAvtar">
 						<Tilt>
 							<img
-								src={myImg}
+								src={img}
 								className="img-fluid"
 								alt="avatar"
+								onClick={forceUpdate}
 							/>
 						</Tilt>
 					</Col>
