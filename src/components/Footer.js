@@ -15,7 +15,7 @@ function Footer() {
 			<Row>
 				<Col md="4" className="footer-copywright mt-2">
 					<h3>
-						<a href="/" style={{ color: "white" }}>
+						<a href="/cred" style={{ color: "white" }}>
 							<u>Credits</u>
 						</a>
 					</h3>

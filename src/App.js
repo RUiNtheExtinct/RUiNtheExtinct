@@ -17,9 +17,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { createBrowserHistory } from "history";
 
 import ScrollToTop from "./components/ScrollToTop";
+// import { createBrowserHistory } from "history";
+
+function Credits() {
+	return <div>HOLA</div>;
+}
 
 // var hist = createBrowserHistory();
 export default function App() {
@@ -46,6 +50,7 @@ export default function App() {
 						<Route path="/resume" component={Resume} />
 						<Route path="/about" component={About} />
 						<Route path="/exp" component={Experience} />
+						<Route path="/cred" component={Credits} />
 					</Switch>
 					<Footer />
 				</div>
