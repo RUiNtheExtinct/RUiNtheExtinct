@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import {
 	AiFillGithub,
@@ -13,11 +14,14 @@ function Footer() {
 	return (
 		<Container fluid className="footer">
 			<Row>
-				<Col md="4" className="footer-copywright mt-2">
+				<Col
+					md="4"
+					className="footer-copywright mt-2"
+					as={Link}
+					to="/cred"
+				>
 					<h3>
-						<a href="/cred" style={{ color: "white" }}>
-							<u>Credits</u>
-						</a>
+						<u>Credits</u>
 					</h3>
 				</Col>
 				<Col md="4" className="footer-copywright mt-2">
