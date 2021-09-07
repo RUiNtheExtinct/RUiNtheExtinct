@@ -11,11 +11,35 @@ html {
 		rgba(12, 10, 22, 0.863)
 	);
 
-	--imp-text-color: #c770f0;
+	--imp-text-color1: #c770f0;
+	--imp-text-color2: #f70000;
+	--imp-text-color3: #00ff15;
+	--imp-text-color4: #00ebfc;
+	--imp-text-color5: #0011fd;
+	--imp-text-color6: #fbff00;
+	--imp-text-color7: #ffffff;
 }
 
 .purple {
-	color: var(--imp-text-color) !important;
+	color: var(--imp-text-color1) !important;
+}
+.red {
+	color: var(--imp-text-color2) !important;
+}
+.green {
+	color: var(--imp-text-color3) !important;
+}
+.cyan {
+	color: var(--imp-text-color4) !important;
+}
+.blue {
+	color: var(--imp-text-color5) !important;
+}
+.yellow {
+	color: var(--imp-text-color6) !important;
+}
+.white {
+	color: var(--imp-text-color7) !important;
 }
 
 /* --------- */

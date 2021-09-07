@@ -11,12 +11,26 @@ import {
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
+const colors = ["purple", "red", "green", "blue", "yellow", "cyan", "white"];
+
 function Home2() {
+	const forceUpdate = useForceUpdate();
+
+	const [col1, setCol1] = useState(0); // integer state
+
+	function useForceUpdate1() {
+		return () => {
+			setCol1((col1) => (col1 + 1) % colors.length);
+		}; // update the state to force render
+	}
 	const [img, setImg] = useState(myImg1); // integer state
 	function useForceUpdate() {
-		return () => setImg((img) => (img === myImg ? myImg1 : myImg)); // update the state to force render
+		return () => {
+			setImg((img) => (img === myImg ? myImg1 : myImg));
+			setCol1((col1) => (col1 + 1) % colors.length);
+		}; // update the state to force render
 	}
-	const forceUpdate = useForceUpdate();
+	const forceUpdate1 = useForceUpdate1();
 
 	return (
 		<Container fluid className="home-about-section" id="about">
@@ -24,34 +38,95 @@ function Home2() {
 				<Row>
 					<Col md={8} className="home-about-description">
 						<h1 style={{ fontSize: "2.6em" }}>
-							LET ME <span className="purple"> INTRODUCE </span>{" "}
+							LET ME{" "}
+							<span
+								className={colors[col1]}
+								onClick={forceUpdate1}
+								style={{ userSelect: "none" }}
+							>
+								{" "}
+								INTRODUCE{" "}
+							</span>{" "}
 							MYSELF
 						</h1>
 						<p className="home-about-body">
 							I love math and problem solving. Competitive
 							Programming seemed like the obvious next step. I am
 							quite active on most CP based sites like{" "}
-							<b className="purple"> HackerRank</b>,{" "}
-							<b className="purple"> CodeForces</b>,{" "}
-							<b className="purple">Project Euler</b>, etc. Apart
-							from that I am an Executive member of my college's
-							CodeCell, <b className="purple">Infinite Loop</b>
+							<b
+								className={colors[col1]}
+								onClick={forceUpdate1}
+								style={{ userSelect: "none" }}
+							>
+								{" "}
+								HackerRank
+							</b>
+							,{" "}
+							<b
+								className={colors[col1]}
+								onClick={forceUpdate1}
+								style={{ userSelect: "none" }}
+							>
+								{" "}
+								CodeForces
+							</b>
+							,{" "}
+							<b
+								className={colors[col1]}
+								onClick={forceUpdate1}
+								style={{ userSelect: "none" }}
+							>
+								Project Euler
+							</b>
+							, etc. Apart from that I am an Executive member of
+							my college's CodeCell,{" "}
+							<b
+								className={colors[col1]}
+								onClick={forceUpdate1}
+								style={{ userSelect: "none" }}
+							>
+								Infinite Loop
+							</b>
 							{", "}
 							and am a part of the Programming Team of the{" "}
-							<b className="purple">Student Satellite Program </b>
+							<b
+								className={colors[col1]}
+								onClick={forceUpdate1}
+								style={{ userSelect: "none" }}
+							>
+								Student Satellite Program{" "}
+							</b>
 							of my college.
 							<br />
 							<br />I am fluent in classics like
 							<i>
-								<b className="purple"> C, C++, and Python</b>.
+								<b
+									className={colors[col1]}
+									onClick={forceUpdate1}
+									style={{ userSelect: "none" }}
+								>
+									{" "}
+									C, C++, and Python
+								</b>
+								.
 							</i>
 							<br />
 							<br />
 							My field of Interest's are learning new&nbsp;
 							<i>
-								<b className="purple">ML and AI algorithms </b>{" "}
+								<b
+									className={colors[col1]}
+									onClick={forceUpdate1}
+									style={{ userSelect: "none" }}
+								>
+									ML and AI algorithms{" "}
+								</b>{" "}
 								and also in areas related to{" "}
-								<b className="purple">
+								<b
+									className={colors[col1]}
+									onClick={forceUpdate1}
+									style={{ userSelect: "none" }}
+								>
 									Deep Learning and Natural Launguage
 									Processing
 								</b>
@@ -61,20 +136,46 @@ function Home2() {
 							<br />
 							Whenever possible, I also like working on Web
 							Development with{" "}
-							<b className="purple">Django and Node.js</b> and
-							<b className="purple">
+							<b
+								className={colors[col1]}
+								onClick={forceUpdate1}
+								style={{ userSelect: "none" }}
+							>
+								Django and Node.js
+							</b>{" "}
+							and
+							<b
+								className={colors[col1]}
+								onClick={forceUpdate1}
+								style={{ userSelect: "none" }}
+							>
 								{" "}
 								Modern Libraries and Frameworks
 							</b>
 							&nbsp; like
 							<i>
-								<b className="purple"> React.js and Three.js</b>
+								<b
+									className={colors[col1]}
+									onClick={forceUpdate1}
+									style={{ userSelect: "none" }}
+								>
+									{" "}
+									React.js and Three.js
+								</b>
 								.&nbsp;
 							</i>
 							<br />
 							<br />
 							I'm also quite comfortable with{" "}
-							<b className="purple"> Android Frameworks</b>.
+							<b
+								className={colors[col1]}
+								onClick={forceUpdate1}
+								style={{ userSelect: "none" }}
+							>
+								{" "}
+								Android Frameworks
+							</b>
+							.
 						</p>
 					</Col>
 					<Col md={4} className="myAvtar">
@@ -84,6 +185,7 @@ function Home2() {
 								className="img-fluid"
 								alt="avatar"
 								onClick={forceUpdate}
+								style={{ userSelect: "none" }}
 							/>
 						</Tilt>
 					</Col>
@@ -93,7 +195,14 @@ function Home2() {
 						<h1>FIND ME ON</h1>
 						<p>
 							Feel free to{" "}
-							<span className="purple">connect </span>with me
+							<span
+								className={colors[col1]}
+								onClick={forceUpdate1}
+								style={{ userSelect: "none" }}
+							>
+								connect{" "}
+							</span>
+							with me
 						</p>
 						<ul className="home-about-social-links">
 							<li className="home-social-icons mr-2">

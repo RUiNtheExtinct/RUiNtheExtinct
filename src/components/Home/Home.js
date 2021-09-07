@@ -5,6 +5,8 @@ import Particle from "components/Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
 
+const colors = ["purple", "red", "green", "blue", "yellow", "cyan", "white"];
+
 function Home() {
 	return (
 		<section>
