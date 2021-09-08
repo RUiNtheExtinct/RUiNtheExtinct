@@ -189,7 +189,7 @@ class ApexChart extends React.Component {
 		console.log(dt);
 		switch (timeline) {
 			case "one_month":
-				ApexCharts.exec(
+				ReactApexChart.exec(
 					"area-datetime",
 					"zoomX",
 					dtm.getTime(),
@@ -197,7 +197,7 @@ class ApexChart extends React.Component {
 				);
 				break;
 			case "six_months":
-				ApexCharts.exec(
+				ReactApexChart.exec(
 					"area-datetime",
 					"zoomX",
 					dt6.getTime(),
@@ -205,7 +205,7 @@ class ApexChart extends React.Component {
 				);
 				break;
 			case "one_year":
-				ApexCharts.exec(
+				ReactApexChart.exec(
 					"area-datetime",
 					"zoomX",
 					dt1y.getTime(),
@@ -217,7 +217,7 @@ class ApexChart extends React.Component {
 				break;
 
 			case "all":
-				ApexCharts.exec(
+				ReactApexChart.exec(
 					"area-datetime",
 					"zoomX",
 					new Date("10 Oct 2019").getTime(),

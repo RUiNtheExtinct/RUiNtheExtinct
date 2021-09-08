@@ -42,6 +42,35 @@ html {
 	color: var(--imp-text-color7) !important;
 }
 
+/* Pretty Grid */
+.grid {
+	display: flex;
+	flex-wrap: wrap;
+	width: 500px;
+	height: 400px;
+}
+
+.grid__item {
+	height: 60px;
+	width: 60px;
+	background: grey;
+	opacity: 0;
+	transition: opacity 2s ease 0.4s, transform 0.8s ease;
+	transform: scale(1);
+}
+
+.grid__item:hover {
+	opacity: 1;
+	transition: opacity 0.2s ease;
+	transform: scale(1.04);
+}
+
+/* Global Styles
+body {
+	display: flex;
+	justify-content: center;
+} */
+
 /* --------- */
 /*  Preloader */
 /* --------- */

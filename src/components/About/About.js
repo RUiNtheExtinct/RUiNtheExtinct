@@ -1,11 +1,14 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import Particle from "../Particle";
+import Particle from "components/Particle";
 import Github from "./Github";
+import NavPills from "components/NavPills/NavPills";
+
 import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
-import laptopImg from "../../assets/about.png";
+import laptopImg from "assets/about.png";
 import Toolstack from "./Toolstack";
+import CP from "views/CP/CP";
 
 function About() {
 	return (
@@ -24,7 +27,7 @@ function About() {
 						<h1
 							style={{ fontSize: "2.1em", paddingBottom: "20px" }}
 						>
-							Know Who <strong className="purple">I'M</strong>
+							Know Who <strong className="purple">I am</strong>
 						</h1>
 						<Aboutcard />
 					</Col>
@@ -40,6 +43,31 @@ function About() {
 						/>
 					</Col>
 				</Row>
+				<NavPills
+					alignCenter
+					color="custom"
+					tabs={[
+						{
+							tabButton: "Competitive Programming",
+							// tabIcon: SiCodechef,
+							tabContent: <CP />,
+						},
+						{
+							tabButton: "Professional Skillset",
+							// tabIcon: FunctionsIcon,
+							tabContent: <Techstack />,
+						},
+						{
+							tabButton: "Tools I Use",
+							// tabIcon: SiHackerrank,
+							tabContent: <Toolstack />,
+						},
+					]}
+				/>
+				{/* <Row
+					style={{ justifyContent: "center", padding: "10px" }}
+				></Row>
+
 				<h1 className="project-heading">
 					Professional <strong className="purple">Skillset </strong>
 				</h1>
@@ -49,7 +77,7 @@ function About() {
 				<h1 className="project-heading">
 					<strong className="purple">Tools</strong> I use
 				</h1>
-				<Toolstack />
+				<Toolstack /> */}
 
 				<Github />
 			</Container>

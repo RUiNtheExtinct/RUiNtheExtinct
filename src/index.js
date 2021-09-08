@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import "./index.css";
+// import "./simple-grid.slim";
 import reportWebVitals from "./reportWebVitals";
 // import {BrowserRouter } from "react-router-dom";
 
