@@ -7,7 +7,7 @@
    <a href="https://projecteuler.net/"><img  src="https://projecteuler.net/profile/RUiNtheExtinct.png"  width="100" height="40" /></a>
 </div>
 <div align="center">
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5055df35-23d6-4720-a68a-316e70ae4c87/deploy-status)](https://app.netlify.com/sites/relaxed-montalcini-4d2203/deploys)
 [![Codechef](https://cp-logo.vercel.app/codechef/fallacy69?logo=true)](https://www.codechef.com/users/fallacy69)
 [![Codeforces](https://cp-logo.vercel.app/codeforces/RUiNtheExtinct?logo=true)](https://codeforces.com/profile/RUiNtheExtinct)
 <a href="https://www.hackerrank.com/RUiNtheExtinct" target="_blank" rel="noopener noreferrer"><img height=20 src="https://img.shields.io/badge/-Hackerrank-2EC866?style=for-the-badge&logo=HackerRank&logoColor=white" /></a>
@@ -116,7 +116,6 @@ I like Math and CP and am active on CodeChef, CodeForces, and Project Euler. I a
     <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=RUiNtheExtinct&title_color=7A7ADB&icon_color=2234AE&text_color=D3D3D3&bg_color=0,000000,130F40" alt="RUiNtheExtinct" /></p>
     <p align="center"
 </details>
-   [![Netlify Status](https://api.netlify.com/api/v1/badges/5055df35-23d6-4720-a68a-316e70ae4c87/deploy-status)](https://app.netlify.com/sites/relaxed-montalcini-4d2203/deploys)
 
 
 
