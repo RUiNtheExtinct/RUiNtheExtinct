@@ -5,10 +5,10 @@ import Particle from "components/Particle";
 
 import drl from "assets/img/drl.jpg";
 import sat from "assets/img/sat.jpg";
-import emotion from "assets/Projects/emotion.jpeg";
+import blood from "assets/img/blood1.jpeg";
 // import editor from "assets/Projects/codeEditor.png";
-import cms from "assets/img/CMS/vendors.png";
-import suicide from "assets/Projects/suicide.png";
+import cms from "assets/img/vendors.png";
+// import suicide from "assets/Projects/suicide.png";
 import srtvis from "assets/img/srt_vis.gif";
 
 function Projects() {
@@ -47,11 +47,11 @@ function Projects() {
 
 					<Col md={4} className="project-card">
 						<ProjectCard
-							imgPath={drl}
+							imgPath="https://media.giphy.com/media/amoTKV7qZuBB0TmEK2/giphy.gif"
 							isBlog={false}
-							title="Auditory Analysis using DRL"
-							description="We plan to analyse voice patterns for various kinds of emotions, which would include rudeness, satire, confidence, happiness, sadness, and many more. We plan to test Deep Reinforcement learning in this field. The next step would be to implement NLP so as to get a sense of context from the speech. We plan to use this for various audio applications such as to train individuals in their speaking skills, to try and introduce emotions in the voice of NLP models like Google Assistant, Alexa, etc., to read e-books outloud with a sense of context and emotions attached to it, etc. (WIP)"
-							link=""
+							title="Ray Casting from point light source"
+							description="A basic javascript implementation of dynamic raycasting. It implements the p5.js library for the 2D graphics. It has a point light source that casts light in the form of linear rays. The walls can be randomly drawn to act as obstables. This projects shows how lighting is implemented in games. The next phase would be to implement reflection of light from the obstacles."
+							link="https://github.com/RUiNtheExtinct/RayCasting"
 						/>
 					</Col>
 
@@ -67,22 +67,21 @@ function Projects() {
 
 					<Col md={4} className="project-card">
 						<ProjectCard
-							imgPath={suicide}
+							imgPath={blood}
 							isBlog={false}
-							title="Ai For Social Good"
-							description="Using 'Natural Launguage Processing' for the detection of suicide-related posts and user's suicide ideation in cyberspace  and thus helping in sucide prevention."
-							link="https://github.com/soumyajit4419/AI_For_Social_Good"
+							title="BloodBank Online"
+							description="An Android App to do the following. Show nearby bloodbanks. Allow people to register themselves for blood donation drives at their nearby bloodbanks online. Sort people by blood type. Allow people in need of a particular blood type to contact nearest bloodbank with that type available. Allow people in need of a particular blood type to contact registered donors directly in case of emergencies. Allow people who need blood but not so ugently to be put on waiting lists."
+							link="https://github.com/RUiNtheExtinct/BloodBank"
 						/>
 					</Col>
 
 					<Col md={4} className="project-card">
 						<ProjectCard
-							imgPath={emotion}
+							imgPath={drl}
 							isBlog={false}
-							title="Face Recognition and Emotion Detection"
-							description="Trained a CNN classifier using 'FER-2013 dataset' with Keras and tensorflow backened. The classifier sucessfully predicted the various types of emotions of human. And the highest accuracy obtained with the model was 60.1%.
-                                        Then used Open-CV to detect the face in an image and then pass the face to the classifer to predict the emotion of a person."
-							link="https://github.com/soumyajit4419/Face_And_Emotion_Detection"
+							title="Auditory Analysis using DRL"
+							description="We plan to analyse voice patterns for various kinds of emotions, which would include rudeness, satire, confidence, happiness, sadness, and many more. We plan to test Deep Reinforcement learning in this field. The next step would be to implement NLP so as to get a sense of context from the speech. We plan to use this for various audio applications such as to train individuals in their speaking skills, to try and introduce emotions in the voice of NLP models like Google Assistant, Alexa, etc., to read e-books outloud with a sense of context and emotions attached to it, etc. (WIP)"
+							link=""
 						/>
 					</Col>
 				</Row>
