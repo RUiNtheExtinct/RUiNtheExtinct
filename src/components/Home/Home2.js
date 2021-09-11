@@ -27,7 +27,7 @@ function Home2() {
 	function useForceUpdate() {
 		return () => {
 			setImg((img) => (img === myImg ? myImg1 : myImg));
-			setCol1((col1) => (col1 + 1) % colors.length);
+			// setCol1((col1) => (col1 + 1) % colors.length);
 		}; // update the state to force render
 	}
 	const forceUpdate1 = useForceUpdate1();

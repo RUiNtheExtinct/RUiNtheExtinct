@@ -10,10 +10,10 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
 // core components
-import GridContainer from "../../components/Grid/GridContainer.js";
-import GridItem from "../../components/Grid/GridItem.js";
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
 
-import styles from "../../assets/jss/material-kit-react/components/navPillsStyle.js";
+import styles from "assets/jss/material-kit-react/components/navPillsStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -52,6 +52,7 @@ export default function NavPills(props) {
 				});
 				return (
 					<Tab
+						// md="5"
 						label={prop.tabButton}
 						key={key}
 						{...icon}

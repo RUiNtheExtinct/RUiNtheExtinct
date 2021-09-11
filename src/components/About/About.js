@@ -3,6 +3,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import Particle from "components/Particle";
 import Github from "./Github";
 import NavPills from "components/NavPills/NavPills";
+import { AiOutlineTool, AiOutlineControl } from "react-icons/ai";
+import { SiCodeforces } from "react-icons/si";
 
 import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
@@ -44,22 +46,22 @@ function About() {
 					</Col>
 				</Row>
 				<NavPills
-					alignCenter
-					color="custom"
+					alignCenter={true}
+					color="primary"
 					tabs={[
 						{
 							tabButton: "Competitive Programming",
-							// tabIcon: SiCodechef,
+							tabIcon: SiCodeforces,
 							tabContent: <CP />,
 						},
 						{
 							tabButton: "Professional Skillset",
-							// tabIcon: FunctionsIcon,
+							tabIcon: AiOutlineControl,
 							tabContent: <Techstack />,
 						},
 						{
-							tabButton: "Tools I Use",
-							// tabIcon: SiHackerrank,
+							tabButton: "Tools / Software I Use",
+							tabIcon: AiOutlineTool,
 							tabContent: <Toolstack />,
 						},
 					]}

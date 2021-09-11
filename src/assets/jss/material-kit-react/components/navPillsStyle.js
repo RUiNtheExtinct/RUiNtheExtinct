@@ -15,7 +15,7 @@ const navPillsStyle = (theme) => ({
 		overflow: "visible !important",
 		lineHeight: "24px",
 		textTransform: "uppercase",
-		fontSize: "12px",
+		fontSize: "15px",
 		fontWeight: "500",
 		position: "relative",
 		display: "block",
@@ -48,7 +48,7 @@ const navPillsStyle = (theme) => ({
 		color: "#9e9e9e",
 		height: "auto",
 		opacity: "1",
-		maxWidth: "100%",
+		maxWidth: "30%",
 		margin: "0 5px",
 	},
 	pillsWithIcons: {
@@ -64,7 +64,7 @@ const navPillsStyle = (theme) => ({
 		},
 	},
 	horizontalPills: {
-		width: "100%",
+		width: "30%",
 		float: "none !important",
 		"& + button": {
 			margin: "10px 0",
@@ -73,6 +73,7 @@ const navPillsStyle = (theme) => ({
 	contentWrapper: {
 		marginTop: "20px",
 	},
+
 	primary: {
 		"&,&:hover": {
 			color: "#FFFFFF",

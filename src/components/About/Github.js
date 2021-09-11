@@ -12,15 +12,15 @@ function Github() {
 		grade1: "#c084f5",
 		grade0: "#ecd9fc",
 	};
-	const colourTheme1 = {
-		background: "transparent",
-		text: "#ffffff",
-		grade4: "#004e00",
-		grade3: "#258925",
-		grade2: "#00ff00",
-		grade1: "#ace9ac",
-		grade0: "#cdf1cd",
-	};
+	// const colourTheme1 = {
+	// 	background: "transparent",
+	// 	text: "#ffffff",
+	// 	grade4: "#004e00",
+	// 	grade3: "#258925",
+	// 	grade2: "#00ff00",
+	// 	grade1: "#ace9ac",
+	// 	grade0: "#cdf1cd",
+	// };
 	return (
 		<Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
 			<h1 className="project-heading" style={{ paddingBottom: "20px" }}>
