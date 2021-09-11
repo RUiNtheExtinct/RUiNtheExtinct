@@ -8,31 +8,31 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // core components
 
-import GridContainer from "../../../components/Grid/GridContainer.js";
-import GridItem from "../../../components/Grid/GridItem.js";
-import Button from "../../../components/CustomButtons/Button";
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+import Button from "components/CustomButtons/Button";
 
 // import IconButton from "@material-ui/core/IconButton";
 // import { GitHub } from "@material-ui/icons";
 
 // import Box from "@material-ui/core/Box";
 
-import c1 from "../../../assets/img/Hackerrank/c1.png";
-import c2 from "../../../assets/img/Hackerrank/c2.png";
-import c3 from "../../../assets/img/Hackerrank/c3.png";
+import c1 from "assets/img/Hackerrank/c1.png";
+import c2 from "assets/img/Hackerrank/c2.png";
+import c3 from "assets/img/Hackerrank/c3.png";
 
-import b1 from "../../../assets/img/Hackerrank/b1.jpeg";
-import b2 from "../../../assets/img/Hackerrank/b2.jpeg";
-import b3 from "../../../assets/img/Hackerrank/b3.jpeg";
-import b4 from "../../../assets/img/Hackerrank/b4.jpeg";
-import b5 from "../../../assets/img/Hackerrank/b5.jpeg";
-import b6 from "../../../assets/img/Hackerrank/b6.png";
+import b1 from "assets/img/Hackerrank/b1.jpeg";
+import b2 from "assets/img/Hackerrank/b2.jpeg";
+import b3 from "assets/img/Hackerrank/b3.jpeg";
+import b4 from "assets/img/Hackerrank/b4.jpeg";
+import b5 from "assets/img/Hackerrank/b5.jpeg";
+import b6 from "assets/img/Hackerrank/b6.png";
 
-import Card from "../../../components/Card/Card.js";
-import CardBody from "../../../components/Card/CardBody.js";
-import CardHeader from "../../../components/Card/CardHeader.js";
+import Card from "components/Card/Card.js";
+import CardBody from "components/Card/CardBody.js";
+import CardHeader from "components/Card/CardHeader.js";
 
-import styles from "../../../assets/jss/material-kit-react/views/profilePage.js";
+import styles from "assets/jss/material-kit-react/views/profilePage.js";
 // import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
@@ -44,10 +44,11 @@ export default function Hackerrank(props) {
 		<div>
 			<div style={{ padding: 20, marginBottom: 20 }}>
 				<a
-					href="https://www.hackerrank.com/vedant_kokat07"
+					href="https://www.hackerrank.com/RUiNtheExtinct"
 					target="_blank"
+					rel="noreferrer"
 				>
-					<Button color="info" round>
+					<Button color="primary" round>
 						Hackerrank profile
 					</Button>
 				</a>
@@ -63,7 +64,7 @@ export default function Hackerrank(props) {
 			>
 				<GridItem xs={11} sm={8} md={4}>
 					<Card>
-						<CardHeader color="custom"> Verified Skills</CardHeader>
+						<CardHeader color="info"> Verified Skills</CardHeader>
 						<CardBody align="justify">
 							<GridContainer
 								container
@@ -72,8 +73,9 @@ export default function Hackerrank(props) {
 							>
 								<GridItem xs={5} sm={3} md={4}>
 									<a
-										href="https://www.hackerrank.com/certificates/2fcbbad3fc32"
+										href="https://www.hackerrank.com/certificates/c516fb1194f3"
 										target="_blank"
+										rel="noreferrer"
 									>
 										<img
 											alt="..."
@@ -86,6 +88,7 @@ export default function Hackerrank(props) {
 									<a
 										href="https://www.hackerrank.com/certificates/2fcbbad3fc32"
 										target="_blank"
+										rel="noreferrer"
 									>
 										<img
 											alt="..."
@@ -98,6 +101,7 @@ export default function Hackerrank(props) {
 									<a
 										href="https://www.hackerrank.com/certificates/2fcbbad3fc32"
 										target="_blank"
+										rel="noreferrer"
 									>
 										<img
 											alt="..."
@@ -123,6 +127,7 @@ export default function Hackerrank(props) {
 									<a
 										href="https://www.hackerrank.com/certificates/2fcbbad3fc32"
 										target="_blank"
+										rel="noreferrer"
 									>
 										<img
 											alt="..."
@@ -135,6 +140,7 @@ export default function Hackerrank(props) {
 									<a
 										href="https://www.hackerrank.com/certificates/2fcbbad3fc32"
 										target="_blank"
+										rel="noreferrer"
 									>
 										<img
 											alt="..."
@@ -147,6 +153,7 @@ export default function Hackerrank(props) {
 									<a
 										href="https://www.hackerrank.com/certificates/2fcbbad3fc32"
 										target="_blank"
+										rel="noreferrer"
 									>
 										<img
 											alt="..."
@@ -159,6 +166,7 @@ export default function Hackerrank(props) {
 									<a
 										href="https://www.hackerrank.com/certificates/2fcbbad3fc32"
 										target="_blank"
+										rel="noreferrer"
 									>
 										<img
 											alt="..."
@@ -171,6 +179,7 @@ export default function Hackerrank(props) {
 									<a
 										href="https://www.hackerrank.com/certificates/2fcbbad3fc32"
 										target="_blank"
+										rel="noreferrer"
 									>
 										<img
 											alt="..."
@@ -183,6 +192,7 @@ export default function Hackerrank(props) {
 									<a
 										href="https://www.hackerrank.com/certificates/2fcbbad3fc32"
 										target="_blank"
+										rel="noreferrer"
 									>
 										<img
 											alt="..."

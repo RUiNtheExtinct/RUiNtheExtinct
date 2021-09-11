@@ -9,7 +9,7 @@ import React from "react";
 import FunctionsIcon from "@material-ui/icons/Functions";
 // import Palette from "@material-ui/icons/Palette";
 // import Favorite from "@material-ui/icons/Favorite";
-import { SiHackerrank, SiCodechef } from "react-icons/si";
+import { SiCodechef, SiCodeforces } from "react-icons/si";
 
 // core components
 // import Header from "components/Header/Header.js";
@@ -26,7 +26,8 @@ import CodeChef from "./CodeChef/CodeChef";
 import Card from "react-bootstrap/Card";
 
 import ProjectEuler from "./Project Euler/Project Euler";
-import Hackerrank from "./Hackerrank/Hackerrank";
+// import Hackerrank from "./Hackerrank/Hackerrank";
+import CodeForces from "./CodeForces/CodeForces";
 // import styles from "assets/jss/material-kit-react/views/profilePage.js";
 
 // const useStyles = makeStyles(styles);
@@ -60,9 +61,9 @@ export default function CP(props) {
 											tabContent: <ProjectEuler />,
 										},
 										{
-											tabButton: "Hackerrank",
-											tabIcon: SiHackerrank,
-											tabContent: <Hackerrank />,
+											tabButton: "CodeForces",
+											tabIcon: SiCodeforces,
+											tabContent: <CodeForces />,
 										},
 									]}
 								/>

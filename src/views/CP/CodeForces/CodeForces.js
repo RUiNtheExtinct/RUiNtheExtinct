@@ -16,7 +16,7 @@ import Button from "components/CustomButtons/Button";
 
 // import Box from "@material-ui/core/Box";
 
-import ApexChart from "views/CP/CodeChef/ApexChart";
+import ApexChart from "views/CP/CodeForces/ApexChart";
 // import Card from "components/Card/Card.js";
 // import CardBody from "components/Card/CardBody.js";
 // import CardHeader from "components/Card/CardHeader.js";
@@ -24,7 +24,7 @@ import ApexChart from "views/CP/CodeChef/ApexChart";
 // import styles from "assets/jss/material-kit-react/views/profilePage.js";
 
 // const useStyles = makeStyles(styles);
-export default function CodeChef(props) {
+export default function CodeForces(props) {
 	// const classes = useStyles();
 	// const { ...rest } = props;
 	// const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
@@ -32,12 +32,12 @@ export default function CodeChef(props) {
 		<div>
 			<div style={{ padding: 20, marginBottom: 20 }}>
 				<a
-					href="https://www.codechef.com/users/fallacy69"
+					href="https://codeforces.com/profile/RUiNtheExtinct"
 					target="_blank"
 					rel="noreferrer"
 				>
 					<Button color="primary" round>
-						CodeChef Profile
+						CodeForces Profile
 					</Button>
 				</a>
 			</div>

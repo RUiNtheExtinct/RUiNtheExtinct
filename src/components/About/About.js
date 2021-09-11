@@ -4,7 +4,7 @@ import Particle from "components/Particle";
 import Github from "./Github";
 import NavPills from "components/NavPills/NavPills";
 import { AiOutlineTool, AiOutlineControl } from "react-icons/ai";
-import { SiCodeforces } from "react-icons/si";
+import { GoCode } from "react-icons/go";
 
 import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
@@ -51,7 +51,7 @@ function About() {
 					tabs={[
 						{
 							tabButton: "Competitive Programming",
-							tabIcon: SiCodeforces,
+							tabIcon: GoCode,
 							tabContent: <CP />,
 						},
 						{
