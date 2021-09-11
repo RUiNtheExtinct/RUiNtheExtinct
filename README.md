@@ -7,6 +7,7 @@
    <a href="https://projecteuler.net/"><img  src="https://projecteuler.net/profile/RUiNtheExtinct.png"  width="100" height="40" /></a>
 </div>
 <div align="center">
+   
 [![Codechef](https://cp-logo.vercel.app/codechef/fallacy69?logo=true)](https://www.codechef.com/users/fallacy69)
 [![Codeforces](https://cp-logo.vercel.app/codeforces/RUiNtheExtinct?logo=true)](https://codeforces.com/profile/RUiNtheExtinct)
 <a href="https://www.hackerrank.com/RUiNtheExtinct" target="_blank" rel="noopener noreferrer"><img height=20 src="https://img.shields.io/badge/-Hackerrank-2EC866?style=for-the-badge&logo=HackerRank&logoColor=white" /></a>
