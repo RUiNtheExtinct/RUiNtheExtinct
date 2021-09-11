@@ -31,7 +31,7 @@ function AboutCard() {
 					</ul>
 
 					<p style={{ marginBlockEnd: 0, color: "rgb(155 126 172)" }}>
-						"Veni, vidi, flevi."{" "}
+						"VSCode has made me lazy."{" "}
 					</p>
 					<footer className="blockquote-footer">
 						RUiNtheExtinct

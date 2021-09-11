@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Particle from "components/Particle";
-import laptopImg from "assets/about.png";
+// import laptopImg from "assets/about.png";
 
 // nodejs library that concatenates classes
 // import classNames from "classnames";
@@ -12,7 +12,7 @@ import laptopImg from "assets/about.png";
 // import Palette from "@material-ui/icons/Palette";
 // import Favorite from "@material-ui/icons/Favorite";
 import { IoMdInfinite } from "react-icons/io";
-import { GiSpaceSuit, GiBookshelf } from "react-icons/gi";
+import { GiSpaceSuit, GiAbstract025 } from "react-icons/gi";
 
 // IoMdInfinite
 // core components
@@ -28,7 +28,8 @@ import NavPills from "components/NavPills/NavPills.js";
 
 import CodeCell from "./ExperienceInfo/CodeCell";
 import Sat from "./ExperienceInfo/Sat";
-import Education from "./ExperienceInfo/Education";
+// import Education from "./ExperienceInfo/Education";
+import Internship from "./ExperienceInfo/Internship";
 export default function ExperiencePage(props) {
 	return (
 		<Container fluid className="about-section">
@@ -44,6 +45,11 @@ export default function ExperiencePage(props) {
 				color="primary"
 				tabs={[
 					{
+						tabButton: "Internships",
+						tabIcon: GiAbstract025,
+						tabContent: <Internship />,
+					},
+					{
 						tabButton: "Code Cell",
 						tabIcon: IoMdInfinite,
 						tabContent: <CodeCell />,
@@ -53,11 +59,11 @@ export default function ExperiencePage(props) {
 						tabIcon: GiSpaceSuit,
 						tabContent: <Sat />,
 					},
-					{
-						tabButton: "Education",
-						tabIcon: GiBookshelf,
-						tabContent: <Education />,
-					},
+					// {
+					// 	tabButton: "Education",
+					// 	tabIcon: GiBookshelf,
+					// 	tabContent: <Education />,
+					// },
 				]}
 			/>
 		</Container>

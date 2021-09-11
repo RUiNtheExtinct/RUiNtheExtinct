@@ -8,6 +8,7 @@ import Preloader from "./components/Pre";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
+import Credits from "./components/About/Credits";
 import Projects from "./components/Projects/Projects";
 // import CP from "./views/CP/CP";
 import Experience from "./views/Experience/ExperiencePage";
@@ -20,10 +21,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import ScrollToTop from "./components/ScrollToTop";
 // import { createBrowserHistory } from "history";
-
-function Credits() {
-	return <div>HOLA</div>;
-}
 
 // var hist = createBrowserHistory();
 export default function App() {
