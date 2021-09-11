@@ -91,9 +91,18 @@ I like Math and CP and am active on CodeChef, CodeForces, and Project Euler. I a
     <a href="https://www.tensorflow.org" target="_blank" rel="noopener noreferrer">
         <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="tensorflow" width="40" height="40"/>
     </a>
-    <!-- <a href="https://getbootstrap.com" target="_blank" rel="noopener noreferrer">
+    <a href="https://docs.mongodb.com/" target="_blank" rel="noopener noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="mongodb" width="40" height="40"/>
+    </a>
+    <a href="https://dart.dev/" target="_blank" rel="noopener noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dart/dart-original.svg" alt="dart" width="40" height="40"/>
+    </a>
+    <a href="https://flutter.dev/" target="_blank" rel="noopener noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/flutter/flutter-original.svg" alt="flutter" width="40" height="40"/>
+    </a>
+    <a href="https://getbootstrap.com" target="_blank" rel="noopener noreferrer">
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/>
-    </a> -->
+    </a>
 </p>
 
 ---

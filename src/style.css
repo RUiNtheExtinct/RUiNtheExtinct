@@ -65,6 +65,14 @@ html {
 	transform: scale(1.04);
 }
 
+.devicon-devicon-plain {
+	max-width: 2em;
+}
+
+/* if you want to change the original color */
+.devicon-devicon-plain path {
+	fill: #4691f6;
+}
 /* Global Styles
 body {
 	display: flex;
