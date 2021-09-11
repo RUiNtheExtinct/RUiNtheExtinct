@@ -8,6 +8,7 @@
 </div>
 <div align="center">
    
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5055df35-23d6-4720-a68a-316e70ae4c87/deploy-status)](https://app.netlify.com/sites/relaxed-montalcini-4d2203/deploys)
 [![Codechef](https://cp-logo.vercel.app/codechef/fallacy69?logo=true)](https://www.codechef.com/users/fallacy69)
 [![Codeforces](https://cp-logo.vercel.app/codeforces/RUiNtheExtinct?logo=true)](https://codeforces.com/profile/RUiNtheExtinct)
 <a href="https://www.hackerrank.com/RUiNtheExtinct" target="_blank" rel="noopener noreferrer"><img height=20 src="https://img.shields.io/badge/-Hackerrank-2EC866?style=for-the-badge&logo=HackerRank&logoColor=white" /></a>
