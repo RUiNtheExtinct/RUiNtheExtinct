@@ -7,20 +7,6 @@ function Toolstack() {
 		<Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
 			<Col xs={4} md={2} className="tech-icons">
 				<a
-					href="https://www.linux.org/"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<img
-						src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg"
-						alt="linux"
-						width="70"
-						height="70"
-					/>
-				</a>
-			</Col>
-			<Col xs={4} md={2} className="tech-icons">
-				<a
 					href="https://code.visualstudio.com/"
 					target="_blank"
 					rel="noopener noreferrer"
@@ -28,6 +14,20 @@ function Toolstack() {
 					<img
 						src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg"
 						alt="vscode"
+						width="70"
+						height="70"
+					/>
+				</a>
+			</Col>
+			<Col xs={4} md={2} className="tech-icons">
+				<a
+					href="https://www.linux.org/"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<img
+						src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg"
+						alt="linux"
 						width="70"
 						height="70"
 					/>
