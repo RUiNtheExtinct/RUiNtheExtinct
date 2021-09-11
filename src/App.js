@@ -46,10 +46,10 @@ export default function App() {
 					<ScrollToTop />
 					<Switch>
 						<Route path="/" exact component={Home} />
-						<Route path="/project" component={Projects} />
-						<Route path="/resume" component={Resume} />
 						<Route path="/about" component={About} />
+						<Route path="/project" component={Projects} />
 						<Route path="/exp" component={Experience} />
+						<Route path="/resume" component={Resume} />
 						<Route path="/cred" component={Credits} />
 					</Switch>
 					<Footer />

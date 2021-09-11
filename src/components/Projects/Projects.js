@@ -1,14 +1,15 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
-import Particle from "../Particle";
+import Particle from "components/Particle";
 
-import leaf from "../../assets/Projects/leaf.png";
-import emotion from "../../assets/Projects/emotion.jpeg";
-import editor from "../../assets/Projects/codeEditor.png";
-import chatify from "../../assets/Projects/chatify.png";
-import suicide from "../../assets/Projects/suicide.png";
-import bitsOfCode from "../../assets/Projects/blog.png";
+import drl from "assets/img/drl.jpg";
+import sat from "assets/img/sat.jpg";
+import emotion from "assets/Projects/emotion.jpeg";
+// import editor from "assets/Projects/codeEditor.png";
+import cms from "assets/img/CMS/vendors.png";
+import suicide from "assets/Projects/suicide.png";
+import srtvis from "assets/img/srt_vis.gif";
 
 function Projects() {
 	return (
@@ -19,48 +20,48 @@ function Projects() {
 					My Recent <strong className="purple">Works </strong>
 				</h1>
 				<p style={{ color: "white" }}>
-					Here are a few projects I've worked on recently.
+					Here are a few projects I've worked on.
 				</p>
 				<Row
 					style={{ justifyContent: "center", paddingBottom: "10px" }}
 				>
 					<Col md={4} className="project-card">
 						<ProjectCard
-							imgPath={chatify}
+							imgPath={cms}
 							isBlog={false}
-							title="Chatify"
-							description="Personal Chat Room or Workspace to share resources and hangout with friends build with react.js, Material-UI, and Firebase. Have features which allows user for realtime messaging, image sharing as well as supports reactions on messages."
-							link="https://github.com/soumyajit4419/Chatify"
+							title="CMS"
+							description="This Application helps automate attendance, and billing required by CMS, a fintech company, for the gunmen they hire. CMS hires gunmen when transporting money to ATMs all over India. This app takes the biometric ID of the gunmen when starting a trip. This gets registered in the system. At the end of the month, attendance and bill is sent to vendors of the gunmen. This is the project that won us a hackathon :)."
+							link="https://github.com/mustankap/CMS"
 						/>
 					</Col>
 
 					<Col md={4} className="project-card">
 						<ProjectCard
-							imgPath={leaf}
+							imgPath={sat}
 							isBlog={false}
-							title="Plant AI"
-							description="Used the plant disease dataset from Kaggle and trained a image classifer model using 'PyTorch' framework using CNN and Transfer Learning with 38 classes of various plant leaves. The model was successfully able to detect diseased and healthy leaves of 14 unique plants. I was able to achieve an accuracy of 98% by using Resnet34 pretrained model."
-							link="https://github.com/soumyajit4419/Plant_AI"
+							title="Firmware for Student Satellite"
+							description="BeliefSat is a 2p-PocketQube standard student nano-satellite being developed by the undergraduate students of K.J.Somaiya Institute of Engineering and Information Technology, Sion, Mumbai. The satellite itself is a sub-part of team’s proposal under PS4-Orbital platform program of ISRO, wherein, team aims to demonstrate indegenously developed technologies for PocketQube standard nano-satellites. As a part of this demonstration, BeliefSat will be launched out of SomaiyaPod which is a Pocketqube standard deployer being indegenously developed at the institute. The unique construction technique, combination of COTS components for communication, on-board computer and power sub-systems , together constitute of SomaiyaPQBus, around which the satellite is being made, is also one of the technologies that the team wants to demonstrate and open-source to enable use by future missions."
+							link="https://github.com/NewLeapKjsieit/BeliefSat"
 						/>
 					</Col>
 
 					<Col md={4} className="project-card">
 						<ProjectCard
-							imgPath={editor}
+							imgPath={drl}
 							isBlog={false}
-							title="Editor.io"
-							description="Online code and markdown editor build with react.js. Online Editor which supports html, css, and js code with instant view of website. Online markdown editor for building README file which supports GFM, Custom Html tags with toolbar and instant preview.Both the editor supports auto save of work using Local Storage"
-							link="https://github.com/soumyajit4419/Editor.io"
+							title="Auditory Analysis using DRL"
+							description="We plan to analyse voice patterns for various kinds of emotions, which would include rudeness, satire, confidence, happiness, sadness, and many more. We plan to test Deep Reinforcement learning in this field. The next step would be to implement NLP so as to get a sense of context from the speech. We plan to use this for various audio applications such as to train individuals in their speaking skills, to try and introduce emotions in the voice of NLP models like Google Assistant, Alexa, etc., to read e-books outloud with a sense of context and emotions attached to it, etc. (WIP)"
+							link=""
 						/>
 					</Col>
 
 					<Col md={4} className="project-card">
 						<ProjectCard
-							imgPath={bitsOfCode}
+							imgPath={srtvis}
 							isBlog={false}
-							title="Bits-0f-C0de"
-							description="My personal blog page build with Next.js and Tailwind Css which takes the content from makdown files and renders it using Next.js. Supports dark mode and easy to write blogs using markdown."
-							link="https://github.com/soumyajit4419/Bits-0f-C0de"
+							title="Sorting Visualizer"
+							description="This is, as the title suggests, a Sorting Visualizer. Made using React.js, it helps visualise how different types of sorts actually happens, how the numbers are shuffled, how the elements are swapped, etc. To get a clearer picture of the sorting method being used, there is the functionality to choose the number of elements to be sorted and speed at which the elements are being sorted. As of now, I have added most of the sorting methods here. Methods yet to be added are Merge Sort, Bucket Sort, etc."
+							link="https://github.com/RUiNtheExtinct/SortingVisualizer"
 						/>
 					</Col>
 
