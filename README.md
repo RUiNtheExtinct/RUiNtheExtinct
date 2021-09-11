@@ -114,9 +114,9 @@ I like Math and CP and am active on CodeChef, CodeForces, and Project Euler. I a
 
 <details>
     <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=RUiNtheExtinct&title_color=7A7ADB&icon_color=2234AE&text_color=D3D3D3&bg_color=0,000000,130F40" alt="RUiNtheExtinct" /></p>
-    <p align="center">
-     [![Netlify Status](https://api.netlify.com/api/v1/badges/5055df35-23d6-4720-a68a-316e70ae4c87/deploy-status)](https://app.netlify.com/sites/relaxed-montalcini-4d2203/deploys)
+    <p align="center"
 </details>
+   [![Netlify Status](https://api.netlify.com/api/v1/badges/5055df35-23d6-4720-a68a-316e70ae4c87/deploy-status)](https://app.netlify.com/sites/relaxed-montalcini-4d2203/deploys)
 
 
 
