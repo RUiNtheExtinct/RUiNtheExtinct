@@ -1,77 +1,36 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import Particle from "components/Particle";
-import Github from "./Github";
-import NavPills from "components/NavPills/NavPills";
-import { AiOutlineTool, AiOutlineControl } from "react-icons/ai";
-import { GoCode } from "react-icons/go";
+import React, { useContext } from 'react';
 
-import Techstack from "./Techstack";
-import Aboutcard from "./AboutCard";
-import laptopImg from "assets/about.png";
-import Toolstack from "./Toolstack";
-import CP from "views/CP/CP";
+import './About.css';
+import { ThemeContext } from '../../contexts/ThemeContext';
+import { aboutData } from '../../data/aboutData'
+
+
 
 function About() {
-	return (
-		<Container fluid className="about-section">
-			<Particle />
-			<Container>
-				<Row style={{ justifyContent: "center", padding: "10px" }}>
-					<Col
-						md={7}
-						style={{
-							justifyContent: "center",
-							paddingTop: "30px",
-							paddingBottom: "50px",
-						}}
-					>
-						<h1
-							style={{ fontSize: "2.1em", paddingBottom: "20px" }}
-						>
-							Know Who <strong className="purple">I am</strong>
-						</h1>
-						<Aboutcard />
-					</Col>
-					<Col
-						md={5}
-						style={{ paddingTop: "120px", paddingBottom: "50px" }}
-						className="about-img"
-					>
-						<img
-							src={laptopImg}
-							alt="about"
-							className="img-fluid"
-						/>
-					</Col>
-				</Row>
 
-				<NavPills
-					alignCenter={true}
-					color="primary"
-					tabs={[
-						{
-							tabButton: "Competitive Programming",
-							tabIcon: GoCode,
-							tabContent: <CP />,
-						},
-						{
-							tabButton: "Professional Skillset",
-							tabIcon: AiOutlineControl,
-							tabContent: <Techstack />,
-						},
-						{
-							tabButton: "Tools / Software I Use",
-							tabIcon: AiOutlineTool,
-							tabContent: <Toolstack />,
-						},
-					]}
-				/>
+    const { theme } = useContext(ThemeContext);
+    return (
+        <div className="about" id="about" style={{backgroundColor: theme.secondary}}>
+            <div className="line-styling">
+              <div className="style-circle" style={{backgroundColor: theme.primary}}></div>
+              <div className="style-circle" style={{backgroundColor: theme.primary}}></div>
+              <div className="style-line" style={{backgroundColor: theme.primary}}></div>
+            </div>
+            <div className="about-body">
+                <div className="about-description">
+                    <h2 style={{color: theme.primary}}>{aboutData.title}</h2>
+                    <p style={{color:theme.tertiary80}}>{aboutData.description1}<br/><br/>{aboutData.description2}</p>
+                </div>
+                <div className="about-img">
+                    <img 
+                        src={aboutData.image === 1 ? theme.aboutimg1 : theme.aboutimg2}  
+                        alt="" 
+                    />
+                </div>
+            </div>
+        </div>
 
-				<Github />
-			</Container>
-		</Container>
-	);
+    )
 }
 
-export default About;
+export default About

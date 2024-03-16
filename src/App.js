@@ -1,57 +1,36 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
-// import "./index.css";
-// import reportWebVitals from "./reportWebVitals";
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
-import React, { useState, useEffect } from "react";
-import Preloader from "./components/Pre";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home/Home";
-import About from "./components/About/About";
-import Credits from "./components/About/Credits";
-import Projects from "./components/Projects/Projects";
-// import CP from "./views/CP/CP";
-import Experience from "./views/Experience/ExperiencePage";
-import Footer from "./components/Footer";
-import Resume from "./components/Resume/Resume";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./style.css";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { ThemeContext } from './contexts/ThemeContext';
+import { Main, BlogPage, ProjectPage } from './pages'
+import { BackToTop } from './components'
+import ScrollToTop from './utils/ScrollToTop'
 
-import ScrollToTop from "./components/ScrollToTop";
-// import { createBrowserHistory } from "history";
+import './App.css'
 
-// var hist = createBrowserHistory();
-export default function App() {
-	const [load, upadateLoad] = useState(true);
+function App() {
 
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			upadateLoad(false);
-		}, 1200);
+  const { theme } = useContext(ThemeContext);
 
-		return () => clearTimeout(timer);
-	}, []);
+  console.log("%cDEVELOPER PORTFOLIO", `color:${theme.primary}; font-size:50px`);
+  console.log("%chttps://github.com/hhhrrrttt222111/developer-portfolio", `color:${theme.tertiary}; font-size:20px`);
+  // console.log = console.warn = console.error = () => {};
 
-	return (
-		<React.StrictMode>
-			<Router>
-				<Preloader load={load} />
-				<div className="App" id={load ? "no-scroll" : "scroll"}>
-					<Navbar />
-					<ScrollToTop />
-					<Switch>
-						<Route path="/" exact component={Home} />
-						<Route path="/about" component={About} />
-						<Route path="/project" component={Projects} />
-						<Route path="/exp" component={Experience} />
-						<Route path="/resume" component={Resume} />
-						<Route path="/cred" component={Credits} />
-					</Switch>
-					<Footer />
-				</div>
-			</Router>
-		</React.StrictMode>
-	);
+  return (
+    <div className="app">
+      <Router>
+        <ScrollToTop/>
+        <Switch>
+          <Route path="/" exact component={Main} />
+          <Route path="/blog" exact component={BlogPage} />
+          <Route path="/projects" exact component={ProjectPage} />
+
+          <Redirect to="/" />
+        </Switch>
+      </Router>
+      <BackToTop />
+    </div>
+  );
 }
+
+export default App;
