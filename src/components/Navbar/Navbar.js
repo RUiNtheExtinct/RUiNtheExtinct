@@ -1,18 +1,18 @@
-import React, { useContext, useState } from 'react';
-import { NavHashLink as NavLink } from 'react-router-hash-link';
-import Fade from 'react-reveal/Fade';
-import { IoMenuSharp, IoHomeSharp } from 'react-icons/io5';
-import { HiDocumentText } from 'react-icons/hi';
-import { BsFillGearFill } from 'react-icons/bs';
-import { MdPhone } from 'react-icons/md';
-import { FaUser, FaFolderOpen } from 'react-icons/fa';
-import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
+import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
+import React, { useContext, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
+import { BsFillGearFill } from 'react-icons/bs';
+import { FaFolderOpen, FaUser } from 'react-icons/fa';
+import { HiDocumentText } from 'react-icons/hi';
+import { IoHomeSharp, IoMenuSharp } from 'react-icons/io5';
+import { MdPhone } from 'react-icons/md';
+import { NavHashLink as NavLink } from 'react-router-hash-link';
 
-import './Navbar.css';
-import { headerData } from '../../data/headerData';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { headerData } from '../../data/headerData';
+import './Navbar.css';
 
 function Navbar() {
     const { theme, setHandleDrawer } = useContext(ThemeContext);

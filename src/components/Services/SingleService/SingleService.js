@@ -1,9 +1,9 @@
-import React,{useContext} from 'react';
-import Fade from 'react-reveal/Fade';
+import React, { useContext } from 'react';
+import { Fade } from 'react-awesome-reveal';
 
 import { ThemeContext } from '../../../contexts/ThemeContext';
 
-import './SingleService.css'
+import './SingleService.css';
 
 
 function SingleService({id, title, icon}) {

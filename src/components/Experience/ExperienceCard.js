@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Fade from 'react-reveal/Fade';
+import React, { useContext } from 'react';
+import { Fade } from 'react-awesome-reveal';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-import expImgWhite from '../../assets/svg/experience/expImgWhite.svg'
-import expImgBlack from '../../assets/svg/experience/expImgBlack.svg'
+import expImgBlack from '../../assets/svg/experience/expImgBlack.svg';
+import expImgWhite from '../../assets/svg/experience/expImgWhite.svg';
 
-import './Experience.css'
+import './Experience.css';
 
 function ExperienceCard({id, company, jobtitle, startYear, endYear}) {
 

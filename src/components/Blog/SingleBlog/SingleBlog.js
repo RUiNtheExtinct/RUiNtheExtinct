@@ -1,8 +1,8 @@
-import React from 'react'
-import Fade from 'react-reveal/Fade';
+import React from 'react';
+import { Fade } from 'react-awesome-reveal';
 
-import placeholder from '../../../assets/png/placeholder.png'
-import './SingleBlog.css'
+import placeholder from '../../../assets/png/placeholder.png';
+import './SingleBlog.css';
 
 function SingleBlog({ theme, title, desc, date, image, url, id }) {
     return (
