@@ -6,6 +6,7 @@
 -   convert horozontallly scrolling skill section to grid
 -   resume renderer
 -   resume builder
+-   update projects section logo to github
 -   add cp history to education section
 -   show user custom logo
 -   dynamic tab logo
