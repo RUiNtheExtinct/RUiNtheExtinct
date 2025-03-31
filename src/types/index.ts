@@ -144,7 +144,7 @@ export interface BlogPost {
 	excerpt: string;
 	author: string;
 	readingTime: string;
-	coverImage: string;
+	coverImage?: string;
 	content?: (props: MDXProps) => JSX.Element;
 	tags: string[];
 	isExternal?: boolean;

@@ -1,21 +1,12 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
+import BlogCoverCard from "@/components/blog/blog-cover";
 import { Button } from "@/components/ui/button";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { allBlogs } from "@/data/blogs";
 import type { BlogPost } from "@/types";
-import { Calendar, Clock, ExternalLink, Search } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function BlogPage() {
@@ -101,75 +92,7 @@ export default function BlogPage() {
 			) : filteredPosts.length > 0 ? (
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 					{filteredPosts.map((post) => (
-						<Card
-							key={post.slug}
-							className="overflow-hidden transition-all hover:shadow-md"
-						>
-							{post.coverImage && (
-								<div className="relative h-48 w-full overflow-hidden">
-									<Image
-										src={post.coverImage}
-										alt={post.title}
-										fill
-										className="object-cover transition-transform hover:scale-105"
-										sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-									/>
-								</div>
-							)}
-							<CardHeader className="pb-2">
-								<div className="flex flex-wrap gap-2">
-									{post.tags.slice(0, 3).map((tag) => (
-										<Badge
-											key={tag}
-											variant="secondary"
-											className="text-xs"
-										>
-											{tag}
-										</Badge>
-									))}
-								</div>
-								<CardTitle className="mt-2 line-clamp-2">
-									{post.title}
-								</CardTitle>
-								<CardDescription className="flex items-center gap-4 text-xs">
-									<span className="flex items-center">
-										<Calendar className="mr-1 h-3 w-3" />
-										{post.date}
-									</span>
-									{post.readingTime && (
-										<span className="flex items-center">
-											<Clock className="mr-1 h-3 w-3" />
-											{post.readingTime}
-										</span>
-									)}
-								</CardDescription>
-							</CardHeader>
-							<CardContent>
-								<p className="line-clamp-3 text-sm text-muted-foreground">
-									{post.excerpt}
-								</p>
-							</CardContent>
-							<CardFooter>
-								{post.isExternal ? (
-									<Link
-										href={post.externalUrl as string}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="flex items-center text-sm font-medium text-primary hover:underline"
-									>
-										Read on External Site
-										<ExternalLink className="ml-1 h-3 w-3" />
-									</Link>
-								) : (
-									<Link
-										href={`/blog/${post.slug}`}
-										className="text-sm font-medium text-primary hover:underline"
-									>
-										Read More
-									</Link>
-								)}
-							</CardFooter>
-						</Card>
+						<BlogCoverCard key={post.slug} post={post} />
 					))}
 				</div>
 			) : (

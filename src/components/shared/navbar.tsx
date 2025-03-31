@@ -70,10 +70,7 @@ const Navigation = () => {
 							</AvatarFallback>
 						</Avatar>
 						<span className="text-lg font-semibold">
-							{personalInfo.name.split(" ")[0]}
-							<span className="text-primary">
-								{personalInfo.name.split(" ")[1]}
-							</span>
+							{personalInfo.name}
 						</span>
 					</Link>
 

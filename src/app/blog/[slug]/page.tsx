@@ -2,12 +2,13 @@
 
 import { Badge } from "@/components/ui/badge";
 import { allBlogs } from "@/data/blogs";
+import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-dark.css";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { use, useMemo } from "react";
+import { use, useEffect, useMemo } from "react";
 
 interface BlogPostPageProps {
 	params: Promise<{ slug: string }>;
@@ -21,6 +22,10 @@ export default function BlogPostPage(props: BlogPostPageProps) {
 		() => allBlogs.find((post) => post.slug === slug),
 		[slug]
 	);
+
+	useEffect(() => {
+		hljs.highlightAll();
+	}, [post]);
 
 	if (!post || post.isExternal) {
 		notFound();
