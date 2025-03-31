@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
 	return (
-		<div className="container mx-auto px-4 py-12">
+		<div className="container min-h-svh h-full mx-auto px-4 py-12">
 			<div className="mb-8">
 				<Link
 					href="/"

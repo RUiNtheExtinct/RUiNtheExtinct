@@ -1,17 +1,16 @@
+import BackgroundEffects from "@/components/background-effects"; // New component for bg effects
 import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
+import Header from "@/components/header"; // Assuming you have/create a Header component
 import { ThemeProvider } from "@/components/theme-provider";
-import { personalInfo } from "@/data/personal-info";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import type React from "react";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: `${personalInfo.name} | ${personalInfo.title}`,
-	description: personalInfo.bio,
+	title: "Portfolio | RUiNtheExtinct",
+	description: "Developer Portfolio",
 };
 
 export default function RootLayout({
@@ -26,13 +25,12 @@ export default function RootLayout({
 					attribute="class"
 					defaultTheme="system"
 					enableSystem
-					disableTransitionOnChange
+					// disableTransitionOnChange
 				>
-					<div className="flex min-h-screen flex-col">
-						<Navbar />
-						<main className="flex-1">{children}</main>
-						<Footer />
-					</div>
+					<BackgroundEffects />
+					<Header />
+					<main>{children}</main>
+					<Footer />
 				</ThemeProvider>
 			</body>
 		</html>

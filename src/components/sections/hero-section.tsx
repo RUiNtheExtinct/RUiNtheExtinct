@@ -11,12 +11,12 @@ import Link from "next/link";
 const HeroSection = () => {
 	return (
 		<section className="relative overflow-hidden py-20 md:py-28">
-			<div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(var(--primary-rgb),0.15),transparent_50%)]"></div>
+			<div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(var(--primary-rgb),0.1),transparent_60%)]"></div>
 			<div className="container px-4 md:px-6">
-				<div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-12">
+				<div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
 					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
+						initial={{ opacity: 0, x: -50 }}
+						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.5 }}
 						className="flex flex-col items-start space-y-4"
 					>
@@ -33,57 +33,57 @@ const HeroSection = () => {
 							{personalInfo.bio}
 						</p>
 
-						<div className="flex flex-wrap gap-3">
+						<div className="flex flex-wrap gap-3 pt-2">
 							<Button asChild size="lg">
 								<Link href="#contact">
 									Contact Me{" "}
 									<ArrowRight className="ml-2 h-4 w-4" />
 								</Link>
 							</Button>
-							<Button variant="outline" size="lg">
-								<Download className="mr-2 h-4 w-4" /> Download
-								Resume
+							<Button variant="outline" size="lg" asChild>
+								<Link
+									href={personalInfo.resumeUrl || "#"}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<Download className="mr-2 h-4 w-4" />{" "}
+									Download Resume
+								</Link>
 							</Button>
 						</div>
 
-						<div className="mt-6 flex items-center space-x-4">
+						<div className="flex space-x-4 pt-4">
 							{socialLinks.map((link) => (
-								<Button
+								<Link
 									key={link.name}
-									variant="ghost"
-									size="icon"
-									asChild
+									href={link.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-muted-foreground transition-colors hover:text-primary"
+									aria-label={link.name}
 								>
-									<Link
-										href={link.url}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										<link.icon className="h-5 w-5" />
-										<span className="sr-only">
-											{link.name}
-										</span>
-									</Link>
-								</Button>
+									<link.icon className="h-6 w-6" />
+								</Link>
 							))}
 						</div>
 					</motion.div>
 
 					<motion.div
-						initial={{ opacity: 0, scale: 0.9 }}
-						animate={{ opacity: 1, scale: 1 }}
+						initial={{ opacity: 0, x: 50 }}
+						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.5, delay: 0.2 }}
 						className="flex justify-center lg:justify-end"
 					>
-						<div className="relative h-[350px] w-[350px] overflow-hidden rounded-full border-4 border-primary/20 sm:h-[400px] sm:w-[400px] md:h-[450px] md:w-[450px]">
-							<Image
-								src={personalInfo.avatar || "/placeholder.svg"}
-								alt={personalInfo.name}
-								fill
-								className="object-cover"
-								priority
-							/>
-						</div>
+						<Image
+							src={
+								personalInfo.avatar || "/placeholder-avatar.jpg"
+							}
+							alt="Profile Picture"
+							width={350}
+							height={350}
+							className="rounded-full border-4 border-primary/20 object-cover shadow-lg"
+							priority
+						/>
 					</motion.div>
 				</div>
 			</div>
