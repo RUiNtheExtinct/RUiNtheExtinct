@@ -1,89 +1,63 @@
-# **Build your portfolio with Once UI's Magic Portfolio**
+# Web simulation of UbuntuOS
 
-View the [demo here](https://demo.magic-portfolio.com).
+This is a personal portfolio website of theme Ubuntu 20.04, made using Next.js & tailwind CSS.
+If you want to edit this. Clone this project and edit the files in `/src/components`.
 
-![Magic Portfolio](public/images/cover.png)
+To run this on localhost
+type `npm start` and when u are done coding type `npm run build` to build your app.
 
+_NOTE: if you have yarn just replace `npm start` and `npm run build` with `yarn start` and `yarn build`._
 
-# **Getting started**
+<a href="https://www.buymeacoffee.com/vivek9patel" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 140px !important;" ></a>
 
-Magic Portfolio was built with [Once UI](https://once-ui.com) for [Next.js](https://nextjs.org). It requires Node.js v18.17+.
+### To make the contact form work
 
-**1. Clone the repository**
-```
-git clone https://github.com/once-ui-system/magic-portfolio.git
-```
+- Create a account in [emailjs](https://www.emailjs.com/) create also new Outlook or Gmail account to be able
+  to send email.
+- Create a new service, select and log in to your newly created outlook or gmail account on EmailJS.
+- Go back to the dashboard and get the Service ID copy it.
+- Create a .env file in your root folder and put
 
-**2. Install dependencies**
-```
-npm install
-```
-
-**3. Run dev server**
-```
-npm run dev
 ```
 
-**4. Edit config**
-```
-src/app/resources/config
-```
+NEXT_PUBLIC_USER_ID = 'YOUR_USER_ID'
+NEXT_PUBLIC_TEMPLATE_ID = 'template_fqqqb9g'
+NEXT_PUBLIC_SERVICE_ID = 'YOUR_SERVICE_ID'
 
-**5. Edit content**
-```
-src/app/resources/content
 ```
 
-**6. Create blog posts / projects**
-```
-Add a new .mdx file to src/app/blog/posts or src/app/work/projects
-```
+into it. Replace \*your user id and your service ID with your values in your EmailJS service.
 
-# **Features**
+## Star History
 
-## **Once UI**
-- All tokens, components & features of [Once UI](https://once-ui.com)
+[![Star History Chart](https://api.star-history.com/svg?repos=vivek9patel/vivek9patel.github.io&type=Date)](https://star-history.com/#vivek9patel/vivek9patel.github.io&Date)
 
-## **SEO**
-- Automatic open-graph and X image generation with next/og
-- Automatic schema and metadata generation based on the content file
+## This project was made using Create Next App! Here is the scripts that u can run.
 
-## **Design**
-- Responsive layout optimized for all screen sizes
-- Timeless design without heavy animations and motion
-- Endless customization options through [data attributes](https://once-ui.com/docs/theming)
+### `npm start`
 
-## **Content**
-- Render sections conditionally based on the content file
-- Enable or disable pages for blog, work, gallery and about / CV
-- Generate and display social links automatically
-- Set up password protection for URLs
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## **Localization**
-- A localized version of Magic Portfolio is available with the next-intl library
-- To use localization, switch to the 'i18n' branch
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-# **Authors**
+### `npm run build`
 
-Connect with us on Threads or LinkedIn.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Lorant Toth: [Threads](https://www.threads.net/@lorant.one), [LinkedIn](https://www.linkedin.com/in/tothlorant/)  
-Zsofia Komaromi: [Threads](https://www.threads.net/@zsofia_kom), [LinkedIn](https://www.linkedin.com/in/zsofiakomaromi/)
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Localization added by [François Hernandez](https://github.com/francoishernandez)
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-# **Get involved**
+## Contributing
 
-- Join the [Design Engineers Club on Discord](https://discord.com/invite/5EyAQ4eNdS) and share your portfolio with us!
-- Report a [bug](https://github.com/once-ui-system/magic-portfolio/issues/new?labels=bug&template=bug_report.md).
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributiors who wants to make this website better can make contribution,which will be **greatly appreciated**.
 
-# **License**
-
-Distributed under the CC BY-NC 4.0 License.
-- Commercial usage is not allowed.
-- Attribution is required.
-
-See `LICENSE.txt` for more information.
-
-# **Deploy with Vercel**
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&project-name=portfolio&repository-name=portfolio&redirect-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&demo-title=Magic%20Portfolio&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.magic-portfolio.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fonce-ui-system%2Fmagic-portfolio%2Fmain%2Fpublic%2Fimages%2Fcover.png)
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Added some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
