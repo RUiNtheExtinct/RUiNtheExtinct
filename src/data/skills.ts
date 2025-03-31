@@ -28,6 +28,7 @@ import {
 	SiHtml5,
 	SiJavascript,
 	SiJenkins,
+	SiJest,
 	SiKubernetes,
 	SiLangchain,
 	SiLanguagetool,
@@ -87,6 +88,11 @@ export const categories = [
 		icon: CloudIcon,
 	},
 	{
+		name: "Testing",
+		description: "Quality assurance and testing methodologies",
+		icon: SiJest,
+	},
+	{
 		name: "Design",
 		description: "UI/UX design and prototyping",
 		icon: SiFigma,
@@ -101,11 +107,6 @@ export const categories = [
 		description: "Other skills and technologies",
 		icon: BadgePlus,
 	},
-	// {
-	// 	name: "Testing",
-	// 	description: "Quality assurance and testing methodologies",
-	// 	icon: SiJest,
-	// },
 ];
 
 export const skills: Skill[] = [
