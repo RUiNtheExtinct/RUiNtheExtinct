@@ -60,6 +60,7 @@ const Navigation = () => {
 							<AvatarImage
 								src={personalInfo.avatar as string}
 								alt={personalInfo.name}
+								className="aspect-square object-cover"
 							/>
 							<AvatarFallback className="text-xs font-medium">
 								{personalInfo.name

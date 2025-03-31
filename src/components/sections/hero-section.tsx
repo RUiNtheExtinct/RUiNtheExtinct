@@ -4,9 +4,15 @@ import { Button } from "@/components/ui/button";
 import { personalInfo } from "@/data/personal-info";
 import { socialLinks } from "@/data/social-links";
 import { motion } from "framer-motion";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { Electrolize } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+
+const heroFont = Electrolize({
+	weight: "400",
+	subsets: ["latin"],
+});
 
 const HeroSection = () => {
 	return (
@@ -23,13 +29,17 @@ const HeroSection = () => {
 						<div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
 							{personalInfo.title}
 						</div>
-						<h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+						<h1
+							className={`${heroFont.className} text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl`}
+						>
 							Hi, I'm {personalInfo.name.split(" ")[0]}{" "}
 							<span className="text-primary">
 								{personalInfo.name.split(" ")[1]}
 							</span>
 						</h1>
-						<p className="max-w-[600px] text-muted-foreground md:text-xl">
+						<p
+							className={`${heroFont.className} max-w-[600px] text-justify text-muted-foreground md:text-xl`}
+						>
 							{personalInfo.bio}
 						</p>
 
@@ -46,8 +56,8 @@ const HeroSection = () => {
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									<Download className="mr-2 h-4 w-4" />{" "}
-									Download Resume
+									<ArrowRight className="mr-2 h-4 w-4" /> View
+									Resume
 								</Link>
 							</Button>
 						</div>
@@ -75,13 +85,11 @@ const HeroSection = () => {
 						className="flex justify-center lg:justify-end"
 					>
 						<Image
-							src={
-								personalInfo.avatar || "/placeholder-avatar.jpg"
-							}
+							src={personalInfo.dp || "/placeholder-avatar.jpg"}
 							alt="Profile Picture"
-							width={350}
-							height={350}
-							className="rounded-full border-4 border-primary/20 object-cover shadow-lg"
+							width={420}
+							height={420}
+							className="rounded-full border-4 border-primary/20 object-cover shadow-lg aspect-square"
 							priority
 						/>
 					</motion.div>

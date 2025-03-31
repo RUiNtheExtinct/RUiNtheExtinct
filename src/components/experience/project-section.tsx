@@ -29,7 +29,7 @@ const ProjectSection = ({
 			<AccordionContent className="pt-4 pb-2 pl-8">
 				{projectsInRole.map((project, projIndex) => (
 					<div
-						key={project.id}
+						key={`${project.id}-${projIndex}`}
 						className={`space-y-4 ${
 							projIndex > 0
 								? "mt-4 pt-4 border-t border-border/30"

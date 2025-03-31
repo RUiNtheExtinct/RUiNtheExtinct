@@ -178,16 +178,14 @@ const ExperienceSection = () => {
 					})}
 				</div>
 
-				{experiences.length > MAX_EXPERIENCES_SHOWN && (
-					<div className="mt-12 text-center">
-						<Button asChild variant="outline">
-							<Link href="/experience">
-								View Full Experience History
-								<ExternalLink className="ml-2 h-4 w-4" />
-							</Link>
-						</Button>
-					</div>
-				)}
+				<div className="mt-12 text-center">
+					<Button asChild variant="outline">
+						<Link href="/experience">
+							View Full Experience History
+							<ExternalLink className="ml-2 h-4 w-4" />
+						</Link>
+					</Button>
+				</div>
 			</div>
 		</section>
 	);

@@ -12,6 +12,7 @@ export interface PersonalInfo {
 	email: string;
 	phone: string;
 	location: string;
+	dp: string | StaticImageData;
 	avatar: string | StaticImageData;
 	resumeUrl: string;
 }
