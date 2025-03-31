@@ -45,9 +45,14 @@ export interface Skill {
 		| "frontend"
 		| "backend"
 		| "devops"
+		| "cloud"
 		| "design"
 		| "testing"
-		| "database";
+		| "database"
+		| "languages"
+		| "mobile"
+		| "ai"
+		| "other";
 	level: "beginner" | "intermediate" | "advanced" | "expert";
 	description: string;
 	relatedTech: string[];

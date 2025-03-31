@@ -91,60 +91,75 @@ const SkillsSection = () => {
 					layout
 					className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
 				>
-					<AnimatePresence initial={false}>
-						{displayedSkills.map((skill) => (
-							<motion.div
-								key={`${activeCategory}-${skill.name}`}
-								layout
-								variants={itemVariants}
-								initial="hidden"
-								animate="visible"
-								exit="exit"
-								transition={{
-									duration: 0.3,
-									ease: "easeInOut",
-								}}
-							>
-								<Card className="group h-full hover:shadow-lg transition-all duration-300 border border-border/50 bg-card/80 backdrop-blur-sm hover:scale-[1.02]">
-									<CardContent className="p-4">
-										<div className="flex items-center gap-3">
-											<div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-												<skill.icon className="w-5 h-5 text-primary" />
+					{displayedSkills.length === 0 ? (
+						<motion.div
+							className="col-span-full text-center"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+						>
+							<p className="text-sm text-muted-foreground">
+								No skills available for this category.
+							</p>
+						</motion.div>
+					) : (
+						<AnimatePresence initial={false}>
+							{displayedSkills.map((skill) => (
+								<motion.div
+									key={`${activeCategory}-${skill.name}`}
+									layout
+									variants={itemVariants}
+									initial="hidden"
+									animate="visible"
+									exit="exit"
+									transition={{
+										duration: 0.3,
+										ease: "easeInOut",
+									}}
+								>
+									<Card className="group h-full hover:shadow-lg transition-all duration-300 border border-border/50 bg-card/80 backdrop-blur-sm hover:scale-[1.02]">
+										<CardContent className="p-4">
+											<div className="flex items-center gap-3">
+												<div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+													<skill.icon className="w-5 h-5 text-primary" />
+												</div>
+												<div>
+													<h3 className="font-semibold text-sm">
+														{skill.name}
+													</h3>
+													<Badge
+														variant="secondary"
+														className={`mt-1 text-xs px-1.5 py-0.5 border ${
+															levelColors[
+																skill.level
+															]
+														}`}
+													>
+														{skill.level}
+													</Badge>
+												</div>
 											</div>
-											<div>
-												<h3 className="font-semibold text-sm">
-													{skill.name}
-												</h3>
-												<Badge
-													variant="secondary"
-													className={`mt-1 text-xs px-1.5 py-0.5 border ${
-														levelColors[skill.level]
-													}`}
-												>
-													{skill.level}
-												</Badge>
-											</div>
-										</div>
-										{skill.relatedTech && (
-											<div className="mt-3 flex flex-wrap gap-1">
-												{skill.relatedTech
-													.slice(0, 3)
-													.map((tech) => (
-														<Badge
-															key={tech}
-															variant="outline"
-															className="text-xs px-1.5 py-0.5"
-														>
-															{tech}
-														</Badge>
-													))}
-											</div>
-										)}
-									</CardContent>
-								</Card>
-							</motion.div>
-						))}
-					</AnimatePresence>
+											{skill.relatedTech && (
+												<div className="mt-3 flex flex-wrap gap-1">
+													{skill.relatedTech
+														.slice(0, 3)
+														.map((tech) => (
+															<Badge
+																key={tech}
+																variant="outline"
+																className="text-xs px-1.5 py-0.5"
+															>
+																{tech}
+															</Badge>
+														))}
+												</div>
+											)}
+										</CardContent>
+									</Card>
+								</motion.div>
+							))}
+						</AnimatePresence>
+					)}
 				</motion.div>
 
 				{hasMore && (
