@@ -1,41 +1,49 @@
-import type { Testimonial } from "@/types"
+import type { Testimonial } from "@/types";
 
 export const testimonials: Testimonial[] = [
-  {
-    id: "testimonial1",
-    name: "Sarah Johnson",
-    role: "CTO",
-    company: "Tech Innovations Inc.",
-    avatar: "/placeholder.svg?height=100&width=100",
-    testimonial:
-      "John is an exceptional developer who consistently delivers high-quality work. His technical expertise and problem-solving abilities have been invaluable to our team. He has a unique ability to understand complex requirements and translate them into elegant solutions.",
-  },
-  {
-    id: "testimonial2",
-    name: "Michael Chen",
-    role: "Product Manager",
-    company: "AI Solutions Ltd.",
-    avatar: "/placeholder.svg?height=100&width=100",
-    testimonial:
-      "Working with John was a fantastic experience. His deep knowledge of machine learning and software development helped us launch our product ahead of schedule. He's not only technically proficient but also great at communicating complex concepts to non-technical stakeholders.",
-  },
-  {
-    id: "testimonial3",
-    name: "Emily Rodriguez",
-    role: "Engineering Director",
-    company: "Data Systems Corp.",
-    avatar: "/placeholder.svg?height=100&width=100",
-    testimonial:
-      "John's contributions to our backend infrastructure were transformative. He redesigned our systems to be more scalable and maintainable, which has allowed us to grow our user base significantly without performance issues. He's a true asset to any development team.",
-  },
-  {
-    id: "testimonial4",
-    name: "David Kim",
-    role: "CEO",
-    company: "Web Creations",
-    avatar: "/placeholder.svg?height=100&width=100",
-    testimonial:
-      "I've worked with many developers over the years, but John stands out for his combination of technical skills and business acumen. He understands not just how to build features, but why they matter to users and the business. This perspective makes him an invaluable partner in product development.",
-  },
-]
-
+	{
+		id: "testimonial1",
+		name: "Shreeman Dash",
+		role: "VP of Engineering",
+		company: "Publicis Sapient",
+		avatar: "/testimonials/testimonial-1.jpeg",
+		testimonial:
+			"Working with him has been a remarkable experience. His strategic vision and technical acumen consistently impressed our team. He led projects with clarity and dedication, making tough decisions look effortless. I truly appreciated his hands-on approach and collaborative spirit.",
+	},
+	{
+		id: "testimonial2",
+		name: "Bharat Arora",
+		role: "Senior Software Engineer",
+		company: "Publicis Sapient",
+		avatar: "/testimonials/testimonial-2.jpeg",
+		testimonial:
+			"I've collaborated with him on several challenging projects. His deep understanding of both frontend and backend systems, along with his expertise in AI integrations, consistently elevates our work. He's a proactive problem solver who always ensures quality and efficiency.",
+	},
+	{
+		id: "testimonial3",
+		name: "Shubham Karwa",
+		role: "DevOps and Cloud Specialist",
+		company: "Publicis Sapient",
+		avatar: "/testimonials/testimonial-3.jpeg",
+		testimonial:
+			"His skills in automating deployments and managing cloud infrastructure are second to none. Working closely on CI/CD pipelines and cloud optimization has been a learning experience. He brings innovative ideas to the table and ensures our systems run seamlessly.",
+	},
+	{
+		id: "testimonial4",
+		name: "Prem Sai G",
+		role: "Frontend Developer",
+		company: "Publicis Sapient",
+		avatar: "/testimonials/testimonial-4.jpeg",
+		testimonial:
+			"I've enjoyed every project we've tackled together. His attention to detail in UI/UX and knack for creating responsive, user-friendly designs really make a difference. He's not only technically strong but also a great teammate who values collaboration.",
+	},
+	{
+		id: "testimonial5",
+		name: "Kartik Gupta",
+		role: "Backend and AI Specialist",
+		company: "Publicis Sapient",
+		avatar: "/testimonials/testimonial-5.jpeg",
+		testimonial:
+			"His contributions on backend systems and AI integrations have been outstanding. I've seen him seamlessly bridge the gap between complex algorithms and scalable architectures. His dedication to performance and innovation makes him an indispensable part of our team.",
+	},
+];
