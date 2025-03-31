@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const ProjectsSection = () => {
 	return (
-		<section id="projects" className="py-16 md:py-24">
+		<section id="projects" className="py-16 md:py-24 bg-muted/30">
 			<div className="container px-4 md:px-6">
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}

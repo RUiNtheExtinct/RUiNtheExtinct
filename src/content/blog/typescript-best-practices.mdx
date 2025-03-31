@@ -1,0 +1,130 @@
+# TypeScript Best Practices for 2024
+
+TypeScript continues to evolve, and so should your coding practices. Here are some best practices for writing effective TypeScript code in 2024.
+
+## Type Everything
+
+Always provide explicit types for function parameters and return values:
+
+```typescript
+// Bad
+function calculateTotal(items) {
+	return items.reduce((acc, item) => acc + item.price, 0);
+}
+
+// Good
+interface Item {
+	name: string;
+	price: number;
+}
+
+function calculateTotal(items: Item[]): number {
+	return items.reduce((acc, item) => acc + item.price, 0);
+}
+```
+
+## Use Discriminated Unions
+
+They're type-safe and easy to work with:
+
+```typescript
+type Success = { status: "success"; data: any };
+type Error = { status: "error"; error: string };
+type Response = Success | Error;
+
+function handleResponse(response: Response) {
+	if (response.status === "success") {
+		// TypeScript knows this is a Success type
+		console.log(response.data);
+	} else {
+		// TypeScript knows this is an Error type
+		console.error(response.error);
+	}
+}
+```
+
+## Leverage TypeScript's Utility Types
+
+TypeScript provides several utility types that can help you transform existing types:
+
+```typescript
+interface User {
+	id: number;
+	name: string;
+	email: string;
+	password: string;
+}
+
+// Create a type without the password field
+type PublicUser = Omit<User, "password">;
+
+// Create a type with only selected fields
+type UserCredentials = Pick<User, "email" | "password">;
+
+// Create a type where all properties are optional
+type PartialUser = Partial<User>;
+
+// Create a type where all properties are required
+type RequiredUser = Required<User>;
+```
+
+## Use `const` Assertions
+
+In TypeScript 3.4, `const` assertions were introduced:
+
+```typescript
+// Without const assertion
+const colors = ["red", "green", "blue"];
+// Type is string[]
+
+// With const assertion
+const colors = ["red", "green", "blue"] as const;
+// Type is readonly ['red', 'green', 'blue']
+```
+
+This is especially useful for object literals:
+
+```typescript
+const config = {
+	api: {
+		baseUrl: "https://api.example.com",
+		endpoints: {
+			users: "/users",
+			posts: "/posts",
+		},
+		timeout: 5000,
+	},
+} as const;
+```
+
+## Enable Strict Mode
+
+Always enable TypeScript's strict mode for maximum type safety:
+
+```json
+// tsconfig.json
+{
+	"compilerOptions": {
+		"strict": true
+	}
+}
+```
+
+## Use Template Literal Types
+
+Template literal types allow you to manipulate string types:
+
+```typescript
+type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
+type Endpoint = "users" | "posts" | "comments";
+
+type ApiRoute = `/${Endpoint}`;
+// Type is '/users' | '/posts' | '/comments'
+
+type ApiRequest = `${HttpMethod} ${ApiRoute}`;
+// Type is 'GET /users' | 'GET /posts' | ... | 'DELETE /comments'
+```
+
+## Conclusion
+
+By following these best practices, you'll write more maintainable TypeScript code and catch more errors at compile time rather than runtime. TypeScript continues to evolve, so stay up to date with the latest features to maximize your productivity.

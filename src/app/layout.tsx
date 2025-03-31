@@ -1,7 +1,7 @@
-import BackgroundEffects from "@/components/background-effects"; // New component for bg effects
-import Footer from "@/components/footer";
-import Header from "@/components/header"; // Assuming you have/create a Header component
-import { ThemeProvider } from "@/components/theme-provider";
+import BackgroundEffects from "@/components/shared/background-effects"; // New component for bg effects
+import Footer from "@/components/shared/footer";
+import Navbar from "@/components/shared/navbar";
+import { ThemeProvider } from "@/components/shared/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -28,7 +28,7 @@ export default function RootLayout({
 					// disableTransitionOnChange
 				>
 					<BackgroundEffects />
-					<Header />
+					<Navbar />
 					<main>{children}</main>
 					<Footer />
 				</ThemeProvider>

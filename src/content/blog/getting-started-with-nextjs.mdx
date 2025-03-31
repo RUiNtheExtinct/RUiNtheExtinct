@@ -1,0 +1,82 @@
+# Getting Started with Next.js
+
+Next.js is a React framework that enables server-side rendering, static site generation, and more.
+
+## Why Next.js?
+
+-   **Server-side Rendering (SSR)**: Improves SEO and initial load performance
+-   **Static Site Generation (SSG)**: Pre-renders pages at build time for maximum performance
+-   **API Routes**: Create API endpoints as part of your Next.js application
+-   **File-based Routing**: Define routes based on file structure
+-   **Built-in CSS Support**: Import CSS files directly in your components
+
+## Getting Started
+
+To create a new Next.js project, run:
+
+```bash
+npx create-next-app@latest
+```
+
+Follow the prompts to configure your project, and you're good to go!
+
+## Creating Your First Page
+
+Next.js uses file-based routing. Create a file in the `pages` directory to create a new route:
+
+```jsx
+// pages/index.js
+export default function Home() {
+	return (
+		<div>
+			<h1>Welcome to My Next.js App!</h1>
+		</div>
+	);
+}
+```
+
+## Adding Static Assets
+
+Place static files like images in the `public` directory. They can be referenced from the root URL:
+
+```jsx
+import Image from "next/image";
+
+export default function Avatar() {
+	return <Image src="/profile.jpg" alt="Profile" width={500} height={500} />;
+}
+```
+
+## Data Fetching
+
+Next.js provides several methods for data fetching:
+
+### getStaticProps
+
+```jsx
+export async function getStaticProps() {
+	const res = await fetch("https://api.example.com/data");
+	const data = await res.json();
+
+	return {
+		props: { data },
+	};
+}
+```
+
+### getServerSideProps
+
+```jsx
+export async function getServerSideProps() {
+	const res = await fetch("https://api.example.com/data");
+	const data = await res.json();
+
+	return {
+		props: { data },
+	};
+}
+```
+
+## Conclusion
+
+Next.js provides a powerful framework for building modern web applications. Its rich feature set makes it an excellent choice for projects of all sizes.
