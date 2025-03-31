@@ -2,6 +2,7 @@ import BackgroundEffects from "@/components/shared/background-effects"; // New c
 import Footer from "@/components/shared/footer";
 import Navbar from "@/components/shared/navbar";
 import { ThemeProvider } from "@/components/shared/theme-provider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Nova_Square } from "next/font/google";
 import "./globals.css";
@@ -40,6 +41,7 @@ export default function RootLayout({
 					<BackgroundEffects />
 					<Navbar />
 					<main>{children}</main>
+					<SpeedInsights />
 					<Footer />
 				</ThemeProvider>
 			</body>
