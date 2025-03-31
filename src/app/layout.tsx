@@ -14,6 +14,10 @@ const mainFont = Nova_Square({
 export const metadata: Metadata = {
 	title: "Portfolio | RUiNtheExtinct",
 	description: "Developer Portfolio",
+	icons: {
+		icon: "/icon.jpg",
+		shortcut: "/icon.jpg",
+	},
 };
 
 export default function RootLayout({
@@ -23,6 +27,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
+			<head>
+				<link rel="icon" href="/icon.jpg" type="image/jpg" />
+			</head>
 			<body className={mainFont.className}>
 				<ThemeProvider
 					attribute="class"
