@@ -22,12 +22,13 @@ const ProfileImageEffect = ({
 
 	return (
 		<div
-			className={`relative ${className || ""}`}
+			className={`relative ${
+				className || ""
+			} w-full max-w-[420px] mx-auto`}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 			style={{
-				width: size,
-				height: size,
+				aspectRatio: "1/1",
 				marginBottom: isHovered ? ringWidth : 0,
 			}}
 		>
@@ -75,13 +76,12 @@ const ProfileImageEffect = ({
 			/>
 
 			{/* Profile image container - now with a white background to create clean separation */}
-			<div className="relative rounded-full overflow-hidden aspect-square z-10 bg-white">
+			<div className="relative rounded-full overflow-hidden aspect-square z-10 bg-white h-full w-full">
 				<Image
 					src={imageSrc}
 					alt={imageAlt}
-					width={size}
-					height={size}
-					className="object-cover w-full h-full"
+					fill
+					className="object-cover"
 					priority
 				/>
 			</div>
