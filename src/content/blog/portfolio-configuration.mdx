@@ -1,0 +1,185 @@
+# Portfolio Website Configuration Guide
+
+This document provides a comprehensive guide to understanding and configuring your portfolio website. This portfolio is designed to be fully configurable and templated, allowing anyone to easily clone and deploy it for their personal use.
+
+## Overview
+
+This portfolio website is built using modern web technologies to ensure performance, responsiveness, and ease of customization. It's designed to showcase your projects, skills, and blog posts in a clean and professional manner.
+
+## Technologies Used
+
+The portfolio is built using the following key technologies:
+
+-   **Next.js**: A React framework for building performant web applications with features like server-side rendering and static site generation.
+-   **TypeScript**: A statically typed superset of JavaScript that enhances code maintainability and developer experience.
+-   **Tailwind CSS**: A utility-first CSS framework for rapidly styling the website with pre-defined classes.
+-   **ShadCN**: A set of beautifully-designed, accessible components and a code distribution platform. Works with most frameworks. Open Source. Open Code.
+-   **MDX**: An extension of Markdown that allows embedding JSX components within Markdown content, ideal for blog posts and documentation.
+
+## Project Structure
+
+Understanding the project structure is crucial for configuration. Here are the key directories and files:
+
+-   \`src/\`: This directory contains the main source code of the application.
+    -   \`components/\`: React components used throughout the website.
+    -   \`content/\`: Contains content files.
+        -   \`blog/\`: Contains MDX files for blog posts, like \`getting-started-with-nextjs.mdx\`. This also contains the blog you are currently reading. This will be elaborated upon later.
+    -   \`data/\`: **THIS IS WHERE YOU ARE EXPECTED TO MAKE YOUR CHANGES**. Contains data files in TypeScript.
+        -   \`personal-info.ts\`: Defines your personal info, profile pic, main pic, taglines, etc.
+        -   \`skills.ts\`: Defines your skills in various fields like frontend, backend, cloud, etc.
+        -   \`experience.ts\`: Defines your professional experience and career.
+        -   \`blogs.ts\`: Defines blog post data, including both internal and external blog posts.
+        -   \`education.ts\`: Defines your college/school stats.
+        -   \`projects.ts\`: Defines project data for the portfolio.
+        -   \`certificates.ts\`: Defines any certifications you have completed. You can add links to the certificates as well. If you just have the file and not a link to it you can put it in the \`public/certificates\` folder and add corresponding path to it in the file.
+    -   \`types/\`: TypeScript type definitions, including \`index.ts\` which defines interfaces like \`BlogPost\` and \`Project\`.
+-   \`public/\`: **THIS IS WHERE YOU WILL ADD YOUR IMAGES/FILES.**.
+-   \`next.config.ts\`: Next.js configuration file, including MDX setup.
+-   \`package.json\`: npm package definition file, listing dependencies and scripts.
+-   \`README.md\`: Project README file.
+
+## Configuration
+
+To configure this portfolio for your own use, follow these steps:
+
+### 1. Installation
+
+Ensure you have Node.js and npm or pnpm installed.
+
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd <your-repository-directory>
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install  # or pnpm install
+    ```
+
+### 2. Basic Settings
+
+Most of the content and configurations are managed through the files in the \`src\` directory, specifically within the \`data\` and \`content\` folders.
+
+-   **Update Project Data:**
+
+    -   Edit \`src/data/\*.ts\` to modify the project details.
+    -   You can customize fields like \`id\`, \`title\`, \`description\`, \`image\`, \`tags\`, \`demoUrl\`, etc.
+    -   Ensure images for projects are placed in the correct directories (or update the \`image\` paths accordingly).
+
+-   **Update Blog Data:**
+    -   Edit \`src/data/blogs.ts\` to manage blog posts.
+    -   There are two arrays: \`externalBlogs\` and \`internalBlogs\`.
+        -   \`externalBlogs\`: Used for linking to blog posts hosted on external platforms like Medium. You only need to provide metadata and the \`externalUrl\`.
+        -   \`internalBlogs\`: Used for blog posts hosted directly on your portfolio. These require an MDX content file and metadata.
+
+### 3. Adding a New Blog Post
+
+#### Adding an Internal Blog Post
+
+1.  **Create a new MDX file:**
+
+    -   Navigate to the \`src/content/blog/\` directory.
+    -   Create a new file with a \`.mdx\` extension, for example, \`my-new-blog-post.mdx\`.
+    -   Write your blog post content in Markdown, and you can also embed JSX components if needed.
+
+    ```mdx:src/content/blog/my-new-blog-post.mdx
+    ---
+    title: My New Blog Post Title
+    date: 2024-07-20
+    excerpt: This is a brief excerpt of my new blog post.
+    author: Your Name
+    readingTime: 5 min read
+    tags: [Tag1, Tag2, Tag3]
+    ---
+
+    # My New Blog Post Title
+
+    This is the main content of my new blog post...
+    ```
+
+2.  **Update \`src/data/blogs.ts\`:**
+
+    -   Open \`src/data/blogs.ts\`.
+    -   Import your newly created MDX file at the top of the file:
+
+    ```typescript:src/data/blogs.ts
+    // ... other imports
+    import MyNewBlogPost from "@/content/blog/my-new-blog-post.mdx"; // Import your new blog post
+    // ...
+    ```
+
+    -   Add a new entry to the \`internalBlogs\` array with the relevant information, including the import for the \`content\` field:
+
+    ```typescript:src/data/blogs.ts
+    export const internalBlogs: BlogPost[] = [
+        // ... existing blogs
+        {
+            slug: "my-new-blog-post", // must match the filename (without .mdx) and URL slug
+            title: "My New Blog Post Title", // Title of your blog post
+            date: "2024-07-20", // Date of publishing
+            excerpt: "This is a brief excerpt of my new blog post.", // Short description
+            author: "Your Name", // Your name
+            readingTime: "5 min read", // Estimated reading time
+            // coverImage: "/images/blog/...", // Optional cover image path in public directory
+            tags: ["Tag1", "Tag2", "Tag3"], // Array of tags
+            isExternal: false, // Must be false for internal blogs
+            externalUrl: "", // Should be empty for internal blogs
+            content: MyNewBlogPost, // Import your MDX content here
+        },
+    ];
+    ```
+
+#### Adding an External Blog Post
+
+1.  **Update \`src/data/blogs.ts\`:**
+
+    -   Open \`src/data/blogs.ts\`.
+    -   Add a new entry to the \`externalBlogs\` array:
+
+    ```typescript:src/data/blogs.ts
+    export const externalBlogs: BlogPost[] = [
+        // ... existing blogs
+        {
+            slug: "external-blog-post-slug", // unique slug for the blog post
+            title: "Title of External Blog Post", // Title
+            date: "2024-07-25", // Date
+            excerpt: "Excerpt of the external blog post.", // Excerpt
+            author: "Your Name", // Author name
+            readingTime: "7 min read", // Reading time
+            coverImage: "https://example.com/cover-image.jpg", // URL to cover image
+            tags: ["External", "Blog", "Tag"], // Tags
+            isExternal: true, // Must be true for external blogs
+            externalUrl: "https://example.com/external-blog-post-url", // URL to the external blog post
+        },
+    ];
+    ```
+
+### 4. Running the Development Server
+
+To preview your changes locally, run:
+
+```bash
+npm run dev   # or pnpm dev
+```
+
+Then, open your browser and navigate to `http://localhost:3000`.
+
+### 5. Building and Deploying
+
+To build the portfolio for production:
+
+```bash
+npm run build   # or pnpm build
+```
+
+And to start the production server:
+
+```bash
+npm run start   # or pnpm start
+```
+
+For deployment, you can use platforms like Vercel, Netlify, or AWS, which are well-suited for Next.js applications.
+
+## Conclusion
+
+This guide should help you understand the structure and configuration of your portfolio website. By following these steps, you can easily customize the content, add new projects and blog posts, and deploy your personal portfolio. Remember to keep your content files organized and update the data files accordingly to maintain a well-structured and up-to-date portfolio.

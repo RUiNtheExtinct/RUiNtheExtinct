@@ -1,12 +1,12 @@
 "use client";
 
+import ProfileImageEffect from "@/components/hero/ProfileImageEffect";
 import { Button } from "@/components/ui/button";
 import { personalInfo } from "@/data/personal-info";
 import { socialLinks } from "@/data/social-links";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Electrolize } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
 
 const heroFont = Electrolize({
@@ -84,13 +84,11 @@ const HeroSection = () => {
 						transition={{ duration: 0.5, delay: 0.2 }}
 						className="flex justify-center lg:justify-end"
 					>
-						<Image
-							src={personalInfo.dp || "/placeholder-avatar.jpg"}
-							alt="Profile Picture"
-							width={420}
-							height={420}
-							className="rounded-full border-4 border-primary/20 object-cover shadow-lg aspect-square"
-							priority
+						<ProfileImageEffect
+							imageSrc={
+								personalInfo.dp || "/placeholder-avatar.jpg"
+							}
+							imageAlt={`${personalInfo.name}'s Profile Picture`}
 						/>
 					</motion.div>
 				</div>

@@ -64,14 +64,14 @@ export interface Project {
 	title: string;
 	description: string;
 	longDescription?: string;
-	image: string | StaticImageData;
+	image?: string | StaticImageData;
 	tags: string[];
 	demoUrl?: string;
 	repoUrl?: string;
-	featured?: boolean;
+	featured: boolean;
 	category: string;
 	date: string;
-	status: string;
+	status: "completed" | "in-progress" | "cancelled" | "on-hold" | "planned";
 }
 
 // Experience Types

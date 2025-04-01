@@ -8,8 +8,8 @@ export const personalInfo: PersonalInfo = {
 	email: "deepkarma001@gmail.com",
 	phone: "+918983936295",
 	location: "Mumbai, Maharashtra",
-	dp: "/personal/dp.jpg",
-	avatar: "/personal/avatar.jpg",
+	dp: "/personal/dp.webp",
+	avatar: "/personal/avatar.webp",
 	resumeUrl: "/personal/resume.pdf",
 };
 
@@ -27,7 +27,7 @@ export const stats: Stat[] = [
 	},
 	{
 		icon: Briefcase,
-		value: "20+",
+		value: "10+",
 		label: "Projects Completed",
 		color: "bg-purple-500/10 text-purple-500",
 	},

@@ -20,7 +20,7 @@ const fraunces = Fraunces({
 const BlogCoverCard = ({ post }: { post: BlogPost }) => {
 	const linkHref = post.isExternal
 		? (post.externalUrl as string)
-		: `/blog/${post.slug}`;
+		: `/blog/view/${post.slug}`;
 	const linkProps = post.isExternal
 		? {
 				target: "_blank",

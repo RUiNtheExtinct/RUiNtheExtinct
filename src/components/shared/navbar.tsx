@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import GlimmerEffect from "./GlimmerEffect";
 import { ModeToggle } from "./mode-toggle";
 
 const navLinks = [
@@ -55,8 +56,12 @@ const Navigation = () => {
 		>
 			<div className="container mx-auto px-4">
 				<div className="flex h-16 items-center justify-between">
-					<Link href="/" className="flex items-center space-x-2">
+					<Link
+						href="/"
+						className="flex items-center space-x-2 relative group"
+					>
 						<Avatar className="h-8 w-8">
+							<GlimmerEffect />
 							<AvatarImage
 								src={personalInfo.avatar as string}
 								alt={personalInfo.name}
