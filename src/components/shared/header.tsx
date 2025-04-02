@@ -32,7 +32,7 @@ const Header = () => {
 						Projects
 					</Link>
 					<Link
-						href="#experience"
+						href="#work-experience"
 						className="text-muted-foreground transition-colors hover:text-foreground"
 					>
 						Experience

@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { personalInfo } from "@/data/personal-info";
+import { socialLinks } from "@/data/social-links";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import {
@@ -23,6 +24,7 @@ import {
 	Phone,
 	Send,
 } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -160,13 +162,25 @@ const ContactSection = () => {
 									<div className="rounded-full bg-primary/10 p-2">
 										<MessageSquare className="h-5 w-5 text-primary" />
 									</div>
-									<div>
+									<div className="flex flex-col gap-2">
 										<h3 className="font-medium">
 											Social Media
 										</h3>
-										<p className="text-sm text-muted-foreground">
-											Connect with me on LinkedIn, GitHub,
-											or Twitter
+										<p className="text-sm text-muted-foreground flex gap-2">
+											{socialLinks.map((link) => (
+												<Link
+													key={link.name}
+													href={link.url}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="text-muted-foreground hover:text-foreground"
+												>
+													<link.icon className="h-5 w-5" />
+													<span className="sr-only">
+														{link.name}
+													</span>
+												</Link>
+											))}
 										</p>
 									</div>
 								</div>
@@ -195,6 +209,7 @@ const ContactSection = () => {
 								>
 									<div className="space-y-2">
 										<Input
+											id="contact-me-name"
 											name="name"
 											placeholder="Your Name"
 											value={formData.name}

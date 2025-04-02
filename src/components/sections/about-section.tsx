@@ -168,7 +168,7 @@ const AboutSection = () => {
 										size="lg"
 										className="w-full"
 									>
-										<Link href="#contact">
+										<Link href="/#contact-me-name">
 											Get in Touch
 											<ArrowRight className="ml-2 h-4 w-4" />
 										</Link>

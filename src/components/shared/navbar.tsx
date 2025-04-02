@@ -11,15 +11,15 @@ import GlimmerEffect from "./GlimmerEffect";
 import { ModeToggle } from "./mode-toggle";
 
 const navLinks = [
-	{ href: "#about", label: "About" },
-	{ href: "#skills", label: "Skills" },
-	{ href: "#projects", label: "Projects" },
-	{ href: "#experience", label: "Experience" },
-	{ href: "#education", label: "Education" },
-	{ href: "#testimonials", label: "Testimonials" },
-	{ href: "#certificates", label: "Certificates" },
+	{ href: "/#about", label: "About" },
+	{ href: "/#skills", label: "Skills" },
+	{ href: "/#projects", label: "Projects" },
+	{ href: "/#work-experience", label: "Experience" },
+	{ href: "/#education", label: "Education" },
+	{ href: "/#testimonials", label: "Testimonials" },
+	{ href: "/#certificates", label: "Certificates" },
 	{ href: "/blog", label: "Blog" },
-	{ href: "#contact", label: "Contact" },
+	{ href: "/#contact", label: "Contact" },
 ];
 
 const Navigation = () => {

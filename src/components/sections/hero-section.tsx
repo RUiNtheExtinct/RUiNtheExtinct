@@ -49,7 +49,7 @@ const HeroSection = () => {
 								size="lg"
 								className="w-full sm:w-auto"
 							>
-								<Link href="#contact">
+								<Link href="/#contact-me-name">
 									Contact Me{" "}
 									<ArrowRight className="ml-2 h-4 w-4" />
 								</Link>

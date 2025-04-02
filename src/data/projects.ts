@@ -124,6 +124,7 @@ export const projects: Project[] = [
 			"A simulation of evolution in a virtual environment created using C++.",
 		tags: ["C++", "Visual Studio"],
 		repoUrl: "https://github.com/RUiNtheExtinct/Evolution-Simulator",
+		image: "/projects/cpp-evolution-simulator.webp",
 		featured: false,
 		category: "desktop",
 		date: "2021",

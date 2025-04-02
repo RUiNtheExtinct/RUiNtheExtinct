@@ -35,7 +35,7 @@ const BlogCoverCard = ({ post }: { post: BlogPost }) => {
 		>
 			<Link href={linkHref} {...linkProps} className="cursor-pointer">
 				{post.coverImage ? (
-					<div className="relative h-52 w-full overflow-hidden">
+					<div className="relative h-52 w-full overflow-hidden flex flex-col items-center justify-center">
 						<img
 							src={post.coverImage}
 							alt={post.title}
