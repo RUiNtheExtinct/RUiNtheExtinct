@@ -12,9 +12,9 @@ import { ModeToggle } from "./mode-toggle";
 
 const navLinks = [
 	{ href: "/#about", label: "About" },
+	{ href: "/#work-experience", label: "Experience" },
 	{ href: "/#skills", label: "Skills" },
 	{ href: "/#projects", label: "Projects" },
-	{ href: "/#work-experience", label: "Experience" },
 	{ href: "/#education", label: "Education" },
 	{ href: "/#testimonials", label: "Testimonials" },
 	{ href: "/#certificates", label: "Certificates" },
@@ -25,6 +25,7 @@ const navLinks = [
 const Navigation = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
+	const [activeSection, setActiveSection] = useState<string>("");
 
 	const toggleMenu = () => {
 		setIsMenuOpen(!isMenuOpen);
@@ -42,6 +43,43 @@ const Navigation = () => {
 		window.addEventListener("scroll", handleScroll);
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
+
+	useEffect(() => {
+		const observerOptions = {
+			root: null,
+			rootMargin: "0px",
+			threshold: 0.5,
+		};
+
+		const observerCallback: IntersectionObserverCallback = (entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const id = entry.target.id;
+					setActiveSection(id);
+				}
+			});
+		};
+
+		const observer = new IntersectionObserver(
+			observerCallback,
+			observerOptions
+		);
+
+		// Observe all sections
+		navLinks.forEach((link) => {
+			const id = link.href.split("#")[1];
+			if (id) {
+				const element = document.getElementById(id);
+				if (element) {
+					observer.observe(element);
+				}
+			}
+		});
+
+		return () => {
+			observer.disconnect();
 		};
 	}, []);
 
@@ -81,15 +119,24 @@ const Navigation = () => {
 
 					{/* Desktop Navigation */}
 					<nav className="hidden md:flex md:items-center md:space-x-8">
-						{navLinks.map((link) => (
-							<Link
-								key={link.href}
-								href={link.href}
-								className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-							>
-								{link.label}
-							</Link>
-						))}
+						{navLinks.map((link) => {
+							const id = link.href.split("#")[1];
+							const isActive = id === activeSection;
+							return (
+								<Link
+									key={link.href}
+									href={link.href}
+									className={cn(
+										"text-sm font-medium transition-colors",
+										isActive
+											? "text-primary"
+											: "text-muted-foreground hover:text-primary"
+									)}
+								>
+									{link.label}
+								</Link>
+							);
+						})}
 						<ModeToggle />
 					</nav>
 
@@ -115,16 +162,25 @@ const Navigation = () => {
 				{isMenuOpen && (
 					<div className="md:hidden">
 						<nav className="flex flex-col space-y-2 py-4">
-							{navLinks.map((link) => (
-								<Link
-									key={link.href}
-									href={link.href}
-									className="py-2 text-sm font-medium transition-colors hover:text-primary"
-									onClick={() => setIsMenuOpen(false)}
-								>
-									{link.label}
-								</Link>
-							))}
+							{navLinks.map((link) => {
+								const id = link.href.split("#")[1];
+								const isActive = id === activeSection;
+								return (
+									<Link
+										key={link.href}
+										href={link.href}
+										className={cn(
+											"py-2 text-sm font-medium transition-colors",
+											isActive
+												? "text-primary"
+												: "text-muted-foreground hover:text-primary"
+										)}
+										onClick={() => setIsMenuOpen(false)}
+									>
+										{link.label}
+									</Link>
+								);
+							})}
 						</nav>
 					</div>
 				)}
