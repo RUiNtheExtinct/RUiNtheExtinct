@@ -24,7 +24,7 @@ const ProfileImageEffect = ({
 		<div
 			className={`relative ${
 				className || ""
-			} w-full max-w-[420px] mx-auto`}
+			} w-full max-w-[420px] mx-auto ease-in-out duration-300`}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 			style={{
