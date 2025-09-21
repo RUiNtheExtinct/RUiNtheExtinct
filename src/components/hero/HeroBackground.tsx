@@ -2,7 +2,7 @@
 
 import { Stars } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { CanvasTexture } from "three";
 
 function LightStars({
@@ -114,17 +114,31 @@ function LightStars({
 }
 
 export default function HeroBackground() {
+	const [isMobile, setIsMobile] = useState(false);
+
+	useEffect(() => {
+		const mq = window.matchMedia("(max-width: 640px)");
+		const update = () => setIsMobile(mq.matches);
+		update();
+		mq.addEventListener("change", update);
+		return () => mq.removeEventListener("change", update);
+	}, []);
+
+	const darkCount = isMobile ? 700 : 1200;
+	const lightCount = isMobile ? 800 : 1100;
+	const dpr: [number, number] = isMobile ? [1, 1.5] : [1, 2];
+
 	return (
 		<div className="absolute inset-0 -z-10 pointer-events-none">
 			{/* Dark mode: starfield */}
 			<div className="hidden dark:block absolute inset-0">
-				<Canvas camera={{ position: [0, 0, 1] }} dpr={[1, 2]}>
+				<Canvas camera={{ position: [0, 0, 1] }} dpr={dpr}>
 					<Suspense fallback={null}>
 						<Stars
 							radius={60}
 							depth={50}
-							count={1200}
-							factor={4}
+							count={darkCount}
+							factor={isMobile ? 3.5 : 4}
 							saturation={0}
 							fade
 							speed={0.6}
@@ -135,9 +149,9 @@ export default function HeroBackground() {
 
 			{/* Light mode: subtle darker stars */}
 			<div className="block dark:hidden absolute inset-0">
-				<Canvas camera={{ position: [0, 0, 1] }} dpr={[1, 2]}>
+				<Canvas camera={{ position: [0, 0, 1] }} dpr={dpr}>
 					<Suspense fallback={null}>
-						<LightStars count={1100} radius={60} />
+						<LightStars count={lightCount} radius={60} />
 					</Suspense>
 				</Canvas>
 			</div>

@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 export type ProjectCardVariant = "section" | "page";
 
@@ -36,9 +36,19 @@ export const ProjectCard = ({
 
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const cardRef = useRef<HTMLDivElement | null>(null);
+	const isCoarseRef = useRef(false);
+
+	useEffect(() => {
+		const mq = window.matchMedia("(pointer: coarse)");
+		const update = () => (isCoarseRef.current = mq.matches);
+		update();
+		mq.addEventListener("change", update);
+		return () => mq.removeEventListener("change", update);
+	}, []);
 
 	const handleMouseMove = useCallback(
 		(e: React.MouseEvent<HTMLDivElement>) => {
+			if (isCoarseRef.current) return;
 			if (!containerRef.current || !cardRef.current) return;
 			const rect = containerRef.current.getBoundingClientRect();
 			const x = e.clientX - rect.left;

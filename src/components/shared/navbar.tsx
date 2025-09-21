@@ -49,6 +49,23 @@ const Navigation = () => {
 		};
 	}, []);
 
+	// Close on Escape and prevent background scroll when open
+	useEffect(() => {
+		const onKeyDown = (e: KeyboardEvent) => {
+			if (e.key === "Escape") setIsMenuOpen(false);
+		};
+		window.addEventListener("keydown", onKeyDown);
+		if (isMenuOpen) {
+			document.documentElement.style.overflow = "hidden";
+		} else {
+			document.documentElement.style.overflow = "";
+		}
+		return () => {
+			window.removeEventListener("keydown", onKeyDown);
+			document.documentElement.style.overflow = "";
+		};
+	}, [isMenuOpen]);
+
 	useEffect(() => {
 		const observerOptions = {
 			root: null,
@@ -173,31 +190,44 @@ const Navigation = () => {
 					</div>
 				</div>
 
-				{/* Mobile Navigation Menu */}
+				{/* Mobile Navigation Menu (overlay) */}
 				{isMenuOpen && (
-					<div className="md:hidden">
-						<nav className="flex flex-col space-y-2 py-4">
-							{navLinks.map((link) => {
-								const id = link.href.split("#")[1];
-								const isActive = id === activeSection;
-								return (
-									<Link
-										key={link.href}
-										href={link.href}
-										className={cn(
-											"py-2 text-sm font-medium transition-colors",
-											isActive
-												? "text-primary"
-												: "text-muted-foreground hover:text-primary"
-										)}
-										onClick={() => setIsMenuOpen(false)}
-									>
-										{link.label}
-									</Link>
-								);
-							})}
-						</nav>
-					</div>
+					<>
+						{/* scrim */}
+						<button
+							className="md:hidden fixed inset-0 z-30 bg-background/20 backdrop-blur supports-[backdrop-filter]:bg-background/40"
+							aria-label="Close menu"
+							onClick={() => setIsMenuOpen(false)}
+						/>
+						{/* panel */}
+						<div className="md:hidden absolute left-0 right-0 top-full z-40">
+							<div className="container mx-auto px-4">
+								<nav className="rounded-md border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-md p-4 flex flex-col space-y-2">
+									{navLinks.map((link) => {
+										const id = link.href.split("#")[1];
+										const isActive = id === activeSection;
+										return (
+											<Link
+												key={link.href}
+												href={link.href}
+												className={cn(
+													"py-2 text-sm font-medium transition-colors",
+													isActive
+														? "text-primary"
+														: "text-muted-foreground hover:text-primary"
+												)}
+												onClick={() =>
+													setIsMenuOpen(false)
+												}
+											>
+												{link.label}
+											</Link>
+										);
+									})}
+								</nav>
+							</div>
+						</div>
+					</>
 				)}
 			</div>
 		</header>

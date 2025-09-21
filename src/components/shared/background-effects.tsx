@@ -8,9 +8,34 @@ const BackgroundEffects = () => {
 	const { theme } = useTheme();
 
 	useEffect(() => {
+		const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+		const isLight = theme === "light";
+
+		if (isCoarse) {
+			// Static subtle glow for touch devices
+			if (spotlightRef.current) {
+				spotlightRef.current.style.background = `
+					radial-gradient(
+						600px circle at 50% 30%,
+						${
+							isLight
+								? "rgba(var(--primary-rgb), 0.04)"
+								: "rgba(var(--primary-rgb), 0.08)"
+						},
+						transparent 40%
+					),
+					radial-gradient(
+						180px circle at 55% 34%,
+						hsl(var(--accent) / ${isLight ? "0.05" : "0.08"}),
+						transparent 35%
+					)
+				`;
+			}
+			return;
+		}
+
 		const handleMouseMove = (event: MouseEvent) => {
 			if (spotlightRef.current) {
-				const isLight = theme === "light";
 				spotlightRef.current.style.background = `
 					radial-gradient(
 						800px circle at ${event.clientX}px ${event.clientY}px,

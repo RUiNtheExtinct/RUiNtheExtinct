@@ -6,15 +6,24 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { categories, skills } from "@/data/skills";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE_MOBILE = 6;
 
 const SkillsSection = () => {
 	const [activeCategory, setActiveCategory] = useState("all");
-	const [visibleItems, setVisibleItems] = useState(ITEMS_PER_PAGE);
+	const isMobile = useIsMobile();
+
+	const ITEMS_VISIBLE = useMemo(
+		() => (isMobile ? ITEMS_PER_PAGE_MOBILE : ITEMS_PER_PAGE),
+		[isMobile]
+	);
+
+	const [visibleItems, setVisibleItems] = useState(ITEMS_VISIBLE);
 
 	const levelColors = {
 		beginner: "bg-sky-500/10 text-sky-500 border-sky-500/20",
@@ -23,13 +32,22 @@ const SkillsSection = () => {
 		expert: "bg-violet-500/10 text-violet-500 border-violet-500/20",
 	};
 
-	const filteredSkills =
-		activeCategory === "all"
-			? skills
-			: skills.filter((skill) => skill.category === activeCategory);
+	const filteredSkills = useMemo(
+		() =>
+			activeCategory === "all"
+				? skills
+				: skills.filter((skill) => skill.category === activeCategory),
+		[activeCategory, skills]
+	);
 
-	const displayedSkills = filteredSkills.slice(0, visibleItems);
-	const hasMore = visibleItems < filteredSkills.length;
+	const displayedSkills = useMemo(
+		() => filteredSkills.slice(0, visibleItems),
+		[filteredSkills, visibleItems]
+	);
+	const hasMore = useMemo(
+		() => visibleItems < filteredSkills.length,
+		[visibleItems, filteredSkills]
+	);
 
 	const itemVariants = {
 		hidden: { opacity: 0, y: 20 },
@@ -61,7 +79,7 @@ const SkillsSection = () => {
 						size="sm"
 						onClick={() => {
 							setActiveCategory("all");
-							setVisibleItems(ITEMS_PER_PAGE);
+							setVisibleItems(ITEMS_VISIBLE);
 						}}
 						className="rounded-full"
 					>
@@ -78,7 +96,7 @@ const SkillsSection = () => {
 							}
 							onClick={() => {
 								setActiveCategory(category.name.toLowerCase());
-								setVisibleItems(ITEMS_PER_PAGE);
+								setVisibleItems(ITEMS_VISIBLE);
 							}}
 							className="rounded-full"
 						>
@@ -172,7 +190,7 @@ const SkillsSection = () => {
 						<Button
 							variant="outline"
 							onClick={() =>
-								setVisibleItems((prev) => prev + ITEMS_PER_PAGE)
+								setVisibleItems((prev) => prev + ITEMS_VISIBLE)
 							}
 							className="gap-2"
 						>

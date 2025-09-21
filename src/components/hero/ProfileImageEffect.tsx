@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 interface ProfileImageEffectProps {
 	imageSrc: string | StaticImageData;
@@ -20,9 +20,41 @@ const ProfileImageEffect = ({
 	const [isHovered, setIsHovered] = useState(false);
 	const ringWidth = 10;
 	const orbitDots = useMemo(() => [0, 120, 240], []);
+	const containerRef = useRef<HTMLDivElement | null>(null);
+	const [containerSize, setContainerSize] = useState<number>(0);
+	const [isCoarse, setIsCoarse] = useState<boolean>(false);
+
+	useEffect(() => {
+		// Track pointer type for touch devices
+		const mq = window.matchMedia("(pointer: coarse)");
+		const updatePointer = () => setIsCoarse(mq.matches);
+		updatePointer();
+		mq.addEventListener("change", updatePointer);
+
+		// Observe container for responsive orbit radius
+		const el = containerRef.current;
+		if (el) {
+			const ro = new ResizeObserver((entries) => {
+				for (const entry of entries) {
+					const w = entry.contentRect.width;
+					setContainerSize(w);
+				}
+			});
+			ro.observe(el);
+			return () => {
+				mq.removeEventListener("change", updatePointer);
+				ro.disconnect();
+			};
+		}
+
+		return () => mq.removeEventListener("change", updatePointer);
+	}, []);
+
+	const orbitRadiusPx = Math.max(0, (containerSize || size) / 2 - 12);
 
 	return (
 		<div
+			ref={containerRef}
 			className={`relative ${
 				className || ""
 			} w-full max-w-[420px] mx-auto ease-in-out duration-300`}
@@ -39,7 +71,7 @@ const ProfileImageEffect = ({
 				style={{
 					background:
 						"radial-gradient(60% 60% at 50% 50%, hsl(var(--accent)/.25), transparent 70%), conic-gradient(from 0deg, hsl(var(--accent)/.25), transparent 40%, hsl(var(--accent)/.25))",
-					opacity: isHovered ? 0.9 : 0.5,
+					opacity: isHovered ? 0.9 : isCoarse ? 0.4 : 0.5,
 				}}
 				animate={{ rotate: isHovered ? 360 : 0 }}
 				transition={{
@@ -58,7 +90,7 @@ const ProfileImageEffect = ({
 					bottom: -ringWidth,
 					backgroundImage:
 						"conic-gradient(hsl(var(--accent)), transparent 25%, hsl(var(--accent)), transparent 50%, hsl(var(--accent)))",
-					opacity: isHovered ? 1 : 0.4,
+					opacity: isHovered ? 1 : isCoarse ? 0.3 : 0.4,
 					filter: "blur(10px)",
 				}}
 				animate={{
@@ -71,16 +103,17 @@ const ProfileImageEffect = ({
 			/>
 
 			{/* Orbiting glow dots */}
-			<div className="pointer-events-none absolute inset-0">
+			<div
+				className="pointer-events-none absolute inset-0"
+				style={{ display: isCoarse ? "none" : undefined }}
+			>
 				<div className="absolute inset-0 origin-center animate-[spin_12s_linear_infinite]">
 					{orbitDots.map((deg) => (
 						<span
 							key={deg}
 							className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full"
 							style={{
-								transform: `rotate(${deg}deg) translateX(${
-									size / 2 - 12
-								}px)`,
+								transform: `rotate(${deg}deg) translateX(${orbitRadiusPx}px)`,
 								background: "hsl(var(--accent))",
 								boxShadow: "0 0 12px hsl(var(--accent)/.8)",
 								opacity: isHovered ? 1 : 0.7,
@@ -98,7 +131,7 @@ const ProfileImageEffect = ({
 					left: -ringWidth * 2,
 					right: -ringWidth * 2,
 					bottom: -ringWidth * 2,
-					opacity: isHovered ? 0.6 : 0.2,
+					opacity: isHovered ? 0.6 : isCoarse ? 0.15 : 0.2,
 					boxShadow:
 						"0 0 24px 12px hsl(var(--accent)/.45), 0 0 60px 30px hsl(var(--accent)/.20)",
 					filter: "blur(16px)",
