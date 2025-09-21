@@ -1,0 +1,116 @@
+# NPM Client Package Template — TypeScript, multi-framework
+
+A production-ready template to build and publish npm packages for client-side frameworks: React, Next.js, Vue 3, and SolidJS (more optional targets included). Strict TypeScript, robust type definitions, CI/CD via GitHub Actions + Changesets, and examples per framework help you ship fast with confidence.
+
+## Motivation
+
+I needed a single, opinionated starter that made it trivial to:
+
+-   scaffold new libraries for multiple frameworks
+-   guarantee type-safety and consistent linting/formatting
+-   test reliably with jsdom/Testing Library
+-   release automatically with conventional versioning
+
+## Supported frameworks
+
+Out of the box, the monorepo includes packages and/or templates for:
+
+-   React (library)
+-   Next.js (React library with `use client` support)
+-   Vue 3
+-   SolidJS
+-   Svelte
+-   Preact
+-   Nuxt
+-   Lit
+
+## Features
+
+-   TypeScript-first with strict settings and declaration output
+-   Framework targets: React, Next.js, Vue 3 (Vite library), SolidJS (Vite library), Svelte (Vite library)
+-   Bundling: tsup (React/Next) and Vite (Vue/Solid) ⇒ ESM + CJS + types
+-   Linting/Formatting: ESLint (+ React/Vue/Solid), Prettier, EditorConfig
+-   Testing: Vitest + jsdom + Testing Library variants
+-   Versioning/Publishing: Changesets + GitHub Actions release workflow
+-   Monorepo: pnpm workspaces + Turborepo caching
+
+## Monorepo structure
+
+-   `packages/react-ui` — React component library (tsup)
+-   `packages/next-ui` — Next.js-ready React components (tsup + `use client`)
+-   `packages/vue-ui` — Vue 3 library (Vite library mode + `vue-tsc` for d.ts)
+-   `packages/solid-ui` — SolidJS library (Vite library mode + d.ts)
+-   `packages/preact-ui` — Preact library (Vite library mode + d.ts)
+-   `packages/nuxt-ui` — Nuxt.js-ready Vue components (Vite library mode)
+-   `packages/lit-ui` — LitJS library (Vite library mode + d.ts)
+
+## Getting started
+
+Clone the template and install dependencies:
+
+```bash
+git clone https://github.com/bytes2pro/npm-client-package-template.git
+cd npm-client-package-template
+pnpm install
+pnpm dev
+```
+
+Optionally set your npm scope (used by scaffold and packages):
+
+```bash
+pnpm set-scope -- --scope @your-scope
+```
+
+Build and test all packages:
+
+```bash
+pnpm build
+pnpm test
+```
+
+## Scaffolding new packages
+
+Copy from a template package and rename with a single command:
+
+```bash
+pnpm scaffold -- --template react --name awesome-ui            # uses detected scope
+pnpm scaffold -- --template react --name awesome-ui --scope @another-scope
+```
+
+## Local development loop
+
+In this repo:
+
+```bash
+pnpm i
+pnpm clean && pnpm build
+pnpm dlx yalc publish --changed --private
+```
+
+In a consuming project:
+
+```bash
+pnpm remove @your-scope/your-package # not needed for the first run
+rm -rf .next/cache node_modules/.cache
+pnpm dlx yalc add @your-scope/your-package && pnpm i
+```
+
+## Release workflow
+
+```bash
+pnpm changeset        # record changes
+pnpm version-packages # create version PR or bump locally
+pnpm release          # publish via CI (NPM_TOKEN) or local ~/.npmrc
+```
+
+CI runs lint, typecheck, build, tests, and size checks before releasing.
+
+## Conventions
+
+-   All packages emit ESM, CJS, and `.d.ts`
+-   Peers are externalized to keep bundles slim
+-   Subpath exports power an umbrella package for multi-framework delivery
+
+## Links
+
+-   GitHub: [bytes2pro/npm-client-package-template](https://github.com/bytes2pro/npm-client-package-template)

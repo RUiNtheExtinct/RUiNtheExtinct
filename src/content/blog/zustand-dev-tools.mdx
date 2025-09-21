@@ -1,0 +1,114 @@
+# Zustand Dev Tools — Debug Zustand stores with a visual UI
+
+An intuitive graphical UI to inspect and debug your Zustand stores across frameworks. It helps you see state at-a-glance, track updates as they happen, and reason about complex app flows without sprinkling `console.log` everywhere.
+
+> Built using the [NPM Client Package Template](https://github.com/bytes2pro/npm-client-package-template). Huge credit to that template for the monorepo, build, and release workflow.
+
+## Current status
+
+-   Next.js components: Available (stable)
+-   React components: Work in progress
+-   Other frameworks (Vue 3, SolidJS, Svelte, Preact, Nuxt, Lit): Planned after Next + React
+
+The goal is to support all framework targets provided by the template above.
+
+## Why I built it
+
+Zustand is tiny and ergonomic, but when apps grow, understanding how multiple stores evolve over time becomes tricky. I wanted a portable, framework-friendly devtool that:
+
+-   works across React/Next, Vue 3, and SolidJS (and more)
+-   is easy to drop into any project
+-   is typesafe and tree-shakeable
+-   stays out of production builds entirely
+
+## Key features
+
+-   Visualize store state and derived slices in real time
+-   Track updates as actions occur (payloads and resulting state)
+-   Multi-store view: register many stores at once
+-   Framework targets: Next.js (ready), React (WIP), others planned (Vue 3, SolidJS, Svelte, Preact, Nuxt, Lit)
+-   Zero-config styles (auto-injected)
+-   TypeScript-first builds with strict types
+
+## Install
+
+```bash
+pnpm add @bytes2pro/zustand-dev-tools
+```
+
+For dev-only usage, gate rendering to development mode.
+
+## Quick start (Next.js)
+
+Create a small provider and mount it in your root layout so the devtools render in development only.
+
+```tsx
+"use client";
+
+import { memo } from "react";
+import { ZustandDevtools } from "@bytes2pro/zustand-dev-tools/next";
+import { useExampleStore /*, ...anyNumberOfStores */ } from "@/stores";
+
+export const ZustandDevtoolsProviderComponent = () => {
+	const stores = [
+		{
+			name: "ExampleStore",
+			store: useExampleStore,
+			state: useExampleStore(),
+		},
+		// add more: { name: 'OtherStore', store: useOtherStore, state: useOtherStore() }
+	];
+
+	if (process.env.NODE_ENV !== "development") return null;
+	return <ZustandDevtools stores={stores} className="bottom-4 right-4" />;
+};
+
+export const ZustandDevtoolsProvider = memo(ZustandDevtoolsProviderComponent);
+```
+
+Then include it in your `app/layout.tsx`:
+
+```tsx
+// app/layout.tsx
+import { ZustandDevtoolsProvider } from "@/ZustandDevtoolsProvider";
+
+export default function RootLayout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
+	return (
+		<html lang="en">
+			<body>
+				{children}
+				<ZustandDevtoolsProvider />
+			</body>
+		</html>
+	);
+}
+```
+
+## How it works
+
+-   You provide an array of stores: `{ name, store, state }`
+-   The devtool subscribes to state changes and renders a compact inspector
+-   Nothing is rendered (or bundled) in production if you gate it behind `process.env.NODE_ENV === 'development'`
+
+## Roadmap
+
+-   React build parity with Next components
+-   Port to Vue 3, SolidJS, Svelte, Preact, Nuxt, and Lit (matching the template)
+-   Action labeling helpers
+-   Search/filter across updates
+-   Export/import store snapshots for debugging
+
+## Limitations
+
+-   Designed for development; avoid mounting in production
+-   Requires explicit registration of stores (so you control what’s inspected)
+
+## Links
+
+-   GitHub: [bytes2pro/zustand-dev-tools](https://github.com/bytes2pro/zustand-dev-tools)
+-   npm: [@bytes2pro/zustand-dev-tools](https://www.npmjs.com/package/@bytes2pro/zustand-dev-tools)
+-   Template used: [bytes2pro/npm-client-package-template](https://github.com/bytes2pro/npm-client-package-template)

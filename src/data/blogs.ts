@@ -1,6 +1,9 @@
+import ComfyUISaveFileExtendedPost from "@/content/blog/comfyui-save-file-extended.mdx";
 import GettingStartedWithNextjs from "@/content/blog/getting-started-with-nextjs.mdx";
+import NpmClientPackageTemplatePost from "@/content/blog/npm-client-package-template.mdx";
 import PortfolioConfiguration from "@/content/blog/portfolio-configuration.mdx";
 import TypeScriptBestPractices from "@/content/blog/typescript-best-practices.mdx";
+import ZustandDevToolsPost from "@/content/blog/zustand-dev-tools.mdx";
 import type { BlogPost } from "@/types";
 
 export const externalBlogs: BlogPost[] = [
@@ -110,6 +113,48 @@ export const externalBlogs: BlogPost[] = [
 
 export const internalBlogs: BlogPost[] = [
 	{
+		slug: "comfyui-save-file-extended",
+		title: "ComfyUI Save File Extended — Cloud-friendly save/load & previews",
+		date: "2025-09-21",
+		excerpt:
+			"Extend ComfyUI's save/preview with cloud storage support, polished UI, and progress.",
+		author: "Arghyadeep Karmakar",
+		readingTime: "8 min read",
+		coverImage: "/projects/save-file-extended.webp",
+		tags: ["ComfyUI", "Nodes", "Cloud Storage", "Computer Vision"],
+		isExternal: false,
+		externalUrl: "",
+		content: ComfyUISaveFileExtendedPost,
+	},
+	{
+		slug: "npm-client-package-template",
+		title: "NPM Client Package Template — TypeScript, multi-framework",
+		date: "2025-09-21",
+		excerpt:
+			"Production-ready monorepo template for React/Next/Vue/Solid libraries with CI & types.",
+		author: "Arghyadeep Karmakar",
+		readingTime: "7 min read",
+		coverImage: "/projects/npm-client-package-template.webp",
+		tags: ["TypeScript", "Monorepo", "npm", "CI/CD", "Libraries"],
+		isExternal: false,
+		externalUrl: "",
+		content: NpmClientPackageTemplatePost,
+	},
+	{
+		slug: "zustand-dev-tools",
+		title: "Zustand Dev Tools — Debug Zustand stores with a visual UI",
+		date: "2025-09-21",
+		excerpt:
+			"A graphical debugger for Zustand: inspect state, track updates, and improve DX.",
+		author: "Arghyadeep Karmakar",
+		readingTime: "6 min read",
+		tags: ["Zustand", "DevTools", "State Management", "React", "Next.js"],
+		coverImage: "/projects/zustand-dev-tools.webp",
+		isExternal: false,
+		externalUrl: "",
+		content: ZustandDevToolsPost,
+	},
+	{
 		slug: "using-this-template-to-build-your-portfolio",
 		title: "Using this portfolio as a template to build your own",
 		date: "01-04-2025",
@@ -151,6 +196,6 @@ export const internalBlogs: BlogPost[] = [
 	},
 ];
 
-export const allBlogs = [...externalBlogs, ...internalBlogs].sort(
+export const allBlogs = [...internalBlogs, ...externalBlogs].sort(
 	(a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
 );

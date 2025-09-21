@@ -1,0 +1,58 @@
+# ComfyUI Save File Extended — Cloud-friendly save/load & previews
+
+Custom nodes for ComfyUI that extend the built-in Save and Preview Image/Video nodes. They add first-class cloud storage support, richer progress feedback, and a polished browser for large batches.
+
+## Motivation
+
+ComfyUI workflows generate many assets. Moving them off local disk and into shared buckets (S3/GCS/etc.) was clunky, and tracking progress for large uploads/downloads was opaque. This project makes cloud saves/loads feel native.
+
+## Features
+
+-   Save images/videos to local disk or popular cloud providers
+-   Browse remote buckets with a clean, two-pane (Cloud/Local) UI
+-   Preview images/videos with metadata
+-   Real-time per-item and byte-level progress indicators
+-   Replace default nodes drop-in; no workflow changes required
+
+## Supported providers
+
+-   S3-compatible (AWS S3, Cloudflare R2, MinIO, Backblaze B2)
+-   Google Cloud Storage, Azure Blob Storage
+-   Google Drive, Dropbox, OneDrive
+-   FTP/SFTP, Supabase Storage, UploadThing
+
+## Installation
+
+Clone into your ComfyUI `custom_nodes` folder and restart ComfyUI:
+
+```bash
+cd path/to/ComfyUI/custom_nodes
+git clone https://github.com/bytes2pro/comfyui-save-file-extended.git
+```
+
+## Configuration
+
+-   Provide credentials via the node UI or environment variables
+-   Some providers require bucket/region configuration; see repo docs
+
+## Usage
+
+-   Replace default Save/Preview nodes with the extended variants
+-   Choose Local or Cloud target; authenticate once, then browse and save
+-   Watch the status panel for progress and errors
+
+## Node documentation
+
+Comprehensive docs for each included node are available in the repository’s documentation. See the README and docs folder:
+
+-   Docs/README: [bytes2pro/comfyui-save-file-extended](https://github.com/bytes2pro/comfyui-save-file-extended)
+
+## Roadmap
+
+-   Chunked and resumable uploads for very large files
+-   Folder sync and bulk operations
+-   Advanced metadata tagging and search
+
+## Links
+
+-   GitHub: [bytes2pro/comfyui-save-file-extended](https://github.com/bytes2pro/comfyui-save-file-extended)
