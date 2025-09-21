@@ -16,14 +16,14 @@ const BackgroundEffects = () => {
 						800px circle at ${event.clientX}px ${event.clientY}px,
 						${
 							isLight
-								? "rgba(var(--primary-rgb), 0.16)"
+								? "rgba(var(--primary-rgb), 0.05)"
 								: "rgba(var(--primary-rgb), 0.10)"
 						},
 						transparent 40%
 					),
 					radial-gradient(
-						240px circle at ${event.clientX}px ${event.clientY}px,
-						hsl(var(--accent) / ${isLight ? "0.14" : "0.10"}),
+						200px circle at ${event.clientX}px ${event.clientY}px,
+						hsl(var(--accent) / ${isLight ? "0.06" : "0.10"}),
 						transparent 35%
 					)
 				`;

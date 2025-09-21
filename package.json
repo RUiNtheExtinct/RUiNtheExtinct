@@ -92,6 +92,7 @@
     "@types/node": "^20.17.28",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
+    "@types/three": "^0.180.0",
     "knip": "^5.46.4",
     "postcss": "^8.5.3",
     "postcss-import": "^16.1.0",

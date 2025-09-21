@@ -66,7 +66,7 @@ const HeroSection = () => {
 								<ScrambleText
 									text={personalInfo.name.split(" ")[1]}
 									className="text-brand-gradient animate-brand-gradient"
-									duration={720}
+									duration={840}
 									chance={1}
 								/>
 								<span className="ml-2 inline-block h-[1em] w-[2px] align-[-0.1em] bg-foreground/80 animate-[caret-blink_1.2s_steps(1)_infinite]" />
