@@ -15,6 +15,13 @@ const nextConfig: NextConfig = {
 					/Build dependencies behind this expression are ignored/,
 			},
 		];
+
+		// Also suppress Webpack infrastructure warnings from the cache strategy
+		// that originate from dynamic requires inside @next/mdx loader.
+		config.infrastructureLogging = {
+			...(config.infrastructureLogging || {}),
+			level: "error",
+		};
 		return config;
 	},
 };

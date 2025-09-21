@@ -1,11 +1,12 @@
 "use client";
 
 import { track } from "@/components/shared/AnalyticsProvider";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { personalInfo } from "@/data/personal-info";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import BrandToggle from "./brand-toggle";
@@ -102,10 +103,14 @@ const Navigation = () => {
 					>
 						<Avatar className="h-8 w-8">
 							<GlimmerEffect />
-							<AvatarImage
+							<Image
 								src={personalInfo.avatar as string}
-								alt={personalInfo.name}
-								className="aspect-square object-cover"
+								alt="Profile Picture"
+								fill
+								className="object-cover"
+								loading="lazy"
+								fetchPriority="low"
+								sizes="64px"
 							/>
 							<AvatarFallback className="text-xs font-medium">
 								{personalInfo.name
@@ -157,6 +162,7 @@ const Navigation = () => {
 							size="icon"
 							onClick={toggleMenu}
 							className="ml-2"
+							aria-label="Toggle navigation"
 						>
 							{isMenuOpen ? (
 								<X className="h-5 w-5" />

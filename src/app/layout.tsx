@@ -47,6 +47,12 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>
+				<link
+					rel="preconnect"
+					href="https://cdn.buymeacoffee.com"
+					crossOrigin="anonymous"
+				/>
+				<link rel="dns-prefetch" href="//cdn.buymeacoffee.com" />
 				<link rel="icon" href="/icon.ico" type="image/ico" />
 			</head>
 			<body

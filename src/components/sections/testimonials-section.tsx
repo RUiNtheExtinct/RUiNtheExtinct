@@ -76,6 +76,7 @@ const TestimonialsSection = () => {
 														target="_blank"
 														rel="noopener noreferrer"
 														className="hover:text-primary m-0"
+														aria-label="LinkedIn"
 													>
 														<Linkedin className="h-4 w-4" />
 													</Link>

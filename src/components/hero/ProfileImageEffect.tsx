@@ -119,6 +119,7 @@ const ProfileImageEffect = ({
 					fill
 					className="object-cover"
 					priority
+					sizes="(max-width: 639px) 280px, (max-width: 767px) 340px, (max-width: 1023px) 380px, 420px"
 				/>
 			</div>
 		</div>
