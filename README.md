@@ -51,6 +51,21 @@ Based in Mumbai, Maharashtra. Contact: deepkarma001@gmail.com
 
 ---
 
+## Analytics setup
+
+Add the following environment variables to enable PostHog + Vercel Analytics:
+
+-   `NEXT_PUBLIC_POSTHOG_KEY` (required)
+-   `NEXT_PUBLIC_POSTHOG_HOST` (optional, defaults to `https://us.posthog.com`)
+
+Vercel Speed Insights and Analytics are already wired. PostHog auto-captures pageviews and common events. Custom events captured:
+
+-   `cta_click`: hero/contact CTAs
+-   `project_repo_click`, `project_demo_click`: project card actions
+-   `social_click`: social links
+
+You can disable analytics locally by not setting `NEXT_PUBLIC_POSTHOG_KEY`.
+
 ## Experience
 
 -   **WorkIPO** (March 2025 - Present, Mumbai, Maharashtra)<br/>

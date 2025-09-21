@@ -1,5 +1,6 @@
 "use client";
 
+import { track } from "@/components/shared/AnalyticsProvider";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +15,9 @@ import { cn } from "@/lib/utils";
 import { Project } from "@/types";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { useCallback, useRef } from "react";
 
 export type ProjectCardVariant = "section" | "page";
 
@@ -30,6 +33,35 @@ export const ProjectCard = ({
 	index = 0,
 }: ProjectCardProps) => {
 	const isSectionVariant = variant === "section";
+
+	const containerRef = useRef<HTMLDivElement | null>(null);
+	const cardRef = useRef<HTMLDivElement | null>(null);
+
+	const handleMouseMove = useCallback(
+		(e: React.MouseEvent<HTMLDivElement>) => {
+			if (!containerRef.current || !cardRef.current) return;
+			const rect = containerRef.current.getBoundingClientRect();
+			const x = e.clientX - rect.left;
+			const y = e.clientY - rect.top;
+			const midX = rect.width / 2;
+			const midY = rect.height / 2;
+			const factor = 3; // max degrees
+			const rawY = ((x - midX) / midX) * factor;
+			const rawX = ((midY - y) / midY) * factor;
+			const clamp = (v: number, min: number, max: number) =>
+				Math.max(min, Math.min(max, v));
+			const rotateY = clamp(rawY, -factor, factor);
+			const rotateX = clamp(rawX, -factor, factor);
+			cardRef.current.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
+		},
+		[]
+	);
+
+	const handleMouseLeave = useCallback(() => {
+		if (!cardRef.current) return;
+		cardRef.current.style.transform =
+			"perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0)";
+	}, []);
 
 	// Animation properties based on variant
 	const animationProps = isSectionVariant
@@ -65,8 +97,16 @@ export const ProjectCard = ({
 	// Create card content based on variant
 	if (isSectionVariant) {
 		return (
-			<motion.div {...animationProps}>
-				<Card className="group h-full overflow-hidden flex flex-col justify-between">
+			<motion.div
+				{...animationProps}
+				ref={containerRef}
+				onMouseMove={handleMouseMove}
+				onMouseLeave={handleMouseLeave}
+			>
+				<Card
+					ref={cardRef}
+					className="group h-full overflow-hidden flex flex-col justify-between will-change-transform transition-transform duration-150"
+				>
 					<div className="relative aspect-video overflow-hidden">
 						<Badge
 							className={cn(
@@ -78,11 +118,13 @@ export const ProjectCard = ({
 						</Badge>
 						{project.image ? (
 							<div className="relative h-64 w-full overflow-hidden">
-								<img
+								<Image
 									src={project.image as string}
 									alt={project.title}
-									className="object-cover transition-transform group-hover:scale-105"
+									fill
+									className="object-cover transition-transform duration-300 group-hover:scale-105"
 									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+									priority={false}
 								/>
 							</div>
 						) : (
@@ -116,6 +158,12 @@ export const ProjectCard = ({
 										href={project.repoUrl}
 										target="_blank"
 										rel="noopener noreferrer"
+										onClick={() =>
+											track("project_repo_click", {
+												id: project.id,
+												title: project.title,
+											})
+										}
 									>
 										<Github className="mr-2 h-4 w-4" />
 										Code
@@ -128,6 +176,12 @@ export const ProjectCard = ({
 										href={project.demoUrl}
 										target="_blank"
 										rel="noopener noreferrer"
+										onClick={() =>
+											track("project_demo_click", {
+												id: project.id,
+												title: project.title,
+											})
+										}
 									>
 										<ExternalLink className="mr-2 h-4 w-4" />
 										Live Demo
@@ -143,8 +197,16 @@ export const ProjectCard = ({
 
 	// Page variant
 	return (
-		<motion.div {...animationProps}>
-			<Card className="h-full overflow-hidden flex flex-col justify-between">
+		<motion.div
+			{...animationProps}
+			ref={containerRef}
+			onMouseMove={handleMouseMove}
+			onMouseLeave={handleMouseLeave}
+		>
+			<Card
+				ref={cardRef}
+				className="h-full overflow-hidden flex flex-col justify-between will-change-transform transition-transform duration-150"
+			>
 				<>
 					<div className="aspect-video overflow-hidden relative">
 						<Badge
@@ -157,10 +219,11 @@ export const ProjectCard = ({
 						</Badge>
 						{project.image ? (
 							<div className="relative h-64 w-full overflow-hidden">
-								<img
+								<Image
 									src={project.image as string}
 									alt={project.title}
-									className="object-cover transition-transform group-hover:scale-105"
+									fill
+									className="object-cover transition-transform duration-300 group-hover:scale-105"
 									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 								/>
 							</div>
@@ -201,6 +264,12 @@ export const ProjectCard = ({
 									href={project.repoUrl}
 									target="_blank"
 									rel="noopener noreferrer"
+									onClick={() =>
+										track("project_repo_click", {
+											id: project.id,
+											title: project.title,
+										})
+									}
 								>
 									<Github className="mr-2 h-4 w-4" />
 									Code
@@ -213,6 +282,12 @@ export const ProjectCard = ({
 									href={project.demoUrl}
 									target="_blank"
 									rel="noopener noreferrer"
+									onClick={() =>
+										track("project_demo_click", {
+											id: project.id,
+											title: project.title,
+										})
+									}
 								>
 									<ExternalLink className="mr-2 h-4 w-4" />
 									Demo

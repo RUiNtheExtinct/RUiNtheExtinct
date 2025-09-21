@@ -1,5 +1,6 @@
 "use client";
 
+import Reveal from "@/components/shared/Reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -38,13 +39,7 @@ const SkillsSection = () => {
 	return (
 		<section id="skills" className="py-16 md:py-24">
 			<div className="container px-4 md:px-6">
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.5 }}
-					className="mb-12 text-center"
-				>
+				<Reveal className="mb-12 text-center">
 					<h2 className="text-3xl font-bold tracking-tight md:text-4xl">
 						Skills & Expertise
 					</h2>
@@ -53,7 +48,7 @@ const SkillsSection = () => {
 						My technical skills and areas of expertise in software
 						development
 					</p>
-				</motion.div>
+				</Reveal>
 
 				<div className="mb-8 flex flex-wrap justify-center gap-2">
 					<Button

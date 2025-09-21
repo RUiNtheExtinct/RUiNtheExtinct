@@ -1,8 +1,8 @@
 "use client";
 
+import Reveal from "@/components/shared/Reveal";
 import { Card, CardContent } from "@/components/ui/card";
 import { testimonials } from "@/data/testimonials";
-import { motion } from "framer-motion";
 import { Linkedin, Quote } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,13 +11,7 @@ const TestimonialsSection = () => {
 	return (
 		<section id="testimonials" className="py-16 md:py-24 bg-muted/30">
 			<div className="container px-4 md:px-6">
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.5 }}
-					className="mb-12 text-center"
-				>
+				<Reveal className="mb-12 text-center">
 					<h2 className="text-3xl font-bold tracking-tight md:text-4xl">
 						Testimonials
 					</h2>
@@ -27,17 +21,11 @@ const TestimonialsSection = () => {
 						collaborated with amazing professionals who value my
 						contributions.
 					</p>
-				</motion.div>
+				</Reveal>
 
 				<div className="grid gap-6 md:grid-cols-2">
 					{testimonials.map((testimonial, index) => (
-						<motion.div
-							key={testimonial.id}
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
-							transition={{ duration: 0.5, delay: index * 0.1 }}
-						>
+						<Reveal key={testimonial.id} delay={index * 0.06}>
 							<Card className="h-full">
 								<CardContent className="p-6">
 									<div className="mb-4 flex justify-center">
@@ -96,7 +84,7 @@ const TestimonialsSection = () => {
 									</div>
 								</CardContent>
 							</Card>
-						</motion.div>
+						</Reveal>
 					))}
 				</div>
 			</div>

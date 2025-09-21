@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import Reveal from "@/components/shared/Reveal";
 import { projects } from "@/data/projects";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
@@ -11,13 +12,7 @@ const ProjectsSection = () => {
 	return (
 		<section id="projects" className="py-16 md:py-24 bg-muted/30">
 			<div className="container px-4 md:px-6">
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.5 }}
-					className="mb-12 text-center"
-				>
+				<Reveal className="mb-12 text-center">
 					<h2 className="text-3xl font-bold tracking-tight md:text-4xl">
 						Featured Projects
 					</h2>
@@ -25,18 +20,20 @@ const ProjectsSection = () => {
 					<p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">
 						Showcase of my best work and personal projects
 					</p>
-				</motion.div>
+				</Reveal>
 
 				<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 					{projects
 						.filter((project) => project.featured)
 						.map((project, index) => (
-							<ProjectCard
+								<Reveal key={project.id} delay={index * 0.06}>
+									<ProjectCard
 								key={project.id}
 								project={project}
 								variant="section"
 								index={index}
-							/>
+									/>
+								</Reveal>
 						))}
 				</div>
 

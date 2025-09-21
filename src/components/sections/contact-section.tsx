@@ -2,6 +2,8 @@
 
 import type React from "react";
 
+import { track } from "@/components/shared/AnalyticsProvider";
+import Reveal from "@/components/shared/Reveal";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -14,7 +16,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { personalInfo } from "@/data/personal-info";
 import { socialLinks } from "@/data/social-links";
-import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import {
 	Loader2,
@@ -60,6 +61,7 @@ const ContactSection = () => {
 		};
 
 		try {
+			const { default: emailjs } = await import("@emailjs/browser");
 			await emailjs.send(
 				process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
 				process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
@@ -86,13 +88,7 @@ const ContactSection = () => {
 	return (
 		<section id="contact" className="py-16 md:py-24 bg-muted/30">
 			<div className="container px-4 md:px-6">
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.5 }}
-					className="mb-12 text-center"
-				>
+				<Reveal className="mb-12 text-center">
 					<h2 className="text-3xl font-bold tracking-tight md:text-4xl">
 						Get In Touch
 					</h2>
@@ -102,14 +98,14 @@ const ContactSection = () => {
 						opportunities? Feel free to reach out. I'm always open
 						to new challenges and collaborations.
 					</p>
-				</motion.div>
+				</Reveal>
 
 				<div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
 					<motion.div
 						initial={{ opacity: 0, x: -20 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}
-						transition={{ duration: 0.5 }}
+						transition={{ duration: 0.35 }}
 					>
 						<Card>
 							<CardHeader>
@@ -174,6 +170,11 @@ const ContactSection = () => {
 													target="_blank"
 													rel="noopener noreferrer"
 													className="text-muted-foreground hover:text-foreground"
+													onClick={() =>
+														track("social_click", {
+															name: link.name,
+														})
+													}
 												>
 													<link.icon className="h-5 w-5" />
 													<span className="sr-only">
@@ -192,7 +193,7 @@ const ContactSection = () => {
 						initial={{ opacity: 0, x: 20 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}
-						transition={{ duration: 0.5 }}
+						transition={{ duration: 0.35 }}
 					>
 						<Card>
 							<CardHeader>

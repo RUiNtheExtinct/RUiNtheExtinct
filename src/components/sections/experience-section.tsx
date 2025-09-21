@@ -10,8 +10,10 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { experiences } from "@/data/experience";
+import { personalInfo } from "@/data/personal-info";
 import { ProjectExperience } from "@/types";
 import { motion } from "framer-motion";
+import Reveal from "@/components/shared/Reveal";
 import {
 	Calendar,
 	CheckCircle,
@@ -34,13 +36,7 @@ const ExperienceSection = () => {
 	return (
 		<section id="work-experience" className="py-16 md:py-24 bg-muted/30">
 			<div className="container px-4 md:px-6">
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.5 }}
-					className="mb-12 text-center"
-				>
+				<Reveal className="mb-12 text-center">
 					<h2 className="text-3xl font-bold tracking-tight md:text-4xl">
 						Work Experience
 					</h2>
@@ -48,7 +44,7 @@ const ExperienceSection = () => {
 					<p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">
 						Highlights of my professional journey and key roles.
 					</p>
-				</motion.div>
+				</Reveal>
 
 				<div className="relative space-y-8">
 					<div className="absolute left-0 top-0 hidden h-full w-0.5 bg-border md:left-1/2 md:block md:-translate-x-0.5"></div>
@@ -56,17 +52,7 @@ const ExperienceSection = () => {
 					{displayedExperiences.map((experience, index) => {
 						const uniqueRoles = getUniqueRoles(experience.projects);
 						return (
-							<motion.div
-								key={experience.id}
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{ once: true }}
-								transition={{
-									duration: 0.5,
-									delay: index * 0.1,
-								}}
-								className="relative md:flex"
-							>
+							<Reveal key={experience.id} delay={index * 0.06} className="relative md:flex">
 								<div className="absolute left-0 top-4 hidden h-4 w-4 -translate-x-[7px] rounded-full border-4 border-background bg-primary md:left-1/2 md:block"></div>
 
 								<div
@@ -173,17 +159,33 @@ const ExperienceSection = () => {
 										</CardContent>
 									</Card>
 								</div>
-							</motion.div>
+							</Reveal>
 						);
 					})}
 				</div>
 
-				<div className="mt-12 text-center">
-					<Button asChild variant="outline">
+				<div className="mt-12 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+					<Button
+						asChild
+						variant="outline"
+						className="w-full sm:w-auto"
+					>
 						<Link href="/experience">
 							View Full Experience History
 							<ExternalLink className="ml-2 h-4 w-4" />
 						</Link>
+					</Button>
+					<Button asChild className="w-full sm:w-auto">
+						<Link href="/resume">View Resume</Link>
+					</Button>
+					<Button
+						asChild
+						variant="secondary"
+						className="w-full sm:w-auto"
+					>
+						<a href={personalInfo.resumeUrl} download>
+							Download PDF
+						</a>
 					</Button>
 				</div>
 			</div>

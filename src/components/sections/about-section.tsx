@@ -1,5 +1,7 @@
 "use client";
 
+import { track } from "@/components/shared/AnalyticsProvider";
+import Reveal from "@/components/shared/Reveal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { aboutMeMessage, personalInfo, stats } from "@/data/personal-info";
@@ -11,18 +13,12 @@ const AboutSection = () => {
 	return (
 		<section id="about" className="py-16 md:py-24">
 			<div className="container px-4 md:px-6">
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.5 }}
-					className="mb-12 text-center"
-				>
+				<Reveal className="mb-12 text-center">
 					<h2 className="text-3xl font-bold tracking-tight md:text-4xl">
 						About Me
 					</h2>
 					<div className="mx-auto mt-4 h-1 w-12 rounded bg-primary"></div>
-				</motion.div>
+				</Reveal>
 
 				<div className="grid gap-8 lg:grid-cols-5">
 					{/* Left Column - Professional Summary */}
@@ -30,7 +26,7 @@ const AboutSection = () => {
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						transition={{ duration: 0.5 }}
+						transition={{ duration: 0.35 }}
 						className="lg:col-span-3"
 					>
 						<Card className="h-full bg-card/50 backdrop-blur-sm">
@@ -56,15 +52,9 @@ const AboutSection = () => {
 								{/* Stats Grid */}
 								<div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
 									{stats.map((stat, index) => (
-										<motion.div
+										<Reveal
 											key={index}
-											initial={{ opacity: 0, y: 20 }}
-											whileInView={{ opacity: 1, y: 0 }}
-											viewport={{ once: true }}
-											transition={{
-												duration: 0.5,
-												delay: index * 0.1,
-											}}
+											delay={index * 0.06}
 										>
 											<Card className="border-none bg-transparent">
 												<CardContent className="p-4">
@@ -81,7 +71,7 @@ const AboutSection = () => {
 													</p>
 												</CardContent>
 											</Card>
-										</motion.div>
+										</Reveal>
 									))}
 								</div>
 							</CardContent>
@@ -93,7 +83,7 @@ const AboutSection = () => {
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						transition={{ duration: 0.5, delay: 0.2 }}
+						transition={{ duration: 0.35, delay: 0.15 }}
 						className="lg:col-span-2"
 					>
 						<Card className="h-full bg-card/50 backdrop-blur-sm">
@@ -148,6 +138,15 @@ const AboutSection = () => {
 													<Link
 														href={item.href}
 														className="font-medium hover:text-primary transition-colors"
+														onClick={() =>
+															item.href &&
+															track(
+																"contact_link_click",
+																{
+																	type: item.label,
+																}
+															)
+														}
 													>
 														{item.value}
 													</Link>
@@ -168,7 +167,14 @@ const AboutSection = () => {
 										size="lg"
 										className="w-full"
 									>
-										<Link href="/#contact-me-name">
+										<Link
+											href="/#contact-me-name"
+											onClick={() =>
+												track("cta_click", {
+													cta: "get_in_touch",
+												})
+											}
+										>
 											Get in Touch
 											<ArrowRight className="ml-2 h-4 w-4" />
 										</Link>

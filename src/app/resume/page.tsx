@@ -96,7 +96,7 @@ export default function ResumePage() {
 				</CardHeader>
 				<CardContent>
 					<div className="rounded-lg border bg-background ring-1 ring-border/50 overflow-hidden shadow-inner">
-						<div className="h-[72vh] md:h-[85vh] w-full">
+						<div className="h-[72vh] md:h-[85vh] w-full overscroll-contain">
 							<object
 								data={`${pdfUrl}#view=FitH`}
 								type="application/pdf"

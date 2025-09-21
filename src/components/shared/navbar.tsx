@@ -1,5 +1,6 @@
 "use client";
 
+import { track } from "@/components/shared/AnalyticsProvider";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { personalInfo } from "@/data/personal-info";
@@ -132,6 +133,11 @@ const Navigation = () => {
 											? "text-primary"
 											: "text-muted-foreground hover:text-primary"
 									)}
+									onClick={() => {
+										track("nav_click", {
+											link: link.href,
+										});
+									}}
 								>
 									{link.label}
 								</Link>
