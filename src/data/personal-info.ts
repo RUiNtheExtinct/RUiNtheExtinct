@@ -21,7 +21,7 @@ export const aboutMeMessage = [
 export const stats: Stat[] = [
 	{
 		icon: Code,
-		value: "3+",
+		value: "4+",
 		label: "Years of Experience",
 		color: "bg-blue-500/10 text-blue-500",
 	},
