@@ -10,7 +10,7 @@ import RouteAnalytics from "@/components/shared/RouteAnalytics";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { Inter, Nova_Square } from "next/font/google";
+import { Inter, JetBrains_Mono, Nova_Square } from "next/font/google";
 import "./globals.css";
 
 const mainFont = Nova_Square({
@@ -22,6 +22,12 @@ const inter = Inter({
 	subsets: ["latin"],
 	display: "swap",
 	variable: "--font-sans",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+	subsets: ["latin"],
+	display: "swap",
+	variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -43,7 +49,9 @@ export default function RootLayout({
 			<head>
 				<link rel="icon" href="/icon.ico" type="image/ico" />
 			</head>
-			<body className={`${inter.variable} ${mainFont.className}`}>
+			<body
+				className={`${inter.variable} ${jetbrainsMono.variable} ${mainFont.className}`}
+			>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"

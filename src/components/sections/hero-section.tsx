@@ -3,6 +3,7 @@
 import ProfileImageEffect from "@/components/hero/ProfileImageEffect";
 import { track } from "@/components/shared/AnalyticsProvider";
 import Reveal from "@/components/shared/Reveal";
+import ScrambleText from "@/components/typography/ScrambleText";
 import { Button } from "@/components/ui/button";
 import { personalInfo } from "@/data/personal-info";
 import { socialLinks } from "@/data/social-links";
@@ -62,9 +63,13 @@ const HeroSection = () => {
 								className={`${heroFont.className} text-3xl sm:text-4xl font-bold tracking-tighter md:text-5xl lg:text-6xl`}
 							>
 								Hi, I'm {personalInfo.name.split(" ")[0]}{" "}
-								<span className="text-primary">
-									{personalInfo.name.split(" ")[1]}
-								</span>
+								<ScrambleText
+									text={personalInfo.name.split(" ")[1]}
+									className="text-brand-gradient animate-brand-gradient"
+									duration={720}
+									chance={1}
+								/>
+								<span className="ml-2 inline-block h-[1em] w-[2px] align-[-0.1em] bg-foreground/80 animate-[caret-blink_1.2s_steps(1)_infinite]" />
 							</h1>
 						</Reveal>
 						<Reveal delay={0.12}>

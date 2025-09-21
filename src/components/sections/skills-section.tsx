@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/shared/Reveal";
+import ScrambleText from "@/components/typography/ScrambleText";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -41,7 +42,11 @@ const SkillsSection = () => {
 			<div className="container px-4 md:px-6">
 				<Reveal className="mb-12 text-center">
 					<h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-						Skills & Expertise
+						<ScrambleText
+							text="Skills & Expertise"
+							className="text-brand-gradient animate-brand-gradient"
+							duration={1000}
+						/>
 					</h2>
 					<div className="mx-auto mt-4 h-1 w-12 rounded bg-primary"></div>
 					<p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">

@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/shared/Reveal";
+import ScrambleText from "@/components/typography/ScrambleText";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -19,7 +20,11 @@ const CertificatesSection = () => {
 			<div className="container px-4 md:px-6">
 				<Reveal className="mb-12 text-center">
 					<h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-						Certifications
+						<ScrambleText
+							text="Certifications"
+							className="text-brand-gradient animate-brand-gradient"
+							duration={640}
+						/>
 					</h2>
 					<div className="mx-auto mt-4 h-1 w-12 rounded bg-primary"></div>
 					<p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">

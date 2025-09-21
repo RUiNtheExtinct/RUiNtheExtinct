@@ -2,6 +2,7 @@
 
 import { track } from "@/components/shared/AnalyticsProvider";
 import Reveal from "@/components/shared/Reveal";
+import ScrambleText from "@/components/typography/ScrambleText";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { aboutMeMessage, personalInfo, stats } from "@/data/personal-info";
@@ -15,7 +16,11 @@ const AboutSection = () => {
 			<div className="container px-4 md:px-6">
 				<Reveal className="mb-12 text-center">
 					<h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-						About Me
+						<ScrambleText
+							text="About Me"
+							className="text-brand-gradient animate-brand-gradient"
+							duration={640}
+						/>
 					</h2>
 					<div className="mx-auto mt-4 h-1 w-12 rounded bg-primary"></div>
 				</Reveal>

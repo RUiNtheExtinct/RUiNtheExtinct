@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/shared/Reveal";
+import ScrambleText from "@/components/typography/ScrambleText";
 import { Card, CardContent } from "@/components/ui/card";
 import { testimonials } from "@/data/testimonials";
 import { Linkedin, Quote } from "lucide-react";
@@ -13,7 +14,11 @@ const TestimonialsSection = () => {
 			<div className="container px-4 md:px-6">
 				<Reveal className="mb-12 text-center">
 					<h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-						Testimonials
+						<ScrambleText
+							text="Testimonials"
+							className="text-brand-gradient animate-brand-gradient"
+							duration={640}
+						/>
 					</h2>
 					<div className="mx-auto mt-4 h-1 w-12 rounded bg-primary"></div>
 					<p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">

@@ -62,6 +62,7 @@ const config = {
 			},
 			fontFamily: {
 				sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
+				mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
 			},
 			keyframes: {
 				"accordion-down": {
