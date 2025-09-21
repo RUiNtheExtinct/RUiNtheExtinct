@@ -113,18 +113,18 @@ const SkillsSection = () => {
 									}}
 								>
 									<Card className="group h-full hover:shadow-lg transition-all duration-300 border border-border/50 bg-card/80 backdrop-blur-sm hover:scale-[1.02]">
-										<CardContent className="p-4">
+										<CardContent className="p-5">
 											<div className="flex items-center gap-3">
-												<div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+												<div className="p-2.5 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
 													<skill.icon className="w-5 h-5 text-primary" />
 												</div>
 												<div>
-													<h3 className="font-semibold text-sm">
+													<h3 className="font-semibold text-sm md:text-base">
 														{skill.name}
 													</h3>
 													<Badge
 														variant="secondary"
-														className={`mt-1 text-xs px-1.5 py-0.5 border ${
+														className={`mt-1 text-xs px-2 py-0.5 border ${
 															levelColors[
 																skill.level
 															]
@@ -142,7 +142,7 @@ const SkillsSection = () => {
 															<Badge
 																key={tech}
 																variant="outline"
-																className="text-xs px-1.5 py-0.5"
+																className="text-xs px-2 py-0.5"
 															>
 																{tech}
 															</Badge>

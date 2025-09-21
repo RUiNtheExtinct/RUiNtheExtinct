@@ -1,5 +1,6 @@
 "use client";
 
+import Reveal from "@/components/shared/Reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,8 +13,6 @@ import {
 import { experiences } from "@/data/experience";
 import { personalInfo } from "@/data/personal-info";
 import { ProjectExperience } from "@/types";
-import { motion } from "framer-motion";
-import Reveal from "@/components/shared/Reveal";
 import {
 	Calendar,
 	CheckCircle,
@@ -52,7 +51,11 @@ const ExperienceSection = () => {
 					{displayedExperiences.map((experience, index) => {
 						const uniqueRoles = getUniqueRoles(experience.projects);
 						return (
-							<Reveal key={experience.id} delay={index * 0.06} className="relative md:flex">
+							<Reveal
+								key={experience.id}
+								delay={index * 0.06}
+								className="relative md:flex"
+							>
 								<div className="absolute left-0 top-4 hidden h-4 w-4 -translate-x-[7px] rounded-full border-4 border-background bg-primary md:left-1/2 md:block"></div>
 
 								<div
@@ -63,13 +66,13 @@ const ExperienceSection = () => {
 									}`}
 								>
 									<Card className="shadow-md transition-shadow hover:shadow-lg bg-card/80 backdrop-blur-sm">
-										<CardHeader>
+										<CardHeader className="p-6 md:p-7">
 											<div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-start">
 												<div>
-													<CardTitle className="flex items-center">
+													<CardTitle className="flex items-center md:text-2xl">
 														{experience.company}
 													</CardTitle>
-													<CardDescription className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs">
+													<CardDescription className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-sm">
 														{experience.location && (
 															<span className="flex items-center">
 																<MapPin className="mr-1 h-3 w-3" />
@@ -91,7 +94,7 @@ const ExperienceSection = () => {
 												{uniqueRoles.length > 0 && (
 													<Badge
 														variant="secondary"
-														className="w-fit flex-shrink-0 whitespace-nowrap"
+														className="w-fit flex-shrink-0 whitespace-nowrap text-xs px-2.5 py-0.5"
 													>
 														<Layers className="mr-1 h-3 w-3" />
 														{uniqueRoles.length > 1
@@ -101,7 +104,7 @@ const ExperienceSection = () => {
 												)}
 											</div>
 										</CardHeader>
-										<CardContent className="space-y-4">
+										<CardContent className="space-y-4 p-6 pt-0 md:p-7 md:pt-0">
 											{experience.achievements &&
 												experience.achievements.length >
 													0 && (
@@ -117,7 +120,7 @@ const ExperienceSection = () => {
 																		key={
 																			achIndex
 																		}
-																		className="flex items-start text-xs text-muted-foreground"
+																		className="flex items-start text-sm text-muted-foreground"
 																	>
 																		<CheckCircle className="mr-1.5 h-3 w-3 mt-0.5 flex-shrink-0 text-primary/80" />
 																		{ach}
@@ -137,7 +140,7 @@ const ExperienceSection = () => {
 																<Badge
 																	key={tech}
 																	variant="outline"
-																	className="text-xs px-1.5 py-0.5"
+																	className="text-xs px-2 py-0.5"
 																>
 																	{tech}
 																</Badge>
@@ -146,7 +149,7 @@ const ExperienceSection = () => {
 															.length > 6 && (
 															<Badge
 																variant="outline"
-																className="text-xs px-1.5 py-0.5"
+																className="text-xs px-2 py-0.5"
 															>
 																+
 																{experience

@@ -59,6 +59,202 @@
 		--chart-4: 280 65% 60%;
 		--chart-5: 340 75% 55%;
 	}
+
+	/* Accent overrides */
+	:root[data-accent="green"],
+	:root[data-brand="green"] {
+		--accent: 160 84% 39%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 160 84% 39%;
+		--primary: 160 84% 39%;
+		--primary-foreground: 210 40% 98%;
+		--primary-rgb: 16, 185, 129;
+	}
+
+	.dark[data-accent="green"],
+	.dark[data-brand="green"] {
+		--accent: 160 84% 39%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 160 84% 39%;
+		--primary: 160 84% 39%;
+		--primary-foreground: 210 40% 98%;
+		--primary-rgb: 16, 185, 129;
+	}
+
+	/* Blue brand (explicit) to affect all brandable colors */
+	:root[data-brand="blue"] {
+		--accent: 217 91% 60%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 217 91% 60%;
+		--primary: 217 91% 60%;
+		--primary-foreground: 210 40% 98%;
+		--primary-rgb: 59, 130, 246;
+	}
+
+	.dark[data-brand="blue"] {
+		--accent: 217 91% 60%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 217 91% 60%;
+		--primary: 217 91% 60%;
+		--primary-foreground: 210 40% 98%;
+		--primary-rgb: 59, 130, 246;
+	}
+
+	/* Additional brands */
+	:root[data-brand="violet"] {
+		--accent: 262 83% 65%;
+		--accent-foreground: 210 40% 98%;
+		--ring: 262 83% 65%;
+		--primary: 262 83% 65%;
+		--primary-foreground: 210 40% 98%;
+		--primary-rgb: 139, 92, 246;
+	}
+	.dark[data-brand="violet"] {
+		--accent: 262 83% 65%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 262 83% 65%;
+		--primary: 262 83% 65%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+		--primary-rgb: 139, 92, 246;
+	}
+
+	:root[data-brand="amber"] {
+		--accent: 38 92% 50%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 38 92% 50%;
+		--primary: 38 92% 50%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+		--primary-rgb: 245, 158, 11;
+	}
+	.dark[data-brand="amber"] {
+		--accent: 38 92% 50%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 38 92% 50%;
+		--primary: 38 92% 50%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+		--primary-rgb: 245, 158, 11;
+	}
+
+	:root[data-brand="pink"],
+	:root[data-brand="rose"] {
+		--accent: 347 77% 50%;
+		--accent-foreground: 210 40% 98%;
+		--ring: 347 77% 50%;
+		--primary: 347 77% 50%;
+		--primary-foreground: 210 40% 98%;
+		--primary-rgb: 244, 63, 94;
+	}
+	.dark[data-brand="pink"],
+	.dark[data-brand="rose"] {
+		--accent: 347 77% 50%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 347 77% 50%;
+		--primary: 347 77% 50%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+		--primary-rgb: 244, 63, 94;
+	}
+
+	:root[data-brand="cyan"] {
+		--accent: 199 89% 48%;
+		--accent-foreground: 210 40% 98%;
+		--ring: 199 89% 48%;
+		--primary: 199 89% 48%;
+		--primary-foreground: 210 40% 98%;
+		--primary-rgb: 6, 182, 212;
+	}
+	.dark[data-brand="cyan"] {
+		--accent: 199 89% 48%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 199 89% 48%;
+		--primary: 199 89% 48%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+		--primary-rgb: 6, 182, 212;
+	}
+
+	:root[data-brand="indigo"] {
+		--accent: 239 84% 67%;
+		--accent-foreground: 210 40% 98%;
+		--ring: 239 84% 67%;
+		--primary: 239 84% 67%;
+		--primary-foreground: 210 40% 98%;
+		--primary-rgb: 99, 102, 241;
+	}
+	.dark[data-brand="indigo"] {
+		--accent: 239 84% 67%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 239 84% 67%;
+		--primary: 239 84% 67%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+		--primary-rgb: 99, 102, 241;
+	}
+
+	:root[data-brand="teal"] {
+		--accent: 173 80% 40%;
+		--accent-foreground: 210 40% 98%;
+		--ring: 173 80% 40%;
+		--primary: 173 80% 40%;
+		--primary-foreground: 210 40% 98%;
+		--primary-rgb: 20, 184, 166;
+	}
+	.dark[data-brand="teal"] {
+		--accent: 173 80% 40%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 173 80% 40%;
+		--primary: 173 80% 40%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+		--primary-rgb: 20, 184, 166;
+	}
+
+	:root[data-brand="lime"] {
+		--accent: 84 81% 44%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 84 81% 44%;
+		--primary: 84 81% 44%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+		--primary-rgb: 132, 204, 22;
+	}
+	.dark[data-brand="lime"] {
+		--accent: 84 81% 44%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 84 81% 44%;
+		--primary: 84 81% 44%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+		--primary-rgb: 132, 204, 22;
+	}
+
+	:root[data-brand="orange"] {
+		--accent: 24 94% 52%;
+		--accent-foreground: 210 40% 98%;
+		--ring: 24 94% 52%;
+		--primary: 24 94% 52%;
+		--primary-foreground: 210 40% 98%;
+		--primary-rgb: 249, 115, 22;
+	}
+	.dark[data-brand="orange"] {
+		--accent: 24 94% 52%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 24 94% 52%;
+		--primary: 24 94% 52%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+		--primary-rgb: 249, 115, 22;
+	}
+
+	:root[data-brand="fuchsia"] {
+		--accent: 292 84% 61%;
+		--accent-foreground: 210 40% 98%;
+		--ring: 292 84% 61%;
+		--primary: 292 84% 61%;
+		--primary-foreground: 210 40% 98%;
+		--primary-rgb: 217, 70, 239;
+	}
+	.dark[data-brand="fuchsia"] {
+		--accent: 292 84% 61%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--ring: 292 84% 61%;
+		--primary: 292 84% 61%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+		--primary-rgb: 217, 70, 239;
+	}
 }
 
 @layer base {
@@ -119,5 +315,29 @@ html {
 		animation: none !important;
 		transition: none !important;
 		scroll-behavior: auto !important;
+	}
+}
+
+/* Fun brand toggle animations */
+@keyframes brand-pulse {
+	0%,
+	100% {
+		transform: scale(1);
+		opacity: 0.9;
+	}
+	50% {
+		transform: scale(1.25);
+		opacity: 1;
+	}
+}
+
+@keyframes brand-confetti {
+	0% {
+		transform: translateY(-6px) rotate(0deg);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(22px) rotate(360deg);
+		opacity: 0;
 	}
 }

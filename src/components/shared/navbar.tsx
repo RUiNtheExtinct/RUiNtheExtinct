@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import BrandToggle from "./brand-toggle";
 import GlimmerEffect from "./GlimmerEffect";
 import { ModeToggle } from "./mode-toggle";
 
@@ -143,11 +144,13 @@ const Navigation = () => {
 								</Link>
 							);
 						})}
+						<BrandToggle />
 						<ModeToggle />
 					</nav>
 
 					{/* Mobile Navigation Toggle */}
 					<div className="flex md:hidden">
+						<BrandToggle />
 						<ModeToggle />
 						<Button
 							variant="ghost"

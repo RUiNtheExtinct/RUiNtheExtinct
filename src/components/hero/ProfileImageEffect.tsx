@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 interface ProfileImageEffectProps {
 	imageSrc: string | StaticImageData;
@@ -18,7 +18,8 @@ const ProfileImageEffect = ({
 	size = 420,
 }: ProfileImageEffectProps) => {
 	const [isHovered, setIsHovered] = useState(false);
-	const ringWidth = 10; // Width of the glowing ring in pixels
+	const ringWidth = 10;
+	const orbitDots = useMemo(() => [0, 120, 240], []);
 
 	return (
 		<div
@@ -32,6 +33,21 @@ const ProfileImageEffect = ({
 				marginBottom: isHovered ? ringWidth : 0,
 			}}
 		>
+			{/* Brand aurora halo */}
+			<motion.div
+				className="absolute inset-0 -z-10 rounded-full blur-2xl"
+				style={{
+					background:
+						"radial-gradient(60% 60% at 50% 50%, hsl(var(--accent)/.25), transparent 70%), conic-gradient(from 0deg, hsl(var(--accent)/.25), transparent 40%, hsl(var(--accent)/.25))",
+					opacity: isHovered ? 0.9 : 0.5,
+				}}
+				animate={{ rotate: isHovered ? 360 : 0 }}
+				transition={{
+					rotate: { duration: 18, repeat: Infinity, ease: "linear" },
+					opacity: { duration: 0.3 },
+				}}
+			/>
+
 			{/* Actual rotating RGB ring - appears outside the image */}
 			<motion.div
 				className="absolute rounded-full pointer-events-none z-0"
@@ -41,18 +57,38 @@ const ProfileImageEffect = ({
 					right: -ringWidth,
 					bottom: -ringWidth,
 					backgroundImage:
-						"conic-gradient(#ff0080, #ff00ff, #8000ff, #0000ff, #00ffff, #00ff00, #ffff00, #ff8000, #ff0000, #ff0080)",
-					opacity: isHovered ? 1 : 0,
-					filter: "blur(8px)",
+						"conic-gradient(hsl(var(--accent)), transparent 25%, hsl(var(--accent)), transparent 50%, hsl(var(--accent)))",
+					opacity: isHovered ? 1 : 0.4,
+					filter: "blur(10px)",
 				}}
 				animate={{
 					rotate: isHovered ? 360 : 0,
 				}}
 				transition={{
 					opacity: { duration: 0.3 },
-					rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+					rotate: { duration: 14, repeat: Infinity, ease: "linear" },
 				}}
 			/>
+
+			{/* Orbiting glow dots */}
+			<div className="pointer-events-none absolute inset-0">
+				<div className="absolute inset-0 origin-center animate-[spin_12s_linear_infinite]">
+					{orbitDots.map((deg) => (
+						<span
+							key={deg}
+							className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+							style={{
+								transform: `rotate(${deg}deg) translateX(${
+									size / 2 - 12
+								}px)`,
+								background: "hsl(var(--accent))",
+								boxShadow: "0 0 12px hsl(var(--accent)/.8)",
+								opacity: isHovered ? 1 : 0.7,
+							}}
+						/>
+					))}
+				</div>
+			</div>
 
 			{/* Outer glow for the ring */}
 			<motion.div
@@ -62,21 +98,21 @@ const ProfileImageEffect = ({
 					left: -ringWidth * 2,
 					right: -ringWidth * 2,
 					bottom: -ringWidth * 2,
-					opacity: isHovered ? 0.6 : 0,
+					opacity: isHovered ? 0.6 : 0.2,
 					boxShadow:
-						"0 0 20px 10px rgba(255, 0, 255, 0.5), 0 0 40px 20px rgba(0, 255, 255, 0.3)",
-					filter: "blur(15px)",
+						"0 0 24px 12px hsl(var(--accent)/.45), 0 0 60px 30px hsl(var(--accent)/.20)",
+					filter: "blur(16px)",
 				}}
 				animate={{
-					opacity: isHovered ? [0.6, 0.8, 0.6] : 0,
+					opacity: isHovered ? [0.6, 0.8, 0.6] : [0.2, 0.3, 0.2],
 				}}
 				transition={{
-					opacity: { duration: 2, repeat: Infinity },
+					opacity: { duration: 3, repeat: Infinity },
 				}}
 			/>
 
 			{/* Profile image container - now with a white background to create clean separation */}
-			<div className="relative rounded-full overflow-hidden aspect-square z-10 bg-white h-full w-full">
+			<div className="relative rounded-full overflow-hidden aspect-square z-10 bg-white h-full w-full ring-1 ring-border/60">
 				<Image
 					src={imageSrc}
 					alt={imageAlt}

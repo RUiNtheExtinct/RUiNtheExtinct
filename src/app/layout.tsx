@@ -1,3 +1,4 @@
+import AccentProvider from "@/components/shared/AccentProvider";
 import AnalyticsProvider from "@/components/shared/AnalyticsProvider";
 import BackgroundEffects from "@/components/shared/background-effects"; // New component for bg effects
 import BuyMeACoffeeEmbed from "@/components/shared/buy-me-a-coffee";
@@ -51,15 +52,17 @@ export default function RootLayout({
 				>
 					<BackgroundEffects />
 					<PageTransition />
-					<LenisProvider>
-						<Navbar />
-						<BuyMeACoffeeEmbed slug="ruintheextinct" floating />
-						<main>{children}</main>
-						<SpeedInsights />
-						<AnalyticsProvider />
-						<RouteAnalytics />
-						<Footer />
-					</LenisProvider>
+					<AccentProvider>
+						<LenisProvider>
+							<Navbar />
+							<BuyMeACoffeeEmbed slug="ruintheextinct" floating />
+							<main>{children}</main>
+							<SpeedInsights />
+							<AnalyticsProvider />
+							<RouteAnalytics />
+							<Footer />
+						</LenisProvider>
+					</AccentProvider>
 				</ThemeProvider>
 			</body>
 		</html>
