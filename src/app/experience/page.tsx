@@ -4,6 +4,7 @@ import ProjectSection from "@/components/experience/project-section";
 import TimelineItem from "@/components/experience/timeline-item";
 import { Accordion } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
 	Card,
 	CardContent,
@@ -12,6 +13,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { experiences } from "@/data/experience";
+import { personalInfo } from "@/data/personal-info";
 import type { ProjectExperience } from "@/types";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, MapPin, Sparkles, Tags } from "lucide-react";
@@ -59,14 +61,32 @@ export default function ExperiencePage() {
 				</Link>
 			</div>
 
-			<div className="mb-8 md:mb-12 max-w-3xl">
-				<h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-					Work Experience
-				</h1>
-				<p className="mt-3 md:mt-4 text-base md:text-lg text-muted-foreground">
-					A detailed timeline of my professional journey, roles, and
-					key contributions at each company.
-				</p>
+			<div className="mb-8 md:mb-12">
+				<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+					<div className="max-w-3xl">
+						<h1 className="text-3xl md:text-4xl font-bold tracking-tight">
+							Work Experience
+						</h1>
+						<p className="mt-3 md:mt-4 text-base md:text-lg text-muted-foreground">
+							A detailed timeline of my professional journey,
+							roles, and key contributions at each company.
+						</p>
+					</div>
+					<div className="flex flex-col gap-2 sm:flex-row">
+						<Button asChild className="w-full sm:w-auto">
+							<Link href="/resume">View Resume</Link>
+						</Button>
+						<Button
+							asChild
+							variant="outline"
+							className="w-full sm:w-auto"
+						>
+							<a href={personalInfo.resumeUrl} download>
+								Download PDF
+							</a>
+						</Button>
+					</div>
+				</div>
 			</div>
 
 			<div

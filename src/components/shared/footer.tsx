@@ -46,6 +46,14 @@ const Footer = () => {
 							</li>
 							<li>
 								<Link
+									href="/resume"
+									className="text-muted-foreground hover:text-foreground"
+								>
+									Resume
+								</Link>
+							</li>
+							<li>
+								<Link
 									href="/#contact-me-name"
 									className="text-muted-foreground hover:text-foreground"
 								>
