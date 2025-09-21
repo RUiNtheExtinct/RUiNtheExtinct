@@ -1,4 +1,5 @@
 import BackgroundEffects from "@/components/shared/background-effects"; // New component for bg effects
+import BuyMeACoffeeEmbed from "@/components/shared/buy-me-a-coffee";
 import Footer from "@/components/shared/footer";
 import Navbar from "@/components/shared/navbar";
 import { ThemeProvider } from "@/components/shared/theme-provider";
@@ -40,6 +41,7 @@ export default function RootLayout({
 				>
 					<BackgroundEffects />
 					<Navbar />
+					<BuyMeACoffeeEmbed slug="ruintheextinct" floating />
 					<main>{children}</main>
 					<SpeedInsights />
 					<Footer />

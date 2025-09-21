@@ -42,17 +42,17 @@ export interface Skill {
 	name: string;
 	icon: IconType;
 	category:
-		| "frontend"
-		| "backend"
-		| "devops"
-		| "cloud"
-		| "design"
-		| "testing"
-		| "database"
-		| "languages"
-		| "mobile"
-		| "ai"
-		| "other";
+	| "frontend"
+	| "backend"
+	| "devops"
+	| "cloud"
+	| "design"
+	| "testing"
+	| "database"
+	| "languages"
+	| "mobile"
+	| "ai"
+	| "other";
 	level: "beginner" | "intermediate" | "advanced" | "expert";
 	description: string;
 	relatedTech: string[];
@@ -123,6 +123,7 @@ export interface Testimonial {
 	company: string;
 	avatar?: string | StaticImageData;
 	testimonial: string;
+	linkedInUrl?: string;
 }
 
 // Certificate Types
