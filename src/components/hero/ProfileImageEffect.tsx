@@ -55,14 +55,13 @@ const ProfileImageEffect = ({
 	return (
 		<div
 			ref={containerRef}
-			className={`relative select-none ${
+			className={`group relative mx-auto w-full max-w-[420px] select-none ${
 				className || ""
-			} w-full max-w-[420px] mx-auto ease-in-out duration-300`}
+			}`}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 			style={{
 				aspectRatio: "1/1",
-				marginBottom: isHovered ? ringWidth : 0,
 			}}
 		>
 			{/* Brand aurora halo */}
@@ -144,8 +143,12 @@ const ProfileImageEffect = ({
 				}}
 			/>
 
-			{/* Profile image container - now with a white background to create clean separation */}
-			<div className="relative rounded-full overflow-hidden aspect-square z-10 bg-white h-full w-full ring-1 ring-border/60 select-none">
+			<div className="pointer-events-none absolute inset-0 rounded-full border border-white/20 opacity-80 mix-blend-screen transition-opacity duration-300 group-hover:opacity-100" />
+			<div className="pointer-events-none absolute inset-0 rounded-full opacity-25 mix-blend-soft-light bg-[linear-gradient(180deg,rgba(255,255,255,0.6),transparent)]" />
+			<div className="pointer-events-none absolute inset-0 rounded-full opacity-40 [background-image:linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px)] [background-size:100%_8px]" />
+
+			{/* Profile image container */}
+			<div className="relative z-10 h-full w-full select-none overflow-hidden rounded-full bg-white/90 ring-1 ring-border/60 backdrop-blur-xl">
 				<Image
 					src={imageSrc}
 					alt={imageAlt}

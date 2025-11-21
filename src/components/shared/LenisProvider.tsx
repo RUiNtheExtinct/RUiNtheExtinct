@@ -2,10 +2,54 @@
 
 import Lenis from "lenis";
 import { usePathname, useSearchParams } from "next/navigation";
-import { ReactNode, Suspense, useEffect, useRef } from "react";
+import {
+	Suspense,
+	createContext,
+	useCallback,
+	useContext,
+	useEffect,
+	useMemo,
+	useRef,
+	useSyncExternalStore,
+	type ReactNode,
+} from "react";
 
 type LenisProviderProps = {
 	children: ReactNode;
+};
+
+export type LenisScrollSnapshot = {
+	scroll: number;
+	progress: number;
+	velocity: number;
+	direction: 1 | -1 | 0;
+};
+
+type LenisScrollContextValue = {
+	subscribe: (listener: () => void) => () => void;
+	getSnapshot: () => LenisScrollSnapshot;
+	getServerSnapshot: () => LenisScrollSnapshot;
+};
+
+const DEFAULT_SNAPSHOT: LenisScrollSnapshot = {
+	scroll: 0,
+	progress: 0,
+	velocity: 0,
+	direction: 0,
+};
+
+const LenisScrollContext = createContext<LenisScrollContextValue | null>(null);
+
+export const useLenisScroll = (): LenisScrollSnapshot => {
+	const context = useContext(LenisScrollContext);
+	if (!context) {
+		throw new Error("useLenisScroll must be used within LenisProvider");
+	}
+	return useSyncExternalStore(
+		context.subscribe,
+		context.getSnapshot,
+		context.getServerSnapshot
+	);
 };
 
 function LenisProviderInner({ children }: LenisProviderProps) {
@@ -13,36 +57,101 @@ function LenisProviderInner({ children }: LenisProviderProps) {
 	const pathname = usePathname();
 	const search = useSearchParams();
 
+	const snapshotRef = useRef<LenisScrollSnapshot>(DEFAULT_SNAPSHOT);
+	const listenersRef = useRef(new Set<() => void>());
+
+	const notify = useCallback(() => {
+		listenersRef.current.forEach((listener) => listener());
+	}, []);
+
+	const updateSnapshot = useCallback(
+		(next: LenisScrollSnapshot) => {
+			snapshotRef.current = next;
+			notify();
+		},
+		[notify]
+	);
+
+	const subscribe = useCallback((listener: () => void) => {
+		listenersRef.current.add(listener);
+		return () => {
+			listenersRef.current.delete(listener);
+		};
+	}, []);
+
+	const getSnapshot = useCallback(() => snapshotRef.current, []);
+
+	const contextValue = useMemo<LenisScrollContextValue>(
+		() => ({
+			subscribe,
+			getSnapshot,
+			getServerSnapshot: getSnapshot,
+		}),
+		[subscribe, getSnapshot]
+	);
+
 	useEffect(() => {
-		const prefersReducedMotion = window.matchMedia(
+		if (typeof window === "undefined") return;
+		const prefersReducedMotionQuery = window.matchMedia(
 			"(prefers-reduced-motion: reduce)"
-		).matches;
+		);
 		const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
-		if (prefersReducedMotion || isTouch) return; // Optional: disable on touch devices if desired
+		if (prefersReducedMotionQuery.matches || isTouch) {
+			const handleWindowScroll = () => {
+				const scroll = window.scrollY;
+				const docHeight =
+					document.documentElement.scrollHeight -
+						window.innerHeight || 1;
+				updateSnapshot({
+					scroll,
+					progress: Math.min(Math.max(scroll / docHeight, 0), 1),
+					velocity: 0,
+					direction: 1,
+				});
+			};
 
-		const prefersCompactScroll = window.matchMedia("(max-width: 768px)").matches;
+			handleWindowScroll();
+			window.addEventListener("scroll", handleWindowScroll, {
+				passive: true,
+			});
+			return () =>
+				window.removeEventListener("scroll", handleWindowScroll);
+		}
+
+		const prefersCompactScroll =
+			window.matchMedia("(max-width: 768px)").matches;
 		const lenis = new Lenis({
-			lerp: prefersCompactScroll ? 0.12 : 0.09,
-			duration: prefersCompactScroll ? 0.8 : 1,
-			easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+			lerp: prefersCompactScroll ? 0.22 : 0.16,
+			duration: prefersCompactScroll ? 0.55 : 0.7,
+			easing: (t) => t,
 			orientation: "vertical",
 			gestureOrientation: "vertical",
 			smoothWheel: true,
-			wheelMultiplier: prefersCompactScroll ? 0.85 : 0.95,
-			smoothTouch: false,
+			wheelMultiplier: prefersCompactScroll ? 0.95 : 1,
 			touchMultiplier: prefersCompactScroll ? 1.1 : 1.25,
-			syncTouch: true,
+			syncTouch: false,
 		});
 
 		lenisRef.current = lenis;
 
+		const handleLenisScroll = (instance: Lenis) => {
+			updateSnapshot({
+				scroll: instance.scroll,
+				progress: instance.progress,
+				velocity: instance.velocity,
+				direction: instance.direction ?? 0,
+			});
+		};
+
+		lenis.on("scroll", handleLenisScroll);
+
 		let rafId: number;
 
-		function raf(time: number) {
+		const raf = (time: number) => {
 			lenis.raf(time);
 			rafId = requestAnimationFrame(raf);
-		}
+		};
 
 		rafId = requestAnimationFrame(raf);
 
@@ -60,13 +169,10 @@ function LenisProviderInner({ children }: LenisProviderProps) {
 			lenis.scrollTo(el, { offset });
 		};
 
-		// Scroll on initial hash
 		if (window.location.hash) {
-			// Timeout to ensure content is loaded/layout is settled
 			setTimeout(() => scrollToHash(window.location.hash), 100);
 		}
 
-		// Intercept same-page anchor clicks
 		const handleClick = (e: MouseEvent) => {
 			const target = e.target as HTMLElement | null;
 			if (!target) return;
@@ -93,13 +199,14 @@ function LenisProviderInner({ children }: LenisProviderProps) {
 		window.addEventListener("hashchange", onHashChange);
 
 		return () => {
+			lenis.off("scroll", handleLenisScroll);
 			lenis.destroy();
 			lenisRef.current = null;
 			cancelAnimationFrame(rafId);
 			document.removeEventListener("click", handleClick, true);
 			window.removeEventListener("hashchange", onHashChange);
 		};
-	}, []);
+	}, [updateSnapshot]);
 
 	useEffect(() => {
 		if (typeof window === "undefined") return;
@@ -129,7 +236,11 @@ function LenisProviderInner({ children }: LenisProviderProps) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname, search]);
 
-	return <>{children}</>;
+	return (
+		<LenisScrollContext.Provider value={contextValue}>
+			{children}
+		</LenisScrollContext.Provider>
+	);
 }
 
 export default function LenisProvider({ children }: LenisProviderProps) {

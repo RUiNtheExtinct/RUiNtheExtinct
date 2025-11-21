@@ -28,7 +28,7 @@ export const stats: Stat[] = [
 	{
 		icon: Briefcase,
 		value: "10+",
-		label: "Projects Completed",
+		label: "Product Launches",
 		color: "bg-purple-500/10 text-purple-500",
 	},
 	{

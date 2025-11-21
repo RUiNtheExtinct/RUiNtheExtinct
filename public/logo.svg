@@ -2,16 +2,16 @@
 	<defs>
 		<linearGradient id="logoStroke" x1="18" y1="72" x2="92" y2="24" gradientUnits="userSpaceOnUse">
 			<stop offset="0%" stop-color="#0f172a" />
-			<stop offset="45%" stop-color="#22c55e" />
+			<stop offset="45%" stop-color="#32ffa6" />
 			<stop offset="100%" stop-color="#0f172a" />
 		</linearGradient>
 		<linearGradient id="logoFill" x1="40" y1="26" x2="66" y2="86" gradientUnits="userSpaceOnUse">
-			<stop offset="0%" stop-color="#22c55e" />
+			<stop offset="0%" stop-color="#b4ff6b" />
 			<stop offset="100%" stop-color="#0f172a" />
 		</linearGradient>
 		<radialGradient id="logoPortal" cx="50%" cy="40%" r="65%">
-			<stop offset="0%" stop-color="#22c55e" stop-opacity="0.22" />
-			<stop offset="60%" stop-color="#22c55e" stop-opacity="0.08" />
+			<stop offset="0%" stop-color="#32ffa6" stop-opacity="0.32" />
+			<stop offset="60%" stop-color="#32ffa6" stop-opacity="0.14" />
 			<stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
 		</radialGradient>
 	</defs>
@@ -34,7 +34,7 @@
   <!-- Data seam -->
   <path
     d="M28 64 C 30 46 48 34 66 34 C 80 34 90 44 90 56 C 90 72 72 84 56 86 C 44 88 34 78 28 70"
-    stroke="#22c55e"
+    stroke="#32ffa6"
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
@@ -61,7 +61,7 @@
   <!-- Minute hand -->
   <path
     d="M50 56 L88.16 32.15"
-    stroke="#22c55e"
+    stroke="#32ffa6"
     stroke-width="4"
     stroke-linecap="round"
     stroke-linejoin="round"
@@ -70,7 +70,7 @@
   <!-- Second hand -->
   <path
     d="M50 56 L88.3 88.14"
-    stroke="#22c55e"
+    stroke="#32ffa6"
     stroke-width="4"
     stroke-linecap="round"
     stroke-linejoin="round"
@@ -88,7 +88,7 @@
   />
   <path
     d="M50 56 L99.19 25.27"
-    stroke="#22c55e"
+    stroke="#32ffa6"
     stroke-width="1.4"
     stroke-linecap="round"
     stroke-linejoin="round"
@@ -97,7 +97,7 @@
   />
   <path
     d="M50 56 L100.81 98.42"
-    stroke="#22c55e"
+    stroke="#32ffa6"
     stroke-width="1.4"
     stroke-linecap="round"
     stroke-linejoin="round"
@@ -126,7 +126,7 @@
   <!-- Orbit -->
   <path
     d="M24 72 C 40 94 82 96 90 54"
-    stroke="#22c55e"
+    stroke="#32ffa6"
     stroke-width="2.2"
     stroke-linecap="round"
     stroke-linejoin="round"
@@ -139,10 +139,10 @@
     cx="50"
     cy="56"
     r="5"
-    fill="#22c55e"
+    fill="#32ffa6"
     stroke="#0f172a"
     stroke-width="2"
   />
-  <circle cx="72" cy="38" r="2.8" fill="#22c55e" />
+  <circle cx="72" cy="38" r="2.8" fill="#32ffa6" />
   <circle cx="36" cy="70" r="2.4" fill="#0f172a" opacity="0.6" />
 </svg>
