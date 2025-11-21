@@ -1,6 +1,6 @@
 "use client";
 
-import type Lenis from "lenis";
+import Lenis from "lenis";
 import { usePathname, useSearchParams } from "next/navigation";
 import { ReactNode, Suspense, useEffect, useRef } from "react";
 
@@ -19,9 +19,32 @@ function LenisProviderInner({ children }: LenisProviderProps) {
 		).matches;
 		const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
-		let rafId = 0;
+		if (prefersReducedMotion || isTouch) return; // Optional: disable on touch devices if desired
 
-		// Natural scrolling: do not initialize Lenis globally
+		const prefersCompactScroll = window.matchMedia("(max-width: 768px)").matches;
+		const lenis = new Lenis({
+			lerp: prefersCompactScroll ? 0.12 : 0.09,
+			duration: prefersCompactScroll ? 0.8 : 1,
+			easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+			orientation: "vertical",
+			gestureOrientation: "vertical",
+			smoothWheel: true,
+			wheelMultiplier: prefersCompactScroll ? 0.85 : 0.95,
+			smoothTouch: false,
+			touchMultiplier: prefersCompactScroll ? 1.1 : 1.25,
+			syncTouch: true,
+		});
+
+		lenisRef.current = lenis;
+
+		let rafId: number;
+
+		function raf(time: number) {
+			lenis.raf(time);
+			rafId = requestAnimationFrame(raf);
+		}
+
+		rafId = requestAnimationFrame(raf);
 
 		const getHeaderOffset = () => {
 			const header = document.querySelector("header");
@@ -34,21 +57,13 @@ function LenisProviderInner({ children }: LenisProviderProps) {
 			const el = document.getElementById(id);
 			if (!el) return;
 			const offset = -getHeaderOffset();
-			if (lenisRef.current) {
-				lenisRef.current.scrollTo(el, { offset });
-			} else {
-				const y =
-					el.getBoundingClientRect().top + window.scrollY + offset;
-				window.scrollTo({
-					top: y,
-					behavior: prefersReducedMotion ? "auto" : "smooth",
-				});
-			}
+			lenis.scrollTo(el, { offset });
 		};
 
 		// Scroll on initial hash
 		if (window.location.hash) {
-			requestAnimationFrame(() => scrollToHash(window.location.hash));
+			// Timeout to ensure content is loaded/layout is settled
+			setTimeout(() => scrollToHash(window.location.hash), 100);
 		}
 
 		// Intercept same-page anchor clicks
@@ -78,7 +93,9 @@ function LenisProviderInner({ children }: LenisProviderProps) {
 		window.addEventListener("hashchange", onHashChange);
 
 		return () => {
-			if (rafId) cancelAnimationFrame(rafId);
+			lenis.destroy();
+			lenisRef.current = null;
+			cancelAnimationFrame(rafId);
 			document.removeEventListener("click", handleClick, true);
 			window.removeEventListener("hashchange", onHashChange);
 		};

@@ -1,0 +1,148 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="logoStroke" x1="18" y1="72" x2="92" y2="24" gradientUnits="userSpaceOnUse">
+			<stop offset="0%" stop-color="#0f172a" />
+			<stop offset="45%" stop-color="#22c55e" />
+			<stop offset="100%" stop-color="#0f172a" />
+		</linearGradient>
+		<linearGradient id="logoFill" x1="40" y1="26" x2="66" y2="86" gradientUnits="userSpaceOnUse">
+			<stop offset="0%" stop-color="#22c55e" />
+			<stop offset="100%" stop-color="#0f172a" />
+		</linearGradient>
+		<radialGradient id="logoPortal" cx="50%" cy="40%" r="65%">
+			<stop offset="0%" stop-color="#22c55e" stop-opacity="0.22" />
+			<stop offset="60%" stop-color="#22c55e" stop-opacity="0.08" />
+			<stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+		</radialGradient>
+	</defs>
+
+  <!-- Portal fill -->
+  <path
+    d="M22 68 C 22 42 44 18 70 20 C 88 24 94 44 86 66 C 78 86 56 96 38 88 C 26 82 22 76 22 68 Z"
+    fill="url(#logoPortal)"
+  />
+
+  <!-- Portal envelope -->
+  <path
+    d="M22 68 C 22 42 44 18 70 20 C 88 24 94 44 86 66 C 78 86 56 96 38 88 C 26 82 22 76 22 68 Z"
+    stroke="url(#logoStroke)"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Data seam -->
+  <path
+    d="M28 64 C 30 46 48 34 66 34 C 80 34 90 44 90 56 C 90 72 72 84 56 86 C 44 88 34 78 28 70"
+    stroke="#22c55e"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-dasharray="6 8"
+  />
+
+  <!-- Ascender wedge -->
+  <path
+    d="M36 82 L50 26 L64 82 L58 82 L50 52 L42 82 Z"
+    fill="url(#logoFill)"
+    stroke="#0f172a"
+    stroke-width="1.5"
+  />
+
+  <!-- Hour hand -->
+  <path
+    d="M50 56 L22 56"
+    stroke="#0f172a"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Minute hand -->
+  <path
+    d="M50 56 L88.16 32.15"
+    stroke="#22c55e"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Second hand -->
+  <path
+    d="M50 56 L88.3 88.14"
+    stroke="#22c55e"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Hand trails -->
+  <path
+    d="M50 56 L16 56"
+    stroke="#0f172a"
+    stroke-width="1.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-dasharray="3 9"
+    opacity="0.5"
+  />
+  <path
+    d="M50 56 L99.19 25.27"
+    stroke="#22c55e"
+    stroke-width="1.4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-dasharray="2 6"
+    opacity="0.7"
+  />
+  <path
+    d="M50 56 L100.81 98.42"
+    stroke="#22c55e"
+    stroke-width="1.4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-dasharray="2 6"
+    opacity="0.7"
+  />
+
+  <!-- Code brackets -->
+  <path
+    d="M26 54 L34 54 Q30 60 34 66 L26 66"
+    stroke="#0f172a"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.6"
+  />
+  <path
+    d="M94 46 L86 46 Q90 52 86 58 L94 58"
+    stroke="#0f172a"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.6"
+  />
+
+  <!-- Orbit -->
+  <path
+    d="M24 72 C 40 94 82 96 90 54"
+    stroke="#22c55e"
+    stroke-width="2.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-dasharray="3 10"
+    opacity="0.8"
+  />
+
+  <!-- Node cores -->
+  <circle
+    cx="50"
+    cy="56"
+    r="5"
+    fill="#22c55e"
+    stroke="#0f172a"
+    stroke-width="2"
+  />
+  <circle cx="72" cy="38" r="2.8" fill="#22c55e" />
+  <circle cx="36" cy="70" r="2.4" fill="#0f172a" opacity="0.6" />
+</svg>

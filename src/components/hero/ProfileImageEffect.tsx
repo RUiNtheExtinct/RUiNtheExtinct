@@ -55,7 +55,7 @@ const ProfileImageEffect = ({
 	return (
 		<div
 			ref={containerRef}
-			className={`relative ${
+			className={`relative select-none ${
 				className || ""
 			} w-full max-w-[420px] mx-auto ease-in-out duration-300`}
 			onMouseEnter={() => setIsHovered(true)}
@@ -145,14 +145,15 @@ const ProfileImageEffect = ({
 			/>
 
 			{/* Profile image container - now with a white background to create clean separation */}
-			<div className="relative rounded-full overflow-hidden aspect-square z-10 bg-white h-full w-full ring-1 ring-border/60">
+			<div className="relative rounded-full overflow-hidden aspect-square z-10 bg-white h-full w-full ring-1 ring-border/60 select-none">
 				<Image
 					src={imageSrc}
 					alt={imageAlt}
 					fill
-					className="object-cover"
+					className="object-cover select-none"
 					priority
 					sizes="(max-width: 639px) 280px, (max-width: 767px) 340px, (max-width: 1023px) 380px, 420px"
+					draggable={false}
 				/>
 			</div>
 		</div>

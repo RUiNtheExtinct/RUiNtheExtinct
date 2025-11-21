@@ -1,6 +1,7 @@
 "use client";
 
 import { track } from "@/components/shared/AnalyticsProvider";
+import Parallax from "@/components/shared/Parallax";
 import Reveal from "@/components/shared/Reveal";
 import ScrambleText from "@/components/typography/ScrambleText";
 import { Button } from "@/components/ui/button";
@@ -84,110 +85,114 @@ const AboutSection = () => {
 					</motion.div>
 
 					{/* Right Column - Contact Info */}
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						transition={{ duration: 0.35, delay: 0.15 }}
-						className="lg:col-span-2"
-					>
-						<Card className="h-full bg-card/50 backdrop-blur-sm">
-							<CardContent className="p-6">
-								<h3 className="mb-4 text-lg font-semibold">
-									Contact Information
-								</h3>
-								<div className="space-y-4">
-									{[
-										{
-											icon: Mail,
-											label: "Email",
-											value: personalInfo.email,
-											href: `mailto:${personalInfo.email}`,
-										},
-										{
-											icon: Phone,
-											label: "Phone",
-											value: personalInfo.phone,
-											href: `tel:${personalInfo.phone}`,
-										},
-										{
-											icon: MapPin,
-											label: "Location",
-											value: personalInfo.location,
-										},
-										{
-											icon: Calendar,
-											label: "Availability",
-											value: "Full-time",
-										},
-									].map((item, index) => (
-										<motion.div
-											key={index}
-											initial={{ opacity: 0, x: 20 }}
-											whileInView={{ opacity: 1, x: 0 }}
-											viewport={{ once: true }}
-											transition={{
-												duration: 0.5,
-												delay: index * 0.1,
-											}}
-											className="flex items-center space-x-3 rounded-lg border p-4 transition-all hover:shadow-md hover:bg-card/80"
-										>
-											<div className="rounded-full bg-primary/10 p-2">
-												<item.icon className="h-4 w-4 text-primary" />
-											</div>
-											<div>
-												<p className="text-sm text-muted-foreground">
-													{item.label}
-												</p>
-												{item.href ? (
-													<Link
-														href={item.href}
-														className="font-medium hover:text-primary transition-colors"
-														onClick={() =>
-															item.href &&
-															track(
-																"contact_link_click",
-																{
-																	type: item.label,
-																}
-															)
-														}
-													>
-														{item.value}
-													</Link>
-												) : (
-													<p className="font-medium">
-														{item.value}
+					<Parallax offset={40} className="lg:col-span-2">
+						<motion.div
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.35, delay: 0.15 }}
+						>
+							<Card className="h-full bg-card/50 backdrop-blur-sm">
+								<CardContent className="p-6">
+									<h3 className="mb-4 text-lg font-semibold">
+										Contact Information
+									</h3>
+									<div className="space-y-4">
+										{[
+											{
+												icon: Mail,
+												label: "Email",
+												value: personalInfo.email,
+												href: `mailto:${personalInfo.email}`,
+											},
+											{
+												icon: Phone,
+												label: "Phone",
+												value: personalInfo.phone,
+												href: `tel:${personalInfo.phone}`,
+											},
+											{
+												icon: MapPin,
+												label: "Location",
+												value: personalInfo.location,
+											},
+											{
+												icon: Calendar,
+												label: "Availability",
+												value: "Full-time",
+											},
+										].map((item, index) => (
+											<motion.div
+												key={index}
+												initial={{ opacity: 0, x: 20 }}
+												whileInView={{
+													opacity: 1,
+													x: 0,
+												}}
+												viewport={{ once: true }}
+												transition={{
+													duration: 0.5,
+													delay: index * 0.1,
+												}}
+												className="flex items-center space-x-3 rounded-lg border p-4 transition-all hover:shadow-md hover:bg-card/80"
+											>
+												<div className="rounded-full bg-primary/10 p-2">
+													<item.icon className="h-4 w-4 text-primary" />
+												</div>
+												<div>
+													<p className="text-sm text-muted-foreground">
+														{item.label}
 													</p>
-												)}
-											</div>
-										</motion.div>
-									))}
-								</div>
+													{item.href ? (
+														<Link
+															href={item.href}
+															className="font-medium hover:text-primary transition-colors"
+															onClick={() =>
+																item.href &&
+																track(
+																	"contact_link_click",
+																	{
+																		type: item.label,
+																	}
+																)
+															}
+														>
+															{item.value}
+														</Link>
+													) : (
+														<p className="font-medium">
+															{item.value}
+														</p>
+													)}
+												</div>
+											</motion.div>
+										))}
+									</div>
 
-								{/* CTA Button */}
-								<div className="mt-6">
-									<Button
-										asChild
-										size="lg"
-										className="w-full"
-									>
-										<Link
-											href="/#contact-me-name"
-											onClick={() =>
-												track("cta_click", {
-													cta: "get_in_touch",
-												})
-											}
+									{/* CTA Button */}
+									<div className="mt-6">
+										<Button
+											asChild
+											size="lg"
+											className="w-full"
 										>
-											Get in Touch
-											<ArrowRight className="ml-2 h-4 w-4" />
-										</Link>
-									</Button>
-								</div>
-							</CardContent>
-						</Card>
-					</motion.div>
+											<Link
+												href="/#contact-me-name"
+												onClick={() =>
+													track("cta_click", {
+														cta: "get_in_touch",
+													})
+												}
+											>
+												Get in Touch
+												<ArrowRight className="ml-2 h-4 w-4" />
+											</Link>
+										</Button>
+									</div>
+								</CardContent>
+							</Card>
+						</motion.div>
+					</Parallax>
 				</div>
 			</div>
 		</section>

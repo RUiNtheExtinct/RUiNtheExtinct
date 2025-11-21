@@ -21,6 +21,20 @@ import { useCallback, useEffect, useRef } from "react";
 
 export type ProjectCardVariant = "section" | "page";
 
+const CARD_DIMENSIONS: Record<
+	ProjectCardVariant,
+	{ card: string; image: string }
+> = {
+	section: {
+		card: "min-h-[520px]",
+		image: "h-[220px]",
+	},
+	page: {
+		card: "min-h-[560px]",
+		image: "h-[240px]",
+	},
+};
+
 interface ProjectCardProps {
 	project: Project;
 	variant: ProjectCardVariant;
@@ -33,6 +47,8 @@ export const ProjectCard = ({
 	index = 0,
 }: ProjectCardProps) => {
 	const isSectionVariant = variant === "section";
+	const { card: cardHeightClass, image: imageHeightClass } =
+		CARD_DIMENSIONS[variant];
 
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const cardRef = useRef<HTMLDivElement | null>(null);
@@ -55,7 +71,7 @@ export const ProjectCard = ({
 			const y = e.clientY - rect.top;
 			const midX = rect.width / 2;
 			const midY = rect.height / 2;
-			const factor = 3; // max degrees
+			const factor = 7; // max degrees
 			const rawY = ((x - midX) / midX) * factor;
 			const rawX = ((midY - y) / midY) * factor;
 			const clamp = (v: number, min: number, max: number) =>
@@ -104,6 +120,34 @@ export const ProjectCard = ({
 		}
 	};
 
+	const renderCoverImage = () => (
+		<div
+			className={cn("relative w-full overflow-hidden", imageHeightClass)}
+		>
+			<Badge
+				className={cn(
+					statusColor(project.status),
+					"absolute top-2 right-2 z-10"
+				)}
+			>
+				{project.status}
+			</Badge>
+			{project.image ? (
+				<Image
+					src={project.image as string}
+					alt={project.title}
+					fill
+					className="object-cover transition-transform duration-300 group-hover:scale-105"
+					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+				/>
+			) : (
+				<div className="flex h-full w-full items-center justify-center bg-muted/50 text-sm text-muted-foreground">
+					No cover image available
+				</div>
+			)}
+		</div>
+	);
+
 	// Create card content based on variant
 	if (isSectionVariant) {
 		return (
@@ -112,48 +156,25 @@ export const ProjectCard = ({
 				ref={containerRef}
 				onMouseMove={handleMouseMove}
 				onMouseLeave={handleMouseLeave}
+				className="h-full w-full"
 			>
 				<Card
 					ref={cardRef}
-					className="group h-full overflow-hidden flex flex-col justify-between will-change-transform transition-transform duration-150"
+					className={cn(
+						"group h-full w-full overflow-hidden flex flex-col justify-between will-change-transform transition-transform duration-150",
+						cardHeightClass
+					)}
 				>
-					<div className="relative aspect-video overflow-hidden">
-						<Badge
-							className={cn(
-								statusColor(project.status),
-								"absolute top-2 right-2 z-10"
-							)}
-						>
-							{project.status}
-						</Badge>
-						{project.image ? (
-							<div className="relative h-64 w-full overflow-hidden">
-								<Image
-									src={project.image as string}
-									alt={project.title}
-									fill
-									className="object-cover transition-transform duration-300 group-hover:scale-105"
-									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-									priority={false}
-								/>
-							</div>
-						) : (
-							<div className="relative h-64 w-full bg-muted/50 flex items-center justify-center">
-								<div className="text-muted-foreground text-sm h-full w-full flex items-center justify-center">
-									No cover image available
-								</div>
-							</div>
-						)}
-					</div>
-					<CardContent className="p-6">
+					{renderCoverImage()}
+					<CardContent className="flex-1">
 						<h3 className="text-xl font-semibold">
 							{project.title}
 						</h3>
-						<p className="mt-2 text-sm text-muted-foreground">
+						<p className="mt-2 text-sm text-muted-foreground overflow-hidden text-ellipsis [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
 							{project.description}
 						</p>
 					</CardContent>
-					<CardFooter className="p-6 pt-0 flex flex-col gap-4 items-start">
+					<CardFooter className="w-full flex-col items-start gap-4">
 						<div className="mt-4 flex flex-wrap gap-2">
 							{project.tags.map((tag) => (
 								<Badge key={tag} variant="secondary">
@@ -212,50 +233,28 @@ export const ProjectCard = ({
 			ref={containerRef}
 			onMouseMove={handleMouseMove}
 			onMouseLeave={handleMouseLeave}
+			className="h-full w-full"
 		>
 			<Card
 				ref={cardRef}
-				className="h-full overflow-hidden flex flex-col justify-between will-change-transform transition-transform duration-150"
+				className={cn(
+					"group h-full w-full overflow-hidden flex flex-col justify-between will-change-transform transition-transform duration-150",
+					cardHeightClass
+				)}
 			>
 				<>
-					<div className="aspect-video overflow-hidden relative">
-						<Badge
-							className={cn(
-								statusColor(project.status),
-								"absolute top-2 right-2 z-10"
-							)}
-						>
-							{project.status}
-						</Badge>
-						{project.image ? (
-							<div className="relative h-64 w-full overflow-hidden">
-								<Image
-									src={project.image as string}
-									alt={project.title}
-									fill
-									className="object-cover transition-transform duration-300 group-hover:scale-105"
-									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-								/>
-							</div>
-						) : (
-							<div className="relative h-64 w-full bg-muted/50 flex items-center justify-center">
-								<div className="text-muted-foreground text-sm h-full w-full flex items-center justify-center">
-									No cover image available
-								</div>
-							</div>
-						)}
-					</div>
-					<CardHeader>
+					{renderCoverImage()}
+					<CardHeader className="pb-0">
 						<CardTitle>{project.title}</CardTitle>
 						<CardDescription>{project.description}</CardDescription>
 					</CardHeader>
-					<CardContent>
-						<p className="mb-4 text-sm text-muted-foreground">
+					<CardContent className="flex-1">
+						<p className="text-sm text-muted-foreground overflow-hidden text-ellipsis [display:-webkit-box] [-webkit-line-clamp:5] [-webkit-box-orient:vertical]">
 							{project.longDescription || project.description}
 						</p>
 					</CardContent>
 				</>
-				<CardFooter className="flex flex-col gap-4 items-start">
+				<CardFooter className="w-full flex-col items-start gap-4">
 					<div className="flex flex-wrap gap-2">
 						{project.tags.map((tag) => (
 							<Badge

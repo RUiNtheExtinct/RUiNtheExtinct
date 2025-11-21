@@ -1,16 +1,15 @@
 "use client";
 
 import { track } from "@/components/shared/AnalyticsProvider";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import Logo from "@/components/shared/Logo";
+import Magnetic from "@/components/shared/Magnetic";
 import { Button } from "@/components/ui/button";
 import { personalInfo } from "@/data/personal-info";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import BrandToggle from "./brand-toggle";
-import GlimmerEffect from "./GlimmerEffect";
 import { ModeToggle } from "./mode-toggle";
 
 const navLinks = [
@@ -103,12 +102,68 @@ const Navigation = () => {
 		};
 	}, []);
 
+	useEffect(() => {
+		if (typeof window === "undefined") return;
+		const doc = document.documentElement;
+
+		const applyScrollbarTheme = () => {
+			const styles = getComputedStyle(doc);
+			const getValue = (prop: string, fallback: string) => {
+				const value = styles.getPropertyValue(prop).trim();
+				return value.length ? value : fallback;
+			};
+
+			const background = getValue("--background", "0 0% 100%");
+			const accent = getValue("--accent", "217 91% 60%");
+
+			doc.style.setProperty("--scrollbar-track-color", `hsl(${background})`);
+			doc.style.setProperty(
+				"--scrollbar-thumb-color",
+				`hsl(${accent} / 0.6)`
+			);
+			doc.style.setProperty(
+				"--scrollbar-thumb-hover-color",
+				`hsl(${accent} / 0.85)`
+			);
+			doc.style.setProperty("--scrollbar-thumb-outline", `hsl(${background})`);
+		};
+
+		applyScrollbarTheme();
+
+		const observer = new MutationObserver(applyScrollbarTheme);
+		observer.observe(doc, {
+			attributes: true,
+			attributeFilter: ["class", "data-brand", "data-accent"],
+		});
+
+		const onStorage = () => applyScrollbarTheme();
+		window.addEventListener("storage", onStorage);
+
+		const media = window.matchMedia("(prefers-color-scheme: dark)");
+		const supportsEventListener = typeof media.addEventListener === "function";
+		if (supportsEventListener) {
+			media.addEventListener("change", applyScrollbarTheme);
+		} else if (typeof media.addListener === "function") {
+			media.addListener(applyScrollbarTheme);
+		}
+
+		return () => {
+			observer.disconnect();
+			window.removeEventListener("storage", onStorage);
+			if (supportsEventListener) {
+				media.removeEventListener("change", applyScrollbarTheme);
+			} else if (typeof media.removeListener === "function") {
+				media.removeListener(applyScrollbarTheme);
+			}
+		};
+	}, []);
+
 	return (
 		<header
 			className={cn(
 				"sticky top-0 z-40 w-full transition-all duration-300",
 				scrolled
-					? "border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-2"
+					? "border-b bg-background/40 backdrop-blur-md supports-[backdrop-filter]:bg-background/20 py-2 shadow-sm"
 					: "bg-transparent py-4"
 			)}
 		>
@@ -118,24 +173,7 @@ const Navigation = () => {
 						href="/"
 						className="flex items-center space-x-2 relative group"
 					>
-						<Avatar className="h-8 w-8">
-							<GlimmerEffect />
-							<Image
-								src={personalInfo.avatar as string}
-								alt="Profile Picture"
-								fill
-								className="object-cover"
-								loading="lazy"
-								fetchPriority="low"
-								sizes="64px"
-							/>
-							<AvatarFallback className="text-xs font-medium">
-								{personalInfo.name
-									.split(" ")
-									.map((n) => n[0])
-									.join("")}
-							</AvatarFallback>
-						</Avatar>
+						<Logo className="h-8 w-8" />
 						<span className="text-lg font-semibold">
 							{personalInfo.name}
 						</span>
@@ -147,23 +185,24 @@ const Navigation = () => {
 							const id = link.href.split("#")[1];
 							const isActive = id === activeSection;
 							return (
-								<Link
-									key={link.href}
-									href={link.href}
-									className={cn(
-										"text-sm font-medium transition-colors",
-										isActive
-											? "text-primary"
-											: "text-muted-foreground hover:text-primary"
-									)}
-									onClick={() => {
-										track("nav_click", {
-											link: link.href,
-										});
-									}}
-								>
-									{link.label}
-								</Link>
+								<Magnetic key={link.href} strength={20}>
+									<Link
+										href={link.href}
+										className={cn(
+											"text-sm font-medium transition-colors",
+											isActive
+												? "text-primary"
+												: "text-muted-foreground hover:text-primary"
+										)}
+										onClick={() => {
+											track("nav_click", {
+												link: link.href,
+											});
+										}}
+									>
+										{link.label}
+									</Link>
+								</Magnetic>
 							);
 						})}
 						<BrandToggle />

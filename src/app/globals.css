@@ -30,6 +30,11 @@
 		--chart-3: 197 37% 24%;
 		--chart-4: 43 74% 66%;
 		--chart-5: 27 87% 67%;
+		--scrollbar-track-color: hsl(var(--background));
+		--scrollbar-thumb-color: hsl(var(--accent) / 0.5);
+		--scrollbar-thumb-hover-color: hsl(var(--accent) / 0.75);
+		--scrollbar-thumb-outline: hsl(var(--background));
+		color-scheme: light;
 	}
 
 	.dark {
@@ -58,6 +63,11 @@
 		--chart-3: 30 80% 55%;
 		--chart-4: 280 65% 60%;
 		--chart-5: 340 75% 55%;
+		--scrollbar-track-color: hsl(var(--background));
+		--scrollbar-thumb-color: hsl(var(--accent) / 0.55);
+		--scrollbar-thumb-hover-color: hsl(var(--accent) / 0.8);
+		--scrollbar-thumb-outline: hsl(var(--background));
+		color-scheme: dark;
 	}
 
 	/* Accent overrides */
@@ -260,6 +270,9 @@
 @layer base {
 	* {
 		@apply border-border;
+		scrollbar-color: var(--scrollbar-thumb-color)
+			var(--scrollbar-track-color);
+		scrollbar-width: thin;
 	}
 	body {
 		@apply bg-background text-foreground font-sans;
@@ -316,6 +329,30 @@ html {
 		transition: none !important;
 		scroll-behavior: auto !important;
 	}
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--scrollbar-track-color);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--scrollbar-thumb-color);
+	border-radius: 5px;
+	border: 2px solid var(--scrollbar-thumb-outline);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--scrollbar-thumb-hover-color);
+}
+
+::-webkit-scrollbar-corner {
+	background: var(--scrollbar-track-color);
 }
 
 @layer components {
@@ -393,3 +430,18 @@ html {
 		opacity: 0;
 	}
 }
+
+@keyframes grid-flow {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 30px 30px;
+	}
+}
+
+.animate-grid-flow {
+	animation: grid-flow 20s linear infinite;
+}
+
+/* Logo glyph hover choreography */

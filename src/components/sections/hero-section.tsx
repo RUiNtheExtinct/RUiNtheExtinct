@@ -2,12 +2,13 @@
 
 import ProfileImageEffect from "@/components/hero/ProfileImageEffect";
 import { track } from "@/components/shared/AnalyticsProvider";
+import Magnetic from "@/components/shared/Magnetic";
 import Reveal from "@/components/shared/Reveal";
 import ScrambleText from "@/components/typography/ScrambleText";
 import { Button } from "@/components/ui/button";
 import { personalInfo } from "@/data/personal-info";
 import { socialLinks } from "@/data/social-links";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Electrolize } from "next/font/google";
@@ -19,8 +20,8 @@ const heroFont = Electrolize({
 	subsets: ["latin"],
 });
 
-const HeroBackground = dynamic(
-	() => import("@/components/hero/HeroBackground"),
+const ThreeBackground = dynamic(
+	() => import("@/components/hero/ThreeBackground"),
 	{ ssr: false }
 );
 
@@ -41,16 +42,21 @@ const HeroSection = () => {
 		}
 	}, []);
 
+	const { scrollY } = useScroll();
+	const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+	const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+
 	return (
-		<section className="relative overflow-hidden py-16 sm:py-20 md:py-28">
+		<section className="relative overflow-hidden py-16 sm:py-20 md:py-28 min-h-[90vh] flex items-center select-none">
 			<div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(var(--primary-rgb),0.1),transparent_60%)]"></div>
-			{showBg ? <HeroBackground /> : null}
-			<div className="container px-4 md:px-6">
+			{showBg ? <ThreeBackground /> : null}
+			<div className="container px-4 md:px-6 relative z-10 select-none">
 				<div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
 					<motion.div
+						style={{ y: y1 }}
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.35 }}
+						transition={{ duration: 0.5, ease: "easeOut" }}
 						className="flex flex-col items-center text-center lg:items-start lg:text-left space-y-4"
 					>
 						<Reveal>
@@ -81,38 +87,42 @@ const HeroSection = () => {
 						</Reveal>
 
 						<div className="flex flex-wrap justify-center lg:justify-start gap-3 pt-2">
-							<Button
-								asChild
-								size="lg"
-								className="w-full sm:w-auto"
-							>
-								<Link
-									href="/#contact-me-name"
-									onClick={() =>
-										track("cta_click", {
-											cta: "get_in_touch",
-										})
-									}
+							<Magnetic>
+								<Button
+									asChild
+									size="lg"
+									className="w-full sm:w-auto"
 								>
-									Contact Me{" "}
-									<ArrowRight className="ml-2 h-4 w-4" />
-								</Link>
-							</Button>
-							<Button
-								variant="outline"
-								size="lg"
-								asChild
-								className="w-full sm:w-auto"
-							>
-								<Link
-									href={personalInfo.resumeUrl || "#"}
-									target="_blank"
-									rel="noopener noreferrer"
+									<Link
+										href="/#contact-me-name"
+										onClick={() =>
+											track("cta_click", {
+												cta: "get_in_touch",
+											})
+										}
+									>
+										Contact Me{" "}
+										<ArrowRight className="ml-2 h-4 w-4" />
+									</Link>
+								</Button>
+							</Magnetic>
+							<Magnetic>
+								<Button
+									variant="outline"
+									size="lg"
+									asChild
+									className="w-full sm:w-auto"
 								>
-									<ArrowRight className="mr-2 h-4 w-4" /> View
-									Resume
-								</Link>
-							</Button>
+									<Link
+										href={personalInfo.resumeUrl || "#"}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										<ArrowRight className="mr-2 h-4 w-4" />{" "}
+										View Resume
+									</Link>
+								</Button>
+							</Magnetic>
 						</div>
 
 						<Reveal delay={0.24}>
@@ -139,9 +149,14 @@ const HeroSection = () => {
 					</motion.div>
 
 					<motion.div
+						style={{ y: y2 }}
 						initial={{ opacity: 0, x: 50 }}
 						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.35, delay: 0.15 }}
+						transition={{
+							duration: 0.5,
+							delay: 0.2,
+							ease: "easeOut",
+						}}
 						className="flex justify-center mt-6 lg:mt-0"
 					>
 						<ProfileImageEffect
