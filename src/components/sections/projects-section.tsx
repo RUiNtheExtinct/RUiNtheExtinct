@@ -10,7 +10,7 @@ import ProjectCard from "../projects/project-card";
 const ProjectsSection = () => {
 	return (
 		<section id="projects" className="py-16 md:py-24 bg-muted/30">
-			<div className="container px-4 md:px-6">
+			<div className="container px-4 md:px-6 flex flex-col items-center justify-center">
 				<ScrollReveal className="mb-12 text-center" variant="slideUp">
 					<h2 className="text-3xl font-bold tracking-tight md:text-4xl">
 						Featured Projects

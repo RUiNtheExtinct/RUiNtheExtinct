@@ -166,7 +166,7 @@ export const ProjectCard = ({
 					)}
 				>
 					{renderCoverImage()}
-					<CardContent className="flex-1">
+					<CardContent className="flex-1 py-4">
 						<h3 className="text-xl font-semibold">
 							{project.title}
 						</h3>

@@ -143,7 +143,7 @@ const HeroSection = () => {
 							data-hero-seq="signal"
 						>
 							<div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/60 px-4 py-1 text-[0.65rem] font-semibold text-slate-900 shadow-sm dark:border-white/10 dark:bg-white/10 dark:text-white/80">
-								<Radio className="h-3.5 w-3.5 text-emerald-400" />
+								<Radio className="h-3.5 w-3.5 text-primary" />
 								Available for select product teams
 							</div>
 							<p className="text-[0.65rem] tracking-[0.35em]">
