@@ -122,13 +122,14 @@ function LenisProviderInner({ children }: LenisProviderProps) {
 		const prefersCompactScroll =
 			window.matchMedia("(max-width: 768px)").matches;
 		const lenis = new Lenis({
-			lerp: prefersCompactScroll ? 0.22 : 0.16,
-			duration: prefersCompactScroll ? 0.55 : 0.7,
+			// Snappier settings to avoid "sticky" / lag-behind scroll feel.
+			lerp: prefersCompactScroll ? 0.28 : 0.2,
+			duration: prefersCompactScroll ? 0.45 : 0.55,
 			easing: (t) => t,
 			orientation: "vertical",
 			gestureOrientation: "vertical",
 			smoothWheel: true,
-			wheelMultiplier: prefersCompactScroll ? 0.95 : 1,
+			wheelMultiplier: prefersCompactScroll ? 1 : 1.05,
 			touchMultiplier: prefersCompactScroll ? 1.1 : 1.25,
 			syncTouch: false,
 		});
