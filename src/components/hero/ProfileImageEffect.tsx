@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 
 interface ProfileImageEffectProps {
 	imageSrc: string | StaticImageData;
@@ -11,12 +11,12 @@ interface ProfileImageEffectProps {
 	size?: number;
 }
 
-const ProfileImageEffect = ({
+const ProfileImageEffect = memo(function ProfileImageEffect({
 	imageSrc,
 	imageAlt,
 	className,
 	size = 420,
-}: ProfileImageEffectProps) => {
+}: ProfileImageEffectProps) {
 	const [isHovered, setIsHovered] = useState(false);
 	const ringWidth = 10;
 	const orbitDots = useMemo(() => [0, 120, 240], []);
@@ -72,9 +72,12 @@ const ProfileImageEffect = ({
 						"radial-gradient(60% 60% at 50% 50%, hsl(var(--accent)/.25), transparent 70%), conic-gradient(from 0deg, hsl(var(--accent)/.25), transparent 40%, hsl(var(--accent)/.25))",
 					opacity: isHovered ? 0.9 : isCoarse ? 0.4 : 0.5,
 				}}
-				animate={{ rotate: isHovered ? 360 : 0 }}
+				animate={{ rotate: isHovered && !isCoarse ? 360 : 0 }}
 				transition={{
-					rotate: { duration: 18, repeat: Infinity, ease: "linear" },
+					rotate:
+						isHovered && !isCoarse
+							? { duration: 18, repeat: Infinity, ease: "linear" }
+							: { duration: 0 },
 					opacity: { duration: 0.3 },
 				}}
 			/>
@@ -93,11 +96,14 @@ const ProfileImageEffect = ({
 					filter: "blur(10px)",
 				}}
 				animate={{
-					rotate: isHovered ? 360 : 0,
+					rotate: isHovered && !isCoarse ? 360 : 0,
 				}}
 				transition={{
 					opacity: { duration: 0.3 },
-					rotate: { duration: 14, repeat: Infinity, ease: "linear" },
+					rotate:
+						isHovered && !isCoarse
+							? { duration: 14, repeat: Infinity, ease: "linear" }
+							: { duration: 0 },
 				}}
 			/>
 
@@ -136,10 +142,18 @@ const ProfileImageEffect = ({
 					filter: "blur(16px)",
 				}}
 				animate={{
-					opacity: isHovered ? [0.6, 0.8, 0.6] : [0.2, 0.3, 0.2],
+					opacity:
+						isHovered && !isCoarse
+							? [0.6, 0.8, 0.6]
+							: isCoarse
+							? 0.15
+							: 0.2,
 				}}
 				transition={{
-					opacity: { duration: 3, repeat: Infinity },
+					opacity:
+						isHovered && !isCoarse
+							? { duration: 3, repeat: Infinity }
+							: { duration: 0.3 },
 				}}
 			/>
 
@@ -161,6 +175,6 @@ const ProfileImageEffect = ({
 			</div>
 		</div>
 	);
-};
+});
 
 export default ProfileImageEffect;

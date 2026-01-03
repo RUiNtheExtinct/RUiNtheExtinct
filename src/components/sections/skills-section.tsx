@@ -9,7 +9,7 @@ import { categories, skills } from "@/data/skills";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const ITEMS_PER_PAGE = 12;
 const ITEMS_PER_PAGE_MOBILE = 6;
@@ -24,6 +24,11 @@ const SkillsSection = () => {
 	);
 
 	const [visibleItems, setVisibleItems] = useState(ITEMS_VISIBLE);
+	useEffect(() => {
+		// Keep the visible item count aligned with the current breakpoint.
+		// This avoids a "first render shows desktop count then snaps to mobile count" effect.
+		setVisibleItems(ITEMS_VISIBLE);
+	}, [ITEMS_VISIBLE]);
 
 	const levelColors = {
 		beginner: "bg-sky-500/10 text-sky-500 border-sky-500/20",
@@ -124,7 +129,7 @@ const SkillsSection = () => {
 						<AnimatePresence initial={false}>
 							{displayedSkills.map((skill) => (
 								<motion.div
-									key={`${activeCategory}-${skill.name}`}
+									key={skill.name}
 									layout
 									variants={itemVariants}
 									initial="hidden"

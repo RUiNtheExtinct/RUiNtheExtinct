@@ -3,7 +3,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 	pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
-	/* config options here */
 	webpack: (config) => {
 		// Silence benign MDX loader cache warnings from @next/mdx
 		// https://github.com/vercel/next.js/issues/61287

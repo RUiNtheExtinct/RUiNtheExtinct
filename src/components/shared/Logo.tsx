@@ -15,7 +15,7 @@ const drawVariant = {
 		opacity: 1,
 		transition: {
 			duration: 1.1,
-			ease: "easeInOut",
+			ease: "easeInOut" as const,
 			delay,
 		},
 	}),

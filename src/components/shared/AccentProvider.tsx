@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 
 type Brand =
 	| "blue"
@@ -16,45 +16,30 @@ type Brand =
 	| "orange"
 	| "fuchsia";
 
+const BRANDS: Brand[] = [
+	"blue",
+	"green",
+	"violet",
+	"amber",
+	"pink",
+	"cyan",
+	"indigo",
+	"teal",
+	"rose",
+	"lime",
+	"orange",
+	"fuchsia",
+];
+
 function coerceBrand(input: string | null | undefined): Brand {
-	const allowed: Brand[] = [
-		"blue",
-		"green",
-		"violet",
-		"amber",
-		"pink",
-		"cyan",
-		"indigo",
-		"teal",
-		"rose",
-		"lime",
-		"orange",
-		"fuchsia",
-	];
 	if (!input) return "blue";
 	const lower = input.toLowerCase();
-	return (allowed as string[]).includes(lower) ? (lower as Brand) : "blue";
+	return BRANDS.includes(lower as Brand) ? (lower as Brand) : "blue";
 }
 
 export default function AccentProvider({ children }: { children: ReactNode }) {
-	const [brand, setBrand] = useState<Brand>("blue");
-	const brands = useMemo<Brand[]>(
-		() => [
-			"blue",
-			"green",
-			"violet",
-			"amber",
-			"pink",
-			"cyan",
-			"indigo",
-			"teal",
-			"rose",
-			"lime",
-			"orange",
-			"fuchsia",
-		],
-		[]
-	);
+	// Use ref instead of state to avoid re-rendering children
+	const brandRef = useRef<Brand>("blue");
 
 	useEffect(() => {
 		const saved = coerceBrand(
@@ -71,20 +56,20 @@ export default function AccentProvider({ children }: { children: ReactNode }) {
 			urlParam && urlParam !== "random" ? coerceBrand(urlParam) : null;
 
 		const randomPick: Brand =
-			brands[Math.floor(Math.random() * brands.length)];
+			BRANDS[Math.floor(Math.random() * BRANDS.length)];
 		const initial = fromUrl || saved || randomPick;
-		setBrand(initial);
+		brandRef.current = initial;
 		document.documentElement.dataset.brand = initial;
 		document.documentElement.dataset.accent = initial; // backward compat
 		window.localStorage.setItem("brand", initial);
 
-		// expose simple toggles
+		// expose simple toggles (updates DOM directly, no re-render)
 		(window as any).setBrandTheme = (value: string) => {
 			const next = coerceBrand(value);
 			window.localStorage.setItem("brand", next);
 			document.documentElement.dataset.brand = next;
 			document.documentElement.dataset.accent = next;
-			setBrand(next);
+			brandRef.current = next;
 		};
 		(window as any).setAccentTheme = (value: string) =>
 			(window as any).setBrandTheme(value);

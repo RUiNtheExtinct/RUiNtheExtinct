@@ -8,10 +8,10 @@ import ScrambleText from "@/components/typography/ScrambleText";
 import { Button } from "@/components/ui/button";
 import { personalInfo, stats } from "@/data/personal-info";
 import { socialLinks } from "@/data/social-links";
-import { useHeroIntroMotion } from "@/hooks/useHeroIntroMotion";
 import { cn } from "@/lib/utils";
 import {
 	motion,
+	MotionValue,
 	useMotionValue,
 	useScroll,
 	useSpring,
@@ -21,12 +21,15 @@ import { ArrowRight, Radio } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Electrolize } from "next/font/google";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 
 const heroFont = Electrolize({
 	weight: "400",
 	subsets: ["latin"],
 });
+
+// Guard to prevent the hero intro animation replaying (e.g. React StrictMode remounts in dev)
+let heroIntroHasMounted = false;
 
 const ThreeBackground = dynamic(
 	() => import("@/components/hero/ThreeBackground"),
@@ -44,28 +47,102 @@ const contactDetails = [
 	},
 ];
 
+// Memoized avatar card to prevent re-renders during scroll
+const AvatarCard = memo(function AvatarCard({
+	portraitParallax,
+}: {
+	portraitParallax: MotionValue<number>;
+}) {
+	return (
+		<motion.div
+			className="relative w-full max-w-[480px]"
+			data-hero-seq="portrait"
+			style={{ y: portraitParallax }}
+		>
+			<div className="absolute inset-0 rounded-[32px] border border-white/20 bg-gradient-to-br from-white/15 to-transparent blur-2xl" />
+			<div className="absolute inset-0 rounded-[32px] bg-[radial-gradient(circle_at_top,_rgba(var(--primary-rgb),0.25),_transparent_70%)] blur-3xl" />
+			<div className="relative rounded-[32px] border border-white/10 bg-gradient-to-b from-background/60 to-background/20 p-6 backdrop-blur-2xl dark:border-white/5 dark:from-white/5 dark:to-white/0">
+				<ProfileImageEffect
+					imageSrc={personalInfo.dp || "/placeholder-avatar.jpg"}
+					imageAlt={`${personalInfo.name}'s Profile Picture`}
+					className="w-full max-w-[420px]"
+				/>
+				<div className="mt-6 space-y-4 text-left">
+					<dl className="space-y-3 text-sm">
+						{contactDetails.map((detail) => (
+							<div
+								key={detail.label}
+								className="flex items-center justify-between gap-4 border-b border-border/40 pb-2"
+							>
+								<dt className="text-xs uppercase tracking-[0.35em] text-muted-foreground/80">
+									{detail.label}
+								</dt>
+								<dd className="text-foreground font-medium">
+									{detail.href ? (
+										<Link
+											href={detail.href}
+											className="hover:text-primary"
+										>
+											{detail.value}
+										</Link>
+									) : (
+										detail.value
+									)}
+								</dd>
+							</div>
+						))}
+					</dl>
+				</div>
+			</div>
+		</motion.div>
+	);
+});
+
+const getIsTouch = () =>
+	typeof window !== "undefined" &&
+	window.matchMedia?.("(pointer: coarse)")?.matches;
+
 const HeroSection = () => {
 	const [showBg, setShowBg] = useState(false);
+	const [isTouch, setIsTouch] = useState<boolean>(() =>
+		Boolean(getIsTouch())
+	);
 	const sectionRef = useRef<HTMLElement | null>(null);
 	const lenisState = useLenisScroll();
+	const shouldAnimateIntro = !heroIntroHasMounted;
+
+	useEffect(() => {
+		heroIntroHasMounted = true;
+	}, []);
+
+	useEffect(() => {
+		if (typeof window === "undefined") return;
+		const mq = window.matchMedia?.("(pointer: coarse)");
+		if (!mq) return;
+		const update = () => setIsTouch(mq.matches);
+		update();
+		mq.addEventListener("change", update);
+		return () => mq.removeEventListener("change", update);
+	}, []);
 
 	useEffect(() => {
 		if (typeof window === "undefined") return;
 		const prefersReducedMotion = window.matchMedia(
 			"(prefers-reduced-motion: reduce)"
 		).matches;
-		if (prefersReducedMotion) return;
+		if (prefersReducedMotion || isTouch) return;
 		const enable = () => setShowBg(true);
 		if ("requestIdleCallback" in window) {
 			(window as any).requestIdleCallback(enable);
 		} else {
 			setTimeout(enable, 1200);
 		}
-	}, []);
+	}, [isTouch]);
 
 	const { scrollY } = useScroll();
-	const y1 = useTransform(scrollY, [0, 520], [0, -250]);
-	const y2 = useTransform(scrollY, [0, 520], [0, -140]);
+	// Disable parallax on touch devices for better performance
+	const y1 = useTransform(scrollY, [0, 520], isTouch ? [0, 0] : [0, -250]);
+	const y2 = useTransform(scrollY, [0, 520], isTouch ? [0, 0] : [0, -140]);
 	const lenisProgress = lenisState.progress ?? 0;
 	const lenisSignedVelocity =
 		(lenisState.velocity ?? 0) * (lenisState.direction ?? 1);
@@ -73,8 +150,10 @@ const HeroSection = () => {
 	const progressValue = useMotionValue(lenisProgress);
 
 	useEffect(() => {
+		// Skip spring updates on touch devices
+		if (isTouch) return;
 		progressValue.set(lenisProgress);
-	}, [lenisProgress, progressValue]);
+	}, [lenisProgress, progressValue, isTouch]);
 
 	const smoothProgress = useSpring(progressValue, {
 		stiffness: 55,
@@ -82,23 +161,23 @@ const HeroSection = () => {
 		mass: 0.4,
 	});
 
-	const backgroundLift = useTransform(
-		smoothProgress,
-		(value) => (value - 0.5) * 120
+	const backgroundLift = useTransform(smoothProgress, (value) =>
+		isTouch ? 0 : (value - 0.5) * 120
 	);
-	const gridDrift = useTransform(smoothProgress, (value) => value * -90);
-	const glowDrift = useTransform(smoothProgress, (value) => value * 140);
-	const portraitParallax = useTransform(
-		smoothProgress,
-		(value) => (value - 0.5) * 80
+	const gridDrift = useTransform(smoothProgress, (value) =>
+		isTouch ? 0 : value * -90
+	);
+	const glowDrift = useTransform(smoothProgress, (value) =>
+		isTouch ? 0 : value * 140
+	);
+	const portraitParallax = useTransform(smoothProgress, (value) =>
+		isTouch ? 0 : (value - 0.5) * 80
 	);
 
 	const [firstName, lastName] = useMemo(() => {
 		const parts = personalInfo.name.split(" ");
 		return [parts[0], parts.slice(1).join(" ")];
 	}, []);
-
-	useHeroIntroMotion(sectionRef);
 
 	return (
 		<section
@@ -133,9 +212,11 @@ const HeroSection = () => {
 				<div className="grid items-stretch gap-10 lg:grid-cols-[1.05fr_minmax(0,0.9fr)]">
 					<motion.div
 						style={{ y: y1 }}
-						initial={{ opacity: 0, x: -50 }}
+						initial={
+							shouldAnimateIntro ? { opacity: 0, x: -50 } : false
+						}
 						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.5, ease: "easeOut" }}
+						transition={{ duration: 0.5, ease: "easeOut" as const }}
 						className="flex flex-col justify-center space-y-8 text-center lg:text-left"
 					>
 						<div
@@ -274,59 +355,18 @@ const HeroSection = () => {
 
 					<motion.div
 						style={{ y: y2 }}
-						initial={{ opacity: 0, x: 50 }}
+						initial={
+							shouldAnimateIntro ? { opacity: 0, x: 50 } : false
+						}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{
 							duration: 0.6,
-							delay: 0.15,
-							ease: "easeOut",
+							delay: shouldAnimateIntro ? 0.15 : 0,
+							ease: "easeOut" as const,
 						}}
 						className="relative flex h-full items-center justify-center"
 					>
-						<motion.div
-							className="relative w-full max-w-[480px]"
-							data-hero-seq="portrait"
-							style={{ y: portraitParallax }}
-						>
-							<div className="absolute inset-0 rounded-[32px] border border-white/20 bg-gradient-to-br from-white/15 to-transparent blur-2xl" />
-							<div className="absolute inset-0 rounded-[32px] bg-[radial-gradient(circle_at_top,_rgba(var(--primary-rgb),0.25),_transparent_70%)] blur-3xl" />
-							<div className="relative rounded-[32px] border border-white/10 bg-gradient-to-b from-background/60 to-background/20 p-6 backdrop-blur-2xl dark:border-white/5 dark:from-white/5 dark:to-white/0">
-								<ProfileImageEffect
-									imageSrc={
-										personalInfo.dp ||
-										"/placeholder-avatar.jpg"
-									}
-									imageAlt={`${personalInfo.name}'s Profile Picture`}
-									className="w-full max-w-[420px]"
-								/>
-								<div className="mt-6 space-y-4 text-left">
-									<dl className="space-y-3 text-sm">
-										{contactDetails.map((detail) => (
-											<div
-												key={detail.label}
-												className="flex items-center justify-between gap-4 border-b border-border/40 pb-2"
-											>
-												<dt className="text-xs uppercase tracking-[0.35em] text-muted-foreground/80">
-													{detail.label}
-												</dt>
-												<dd className="text-foreground font-medium">
-													{detail.href ? (
-														<Link
-															href={detail.href}
-															className="hover:text-primary"
-														>
-															{detail.value}
-														</Link>
-													) : (
-														detail.value
-													)}
-												</dd>
-											</div>
-										))}
-									</dl>
-								</div>
-							</div>
-						</motion.div>
+						<AvatarCard portraitParallax={portraitParallax} />
 					</motion.div>
 				</div>
 			</div>

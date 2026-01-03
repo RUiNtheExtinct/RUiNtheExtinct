@@ -1,6 +1,12 @@
 "use client";
 
-import { motion, useAnimation, useInView, Variants } from "framer-motion";
+import {
+	motion,
+	useAnimation,
+	useInView,
+	useReducedMotion,
+	Variants,
+} from "framer-motion";
 import { useEffect, useRef } from "react";
 
 interface ScrollRevealProps {
@@ -21,12 +27,14 @@ const ScrollReveal = ({
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-50px" });
 	const mainControls = useAnimation();
+	const prefersReducedMotion = useReducedMotion();
 
 	useEffect(() => {
+		if (prefersReducedMotion) return;
 		if (isInView) {
 			mainControls.start("visible");
 		}
-	}, [isInView, mainControls]);
+	}, [isInView, mainControls, prefersReducedMotion]);
 
 	const variants: Record<string, Variants> = {
 		fadeIn: {
@@ -53,13 +61,17 @@ const ScrollReveal = ({
 			style={{ position: "relative", width, overflow: "hidden" }}
 			className={className}
 		>
-			<motion.div
-				variants={variants[variant]}
-				initial="hidden"
-				animate={mainControls}
-			>
-				{children}
-			</motion.div>
+			{prefersReducedMotion ? (
+				<>{children}</>
+			) : (
+				<motion.div
+					variants={variants[variant]}
+					initial="hidden"
+					animate={mainControls}
+				>
+					{children}
+				</motion.div>
+			)}
 		</div>
 	);
 };

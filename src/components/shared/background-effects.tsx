@@ -84,7 +84,9 @@ const BackgroundEffects = () => {
 			h: window.innerHeight,
 		};
 
-		let rafId: number;
+		let rafId: number | null = null;
+		let stopTimeoutId: number | null = null;
+		let lastInputAt = performance.now();
 
 		const updateLayers = (time: number) => {
 			const lagX = pointer.x;
@@ -183,29 +185,54 @@ const BackgroundEffects = () => {
 		const handleMouseMove = (event: MouseEvent) => {
 			target.x = event.clientX;
 			target.y = event.clientY;
+			lastInputAt = performance.now();
+			if (rafId === null) rafId = requestAnimationFrame(animate);
+			if (stopTimeoutId) {
+				window.clearTimeout(stopTimeoutId);
+			}
+			// Stop the loop shortly after input stops to avoid a perpetual RAF.
+			stopTimeoutId = window.setTimeout(() => {
+				if (rafId !== null) cancelAnimationFrame(rafId);
+				rafId = null;
+			}, 220);
 		};
 
 		const handleResize = () => {
 			viewport.w = window.innerWidth;
 			viewport.h = window.innerHeight;
+			lastInputAt = performance.now();
+			if (rafId === null) rafId = requestAnimationFrame(animate);
 		};
 
 		const animate = () => {
+			// If the tab is hidden, don't run background animations.
+			if (document.visibilityState === "hidden") {
+				if (rafId !== null) cancelAnimationFrame(rafId);
+				rafId = null;
+				return;
+			}
 			pointer.x += (target.x - pointer.x) * 0.18;
 			pointer.y += (target.y - pointer.y) * 0.18;
 			updateLayers(performance.now());
+			// If input has been idle and we've converged, stop the loop.
+			const idleForMs = performance.now() - lastInputAt;
+			const dist = Math.hypot(target.x - pointer.x, target.y - pointer.y);
+			if (idleForMs > 260 && dist < 0.2) {
+				rafId = null;
+				return;
+			}
 			rafId = requestAnimationFrame(animate);
 		};
 
 		window.addEventListener("mousemove", handleMouseMove);
 		window.addEventListener("resize", handleResize);
 		updateLayers(performance.now());
-		animate();
 
 		return () => {
 			window.removeEventListener("mousemove", handleMouseMove);
 			window.removeEventListener("resize", handleResize);
-			if (rafId) cancelAnimationFrame(rafId);
+			if (rafId !== null) cancelAnimationFrame(rafId);
+			if (stopTimeoutId) window.clearTimeout(stopTimeoutId);
 		};
 	}, [themeMode]);
 
