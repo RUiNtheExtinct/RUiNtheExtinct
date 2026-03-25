@@ -3,9 +3,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 	pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+	experimental: {
+		mdxRs: true,
+	},
 	webpack: (config) => {
-		// Silence benign MDX loader cache warnings from @next/mdx
-		// https://github.com/vercel/next.js/issues/61287
 		config.ignoreWarnings = [
 			...(config.ignoreWarnings || []),
 			{
@@ -14,9 +15,6 @@ const nextConfig: NextConfig = {
 					/Build dependencies behind this expression are ignored/,
 			},
 		];
-
-		// Also suppress Webpack infrastructure warnings from the cache strategy
-		// that originate from dynamic requires inside @next/mdx loader.
 		config.infrastructureLogging = {
 			...(config.infrastructureLogging || {}),
 			level: "error",
@@ -25,4 +23,22 @@ const nextConfig: NextConfig = {
 	},
 };
 
-export default withMDX()(nextConfig);
+// withMDX() writes turbopack config to the deprecated top-level `turbopack`
+// key, but Next.js 15.2 expects it under `experimental.turbo`. Remap it.
+const mdxConfig = withMDX()(nextConfig) as NextConfig & {
+	turbopack?: Record<string, unknown>;
+};
+
+if (mdxConfig.turbopack) {
+	mdxConfig.experimental = {
+		...mdxConfig.experimental,
+		turbo: mdxConfig.turbopack as NextConfig["experimental"] extends {
+			turbo?: infer T;
+		}
+			? T
+			: never,
+	};
+	delete mdxConfig.turbopack;
+}
+
+export default mdxConfig;

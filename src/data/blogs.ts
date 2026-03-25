@@ -94,6 +94,34 @@ export const externalBlogs: BlogPost[] = [
 			"https://medium.com/@ruintheextinct/gorilla-llm-redefining-language-models-004da8101a9c",
 	},
 	{
+		slug: "convex-backend-without-the-backlog",
+		title: "Convex: Backend Without the Backlog",
+		date: "2025-03-20",
+		excerpt:
+			"How Convex eliminates backend boilerplate and lets you ship real-time, type-safe full-stack apps without the usual infrastructure overhead.",
+		author: "Arghyadeep Karmakar",
+		readingTime: "8 min read",
+		tags: ["Convex", "Backend", "Real-Time", "Full-Stack", "TypeScript"],
+		isExternal: true,
+		coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*iqrZGzvcTW9_8WHf39-5Sg.jpeg",
+		externalUrl:
+			"https://medium.com/@ruintheextinct/convex-backend-without-the-backlog-2fac0e418ef2",
+	},
+	{
+		slug: "tanstack-start-catch-bugs-before-your-users-do",
+		title: "TanStack Start: Catch Bugs Before Your Users Do",
+		date: "2025-03-18",
+		excerpt:
+			"A deep dive into TanStack Start's type-safe, full-stack approach to building modern web apps with end-to-end validation that catches bugs at compile time.",
+		author: "Arghyadeep Karmakar",
+		readingTime: "7 min read",
+		tags: ["TanStack Start", "TypeScript", "Full-Stack", "Type Safety"],
+		coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*yCDSerYCw1_tFu3d1uvjow.jpeg",
+		isExternal: true,
+		externalUrl:
+			"https://medium.com/@ruintheextinct/tanstack-start-catch-bugs-before-your-users-do-530e66155ec4",
+	},
+	{
 		slug: "building-the-unreal-metaverse-crafting-virtual-realities-with-unreal-engine",
 		title:
 			"Building the Unreal Metaverse: Crafting Virtual Realities with Unreal Engine",

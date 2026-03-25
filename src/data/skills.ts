@@ -11,6 +11,7 @@ import {
 import { FaAws, FaGoogle, FaMobile, FaRobot } from "react-icons/fa";
 import { RiGeminiFill, RiJavaFill } from "react-icons/ri";
 import {
+	SiApachekafka,
 	SiClaude,
 	SiClerk,
 	SiCplusplus,
@@ -19,12 +20,15 @@ import {
 	SiDjango,
 	SiDocker,
 	SiDrizzle,
+	SiElasticsearch,
 	SiExpress,
 	SiFastapi,
 	SiFigma,
 	SiFlask,
 	SiGit,
 	SiGithubactions,
+	SiGo,
+	SiGraphql,
 	SiHtml5,
 	SiJavascript,
 	SiJenkins,
@@ -123,7 +127,7 @@ export const skills: Skill[] = [
 		name: "Next.js",
 		icon: SiNextdotjs,
 		category: "frontend",
-		level: "advanced",
+		level: "expert",
 		description: "Full-stack React framework with SSR and static generation",
 		relatedTech: ["App Router", "Server Components", "API Routes", "ISR"],
 	},
@@ -223,6 +227,22 @@ export const skills: Skill[] = [
 		relatedTech: ["Expo", "React Native CLI", "React Navigation", "Redux"],
 	},
 	{
+		name: "GraphQL",
+		icon: SiGraphql,
+		category: "backend",
+		level: "advanced",
+		description: "Query language for APIs and runtime for fulfilling queries",
+		relatedTech: ["Apollo", "Schema Design", "Resolvers", "Type System"],
+	},
+	{
+		name: "Kafka",
+		icon: SiApachekafka,
+		category: "backend",
+		level: "advanced",
+		description: "Distributed event streaming platform for real-time data pipelines",
+		relatedTech: ["Topics", "Producers", "Consumers", "Streams", "CQRS"],
+	},
+	{
 		name: "Clerk",
 		icon: SiClerk,
 		category: "backend",
@@ -284,9 +304,17 @@ export const skills: Skill[] = [
 		name: "TypeScript",
 		icon: SiTypescript,
 		category: "languages",
-		level: "advanced",
+		level: "expert",
 		description: "Type-safe JavaScript development with advanced features",
 		relatedTech: ["Types", "Interfaces", "Generics", "Decorators", "Enums"],
+	},
+	{
+		name: "Golang",
+		icon: SiGo,
+		category: "languages",
+		level: "advanced",
+		description: "High-performance systems language for microservices and backend",
+		relatedTech: ["Goroutines", "Channels", "gRPC", "Microservices", "Concurrency"],
 	},
 
 	// Other Skills
@@ -356,6 +384,14 @@ export const skills: Skill[] = [
 		description: "ORM for Node.js and TypeScript",
 		relatedTech: ["ORM", "PostgreSQL", "MySQL"],
 	},
+	{
+		name: "Elasticsearch",
+		icon: SiElasticsearch,
+		category: "database",
+		level: "advanced",
+		description: "Distributed search and analytics engine",
+		relatedTech: ["Full-text Search", "Aggregations", "ELK Stack", "Kibana"],
+	},
 
 	// DevOps Skills
 	{
@@ -370,17 +406,17 @@ export const skills: Skill[] = [
 		name: "Kubernetes",
 		icon: SiKubernetes,
 		category: "devops",
-		level: "intermediate",
+		level: "advanced",
 		description: "Container orchestration and automation",
-		relatedTech: ["Pods", "Services", "Deployments", "Helm"],
+		relatedTech: ["Pods", "Services", "Deployments", "Helm", "EKS", "AKS", "GKE"],
 	},
 	{
 		name: "Terraform",
 		icon: SiTerraform,
 		category: "devops",
-		level: "intermediate",
-		description: "Infrastructure as Code tool",
-		relatedTech: ["EC2", "S3", "Lambda", "CloudFront"],
+		level: "advanced",
+		description: "Infrastructure as Code for multi-cloud provisioning",
+		relatedTech: ["Modules", "State", "Multi-Cloud", "200+ Resources"],
 	},
 	{
 		name: "Github Actions",
@@ -412,9 +448,9 @@ export const skills: Skill[] = [
 		name: "AWS",
 		icon: FaAws,
 		category: "cloud",
-		level: "intermediate",
+		level: "advanced",
 		description: "Cloud computing and infrastructure services",
-		relatedTech: ["EC2", "S3", "Lambda", "CloudFront"],
+		relatedTech: ["EC2", "Lambda", "S3", "EKS", "RDS", "CloudFront"],
 	},
 	{
 		name: "Azure",
@@ -422,12 +458,7 @@ export const skills: Skill[] = [
 		category: "cloud",
 		level: "intermediate",
 		description: "Cloud computing and infrastructure services",
-		relatedTech: [
-			"Azure DevOps",
-			"Azure Functions",
-			"Azure Storage",
-			"Azure Cosmos DB",
-		],
+		relatedTech: ["AKS", "Functions", "DevOps", "Blob Storage"],
 	},
 	{
 		name: "Google Cloud",
@@ -435,7 +466,7 @@ export const skills: Skill[] = [
 		category: "cloud",
 		level: "intermediate",
 		description: "Cloud computing and infrastructure services",
-		relatedTech: ["GCP", "GCS", "GCP Functions", "GCP Storage"],
+		relatedTech: ["GKE", "Cloud Run", "GCS", "Cloud Functions"],
 	},
 	{
 		name: "Vercel",

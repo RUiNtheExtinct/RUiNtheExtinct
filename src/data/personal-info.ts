@@ -3,19 +3,19 @@ import { Award, Briefcase, Code, GraduationCap } from "lucide-react";
 
 export const personalInfo: PersonalInfo = {
 	name: "Arghyadeep Karmakar",
-	title: "Full Stack Developer",
-	bio: "Full stack developer with expertise in building scalable applications using modern technologies such as generative AI, LLMs, and cloud services. With a strong foundation in both frontend and backend development, I create robust solutions that deliver exceptional user experiences.",
+	title: "Full-Stack & AI Engineer",
+	bio: "Full-Stack & AI Engineer with 4+ years shipping production SaaS across recruitment tech, real-time trading, and e-commerce. Proficient across the entire stack: React/Next.js frontends, Node.js/Python/Golang backends, LLM-powered services (LangChain, RAG, agentic AI), and cloud-native DevOps (AWS, GCP, Azure, Kubernetes). Track record of cutting infra costs by $500K+, boosting system performance by 40–50%, and leading architecture from zero to production.",
 	email: "deepkarma001@gmail.com",
 	phone: "+918983936295",
-	location: "Mumbai, Maharashtra",
+	location: "Pune, India",
 	dp: "/personal/dp.webp",
 	avatar: "/personal/avatar.webp",
 	resumeUrl: "/personal/resume.pdf",
 };
 
 export const aboutMeMessage = [
-	"Driven by a passion for crafting elegant and efficient solutions, I specialize in building full-stack applications with a focus on clean code, user experience, and scalability.",
-	"I thrive in collaborative environments and enjoy tackling complex challenges to deliver high-quality software that makes a real impact.",
+	"I ship production SaaS end-to-end — from React/Next.js frontends to Node.js/Python/Golang backends, LLM-powered microservices, and cloud-native infrastructure on AWS, GCP, and Azure. My work spans recruitment tech, real-time trading platforms, e-commerce, and AI-driven products.",
+	"I've cut cloud costs by $500K+, architected systems handling 50K+ concurrent users at sub-100ms latency, and built AI services processing thousands of requests daily at 95%+ accuracy. I'm a core contributor to open-source projects used by 50K+ developers.",
 ];
 
 export const stats: Stat[] = [
@@ -33,8 +33,8 @@ export const stats: Stat[] = [
 	},
 	{
 		icon: GraduationCap,
-		value: "2",
-		label: "Degrees",
+		value: "1",
+		label: "B.Tech (9.3 GPA)",
 		color: "bg-green-500/10 text-green-500",
 	},
 	{
