@@ -43,7 +43,7 @@ Based in Mumbai, Maharashtra. Contact: deepkarma001@gmail.com
 
 </p>
 
--   💬 Ask me about **CP, AI, Python, JS, TS, Java, and C++**.
+-   💬 Ask me about **DSA, AI, Python, JS, TS, Java, and C++**.
 -   🔭 I'm currently working on **multiple projects**.
 -   👯 I'm looking to collaborate on **anything free and open source**.
 -   ⚡ Fun fact, I love **physics**, **maths**, and **fanfiction**.
